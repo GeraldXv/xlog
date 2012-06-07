@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	<definition name="search" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/search/search.jsp" />
+	</definition>
+	<definition name="searchStauts" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/search/status.jsp" />
+	</definition>
+	<definition name="searchMessage" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/search/message.jsp" />
+	</definition>
+	<definition name="searchFriend" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/search/friend.jsp" />
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hk.hku.cs.xlog.entity.Status" table="status">
+		<id name="idAtService" column="idAtService" type="string">
+			<generator class="assigned" />
+		</id>
+		<property name="refUser" column="refUser" type="string" />
+		<property name="serviceProvider" column="serviceProvider"
+			type="string" />
+		<property name="fromUser" column="fromUser" type="string" />
+		<property name="content" column="ContentText" type="string" />
+		<property name="picture" column="picture" type="string" />
+		<property name="link" column="link" type="string" />
+		<property name="userImage" column="userImage" type="string" />
+		<property name="stared" column="stared" type="boolean" />
+		<property name="createdTime" column="createdTime" type="date" />
+		<set name="tags" inverse="true" cascade="save-update" table="status_tag" lazy="false">
+			<key column="idAtService"></key>
+			<many-to-many class="hk.hku.cs.xlog.entity.Tag" column="tagName"></many-to-many>
+		</set>
+	</class>
+
+</hibernate-mapping>

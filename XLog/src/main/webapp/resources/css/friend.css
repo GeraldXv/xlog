@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/* CSS Document */
+
+ul, li {margin:0; border:0; padding:0; list-style:none;}
+a {text-decoration:none;}
+
+.service {
+	width:900px;
+	height:650px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+}
+
+.service ul {
+}
+
+.service ul li {
+	width:408px;
+	height:30px;
+	font-size:0px;
+	background-color:#CCCCCC;
+}
+
+.service ul li a {
+	display:inline-block;
+	
+	background-color:#99CCFF;
+	border:2px #FFFFFF solid;
+	
+	margin-right:1px;
+	
+	padding:4px;
+	padding-right:9px;
+	padding-left:8px;
+	
+	width:80px;
+	
+	text-align:center;
+	font-family:Arial,serif,sans-serif;
+	font:bold;
+	font-size:16px;
+	color:#FFF;
+	
+}
+
+.service ul li a:hover {
+}
+
+.service ul li a:active {
+}
+
+#sel {
+	background-color:#99CCFF;
+	border:2px #3B3B3B solid;
+	
+	text-align:center;
+	font-family:Arial,serif,sans-serif;
+	font-weight:bold;
+	font-size:16px;
+	color:#3B3B3B;
+	z-index:100;
+}
+
+.service li.splitline {
+	width:900px;
+	height:2px;
+	background-color:#999;
+}	
+
+@media screen and (-webkit-min-device-pixel-ratio:0){ 
+
+.service li.splitline {
+	width:900px;
+	height:2px;
+	position:relative;
+	top:2px;
+	z-index:1;
+	background-color:#999;
+}	
+}
+
+.service li.shadowline {
+	width:900px;
+	height:16px;
+	border-radius:8px;
+	background-color:#999;
+}
+
+.service ul.flist {
+	width:600px;
+	background-color:#FFFFFF;
+}
+
+.service ul.flist li {
+	height:50px;
+	margin-bottom:15px;
+	background-color:transparent;
+}
+
+.service ul.flist li a {
+	color:#333333;
+	width:auto;
+	font-size:14px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:underline;
+	background-color:#FFFFFF;
+	margin-left:0px;
+	cursor:pointer;
+}
+
+.service ul.flist li img {
+	width:10px;
+	height:10px;
+}
+
+.service ul.flist li a img {
+	width:40px;
+	height:40px;
+	border:1px #272727 solid;
+	position:relative;
+	top:15px;
+}
+
+.service ul.flist li input {
+	position:relative;
+	top:10px;
+	width:200px;
+	height:20px;
+	font-size:16px;
+	margin-left:100px;
+	border:1px #888888 solid;
+}
+
+.service ul.flist li button {
+	width:50px;
+	height:24px;
+	position:relative;
+	top:14px;
+	top:15px\9;
+	background-color:#FF6600;
+	margin-left:5px;
+	border:1px #FF6600 solid;
+}
+
+.service ul.flist li button:hover {
+	background-color:#F50;
+}
+
+.service ul.flist li button:active {
+	border:1px #F90 solid;
+}
+
+.service ul.flist li button img {
+	width:20px;
+	height:20px;
+}

@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/* CSS Document */
+
+ul, li{margin:0; border:0; padding:0; list-style:none;}
+img {border:none;}
+
+.header {
+	background-color:#0066FF;
+	width:950px;
+	margin-left:auto;
+	margin-right:auto;
+	height:80px;
+}
+
+#title {
+	position:relative;
+	left:25px;
+	top:5px;
+	width:125px;
+	height:43px;
+}
+
+.header table tr td a {	
+	text-decoration:none;
+}
+
+.header table tr td a h2{
+	color:#FFF;
+	font-family: !important "Gill Sans Ultra Bold";
+	display: inline;
+	text-align:start;
+	font-size:42px;
+}
+
+.header tr td input {
+	display:inline-block;
+	height:20px;
+	width:180px;
+}
+
+.header tr td {
+	color:#FFF;
+	font-family:Arial,serif,sans-serif !important;
+	font-size:13px;
+	font:bold;
+}
+
+.header tr td button {
+	height:26px;
+	width:65px;
+	font-size:14px;
+	font:bold;
+	border:1px #000000 solid;
+	background-color:#003399;
+	color:#FFF;
+}
+
+.header tr td button:hover {
+	background-color:#06F;
+}
+
+.header tr td button:active {
+	border:1px #999 solid;
+}
+
+.header a {
+}
+
+.header tr td li {
+	color:#CCCCCC;
+}
+
+.header tr td li input {
+	width:20px !important;
+	height:12px !important;
+}
+
+.header tr td a {
+	color:#CCCCCC;
+}
+
+#rem {
+	display:none;
+}
+
+#prem {
+}
+
+#wrem {
+	color:#CCCCCC;
+}
+
+.rega {
+	display:block;
+	position:relative;
+	width:950px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.rega ul {
+	font-size:0px;
+}
+
+.rega ul li {
+	font-size:12px;
+	display:inline-block;
+}
+
+.reser {
+	width:474px;
+	position:relative;
+}
+
+.reser ul {
+}
+
+.reser ul li {
+}
+
+.register {
+	position:relative;
+	width:476px;
+	top:5px;
+	padding-bottom:275px;
+	background-color:#99FFFF;
+}
+
+.register table {
+	font-family:Arial,serif,sans-serif !important;
+	width:400px;
+	font:bold;
+	color:#000066;
+	font-size:14px;
+	position:relative;
+	text-align:justify;
+	left:50%;
+	top:30px;
+	margin-left:-200px;
+}
+
+.register table tr td label{
+	position:relative;
+	float:right;
+}
+
+.register table tr td b {
+	position:relative;
+	float:left;
+	font-size:16px;
+	color:#000066;
+}
+
+.register table tr td input {
+	width:218px;
+	border:1px #000066 solid;
+	height:20px;
+}
+
+.register table tr td button {
+	color:#FFFFFF;
+	font-size:16px;
+	font:bold;
+	background-color:#000066;
+	border:1px solid #000;
+	width:112px;
+	height:34px;
+}
+
+.register table tr td button:hover {
+	background-color:#06C;
+}
+
+.register table tr td button:active {
+	border:1px #999 solid;
+}
+
+.register table tr td img {
+	width:20px;
+	height:20px;
+	display:none;
+}
+
+#spl {
+	list-style:none;
+	height:1px;
+	position:relative;
+	left:-10px;
+	width:420px;
+	margin-bottom:20px;
+	margin-top:10px;
+	background-color:#000066;
+}
+
+#hint {
+	text-align:justify !important;
+	color:#666666;
+	font-size:12px;
+}
+
+#sind {
+	text-align:center;
+	border:1px #000000 solid;
+	width:100px;
+	background-image: url(../image/SIbg.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	position:relative;
+	z-index: 0;
+}

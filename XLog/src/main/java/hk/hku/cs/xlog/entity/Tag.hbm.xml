@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hk.hku.cs.xlog.entity.Tag" table="tag">
+		<id name="tagName" column="tagName" type="string">
+			<generator class="assigned" />
+		</id>
+		<property name="tagCount" column="tagCount" type="int" />
+		<set name="status" inverse="true" cascade="save-update" table="status_tag" lazy="false">
+			<key column="tagName"></key>
+			<many-to-many class="hk.hku.cs.xlog.entity.Status"
+				column="idAtService"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

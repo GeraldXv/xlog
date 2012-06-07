@@ -1,0 +1,114 @@
+@charset "UTF-8";
+/* CSS Document */
+
+ul, li {margin:0; border:0; padding:0; list-style:none;}
+
+.SRcontent {
+	display:block;
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+}
+
+.SRcontent ul {
+}
+
+.SRcontent ul span {
+	font-size:0px;
+}
+
+.SRcontent ul span b {
+	display:inline-block;
+	width:145px;
+	margin-left:20px;
+	color:#FF0000;
+	font-size:24px;
+	font-family:Arial, serif, sans-serif;
+}
+
+.SRcontent li.base {
+	display:block;
+	width:910px;
+	height:2px;
+	margin-top:20px;
+	margin-bottom:10px;
+	background-color:#999999;
+}
+
+.SRcontent ul table {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.SRcontent ul table tr td img {
+	position:relative;
+	top:6px;
+	margin-right:5px;
+	width:30px;
+	height:30px;
+}
+
+.SRcontent ul table tr td span {
+	color:#FF6600;
+	padding-top:10px;
+	padding-bottom:10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.SRcontent ul table tr td {
+	color:#333333;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	position:relative;
+	padding-bottom:7px;
+}
+
+.SRcontent ul table tr td label {
+	color:#333333;
+	font-size:11px;
+	margin-left:20px;
+}
+
+.SRcontent ul table tr td a {
+	font-weight:bold;
+	font-size:11px;
+	color:#0033FF;
+	cursor:pointer;
+	display:block;
+	padding-top:7px;
+	padding-bottom:10px;
+	text-decoration:none;
+}
+
+.SRcontent ul table tr td button {
+	width:160px;
+	height:23px;
+	background-color:#FF6600;
+	border:1px #FF6600 solid;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size:14px;
+}
+
+#port {
+	top:0;
+	width:50px;
+	height:50px;
+}
+
+#gender {
+	width:10px;
+	height:10px;
+	top:0;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+#name {
+	color:#666;
+	margin-top:-10px;
+	font-size:16px;
+}

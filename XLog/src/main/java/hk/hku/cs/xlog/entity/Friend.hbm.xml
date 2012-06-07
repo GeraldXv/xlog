@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hk.hku.cs.xlog.entity.Friend" table="friend">
+		<id name="idAtService" column="idAtService" type="string">
+			<generator class="assigned" />
+		</id>
+		<property name="refUser" column="refUser" type="string" />
+		<property name="serviceProvider" column="serviceProvider" type="string" />
+		<property name="username" column="username" type="string" />
+		<property name="name" column="name" type="string" />
+		<property name="screenName" column="screenName" type="string" />
+		<property name="gender" column="gender" type="string" />
+		<property name="homeLink" column="homeLink" type="string" />
+		<property name="email" column="email" type="string" />
+		<property name="imageUrl" column="imageUrl" type="string" />
+	</class>
+</hibernate-mapping>

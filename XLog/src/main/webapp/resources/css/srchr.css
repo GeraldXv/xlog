@@ -1,0 +1,359 @@
+@charset "UTF-8";
+/* CSS Document */
+
+ul, li {margin:0; border:0; padding:0; list-style:none;}
+
+.SRcontent {
+	display:block;
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+}
+
+.SRcontent ul {
+}
+
+.SRcontent ul span {
+	font-size:0px;
+}
+
+.SRcontent ul span b {
+	display:inline-block;
+	width:145px;
+	margin-left:20px;
+	color:#FF0000;
+	font-size:24px;
+	font-family:Arial, serif, sans-serif;
+}
+
+.SRcontent ul span label {
+	display:inline-block;
+	width:600px;
+	color:#333333;
+	font-size:14px;
+	font-family:Arial, serif, sans-serif;
+}
+
+.SRcontent ul span a {
+	display:inline-block;
+	color:#FF0000;
+	font-size:14px;
+	font-family:Arial, serif, sans-serif;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.SRcontent ul li {
+	display:inline-block;
+	width:500px;
+	vertical-align:text-top;
+}
+
+.SRcontent ul li table tr {
+	margin:0 0 0 0;
+}
+
+.SRcontent ul li table tr td li {
+	margin-left:20px;
+}
+
+.SRcontent ul li table tr td li a {
+	text-decoration:none;
+	font-family:Arial,serif,sans-serif;
+	font-size:16px;
+	color:#000;
+}
+
+.SRcontent ul li table tr td a {
+	color:#03F;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.SRcontent ul li table tr td a img {
+	width:40px;
+	height:40px;
+	border:none;
+}
+
+.SRcontent a.seled {
+	font:bold;
+	color:#F00;
+}
+
+.SRcontent li.base {
+	display:block;
+	width:910px;
+	height:2px;
+	margin-top:20px;
+	margin-bottom:10px;
+	background-color:#999999;
+}
+
+.SRcontent li.spl {
+	background-color: #999999;
+	width:140px;
+	height:2px;
+	
+	margin-left:-5px;
+	margin-top:50px;
+	margin-bottom:20px;
+}
+
+.SRcontent li.categ {
+	width:120px;
+	top:20px;
+	margin-right:40px;
+	margin-top:5px;
+}
+
+.SRcontent li.reslt {
+	margin-top:20px;
+	width:500px;
+	height:480px;
+}
+
+.SRcontent li.reslt table {
+	width:500px;
+}
+
+.SRcontent li.reslt table td {
+}
+
+.SRcontent li.reslt table tr td a img {
+	width:30px;
+	height:30px;
+	float:left;
+}
+
+/* css for item */
+
+.SRcontent li.reslt a.pona {
+	text-decoration:none;
+	font-size:20px !important;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#000099;
+}
+
+.SRcontent li.reslt a.addr {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#006633;
+	text-decoration:none;
+}
+
+.SRcontent li.reslt a.addr:hover {
+	text-decoration:underline;
+}
+
+.SRcontent li.reslt label.tist {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#CCC;
+	display:block;
+	position:relative;
+	margin-top:4px;
+}
+
+.SRcontent li.reslt a.keyw {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#0000FF;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.SRcontent li.reslt a.keyw:hover {
+	text-decoration:underline;
+}
+
+.SRcontent li.reslt tr.person td label {
+	color:#999;
+}
+
+.SRcontent li.reslt tr.person span img {
+	width:50px !important;
+	height:50px !important;
+}
+
+.SRcontent li.reslt tr.person a {
+	font-family:Arial,serif,sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	color:#333333;
+	position:relative;
+	top:3px;
+	text-decoration:none !important;
+}
+
+.pgender {
+	position:relative;
+	top:2px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.SRcontent ul li table {
+	width:150px;
+	font-family:Arial,serif,sans-serif;
+	font-size:16px;
+}
+
+.recom {
+	position:relative;
+	display:block;
+	height:50px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.recom li label {
+	background-color:#FFFFFF;
+	color:#666;
+	font-family:Arial,serif,sans-serif;
+	font:bold;
+	font-size:17px;
+}
+
+.recom li label a {
+	color:#000000;
+	text-decoration:underline;
+	font:bold;
+	font-size:17px;
+	cursor:pointer;
+}
+
+.recom li {
+	margin-left:200px;
+}
+
+.recom li.relatedS a{
+	display:inline-block;
+	color:#00F;
+	text-decoration:underline;
+	font:bold;
+	font-family:Arial,serif,sans-serif;
+	font-size:15px;
+	cursor:pointer;
+	margin-left:5px;
+	width:90px;
+}
+
+.recom li.relatedS {
+	display:block;
+	width:200px;
+	background-color:#CCCCCC;
+	margin-left:200px;
+}
+
+.pages {
+	position:relative;
+	display:block;
+	height:30px !important;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+.pages li {
+	margin-top:10px;
+}
+
+.pages li a {
+	color:#000099;
+}
+
+.pages li a:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+#nxtp {
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+#prep {
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+/* advanced search */
+
+ .advsrch {
+ 	width:400px;
+	height:180px;
+	border:2px #0000CC solid;
+	background-color:#FFFFFF;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	font-weight:500;
+	color:#333333;
+	
+	position:absolute;
+	left:50%;
+	margin-left:70px;
+	top:146px;
+	z-index:100;
+	display:none;
+ }
+ 
+ .advsrch table {
+ }
+ 
+ .advsrch table tr {
+ }
+ 
+ .advsrch table tr td {
+ }
+ 
+ .advsrch table tr td select {
+ 	 width:200px;
+	 margin-left:3px;
+ }
+ 
+ .advsrch table tr td button {
+	 width:130px;
+	 height:22px;
+	 margin-left:50px;
+	 font:Arial,serif,sans-serif;
+	 font-size:14px;
+	 font:bold;
+	 background-color:#000099;
+	 border:1px #000099 solid;
+	 color:#FFF;
+	 margin-top:10px;
+ }
+ 
+ .advsrch table tr td button:hover {
+ 	background-color:#00CCFF;
+	border-color:#00ccff;
+ }
+ 
+ .advsrch table tr td button:active {
+ 	background-color:#00CCFF;
+	border-color:#FFFFFF;
+ }
+ 
+ .advsrch table tr td input {
+	 font-weight:bold;
+	 font-family:Arial, Helvetica, sans-serif;
+ }
+ 
+ .advsrch table tr td input.Wdate {
+ 	width:100px;
+	height:16px;
+	margin-left:3px;
+ }
+ 
+ .bnn {
+	 font-family:Arial, Helvetica, sans-serif;
+	 font-size:14px;
+	 font-weight:bold;
+ 	 color:#660033;
+ }
+

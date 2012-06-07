@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* popup window for authorization*/
+
+.autwin {
+	display:none;
+	
+	width:360px;
+	height:160px;
+	
+	left:50%;
+	margin-left:-180px;
+	top:200px;
+	
+	color:#333333;
+	background-color:#CCCCCC;
+	position:absolute;
+	font-family:Arial,serif,sans-serif;
+	font-size:14px;
+	text-align:justify;
+	
+	border:2px #333333 solid;
+	border-radius:15px;
+	
+	z-index:3;
+}
+
+.autwin ul li {
+	width:340px;
+	position:relative;
+	top:3px;
+	margin-bottom:5px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.autwin ul li label {
+	width:100px;
+	font-size:13px;
+	position:relative;
+	text-align:center;
+	top:5px;
+	float:left;
+}
+
+.autwin ul li label b {
+	color:#333333;
+	font-size:15px;
+}
+
+.spl {
+	background-color:#333333;
+	height:2px;
+	width:256px;
+	margin-top:5px;
+	margin-bottom:8px;
+}
+
+.autwin ul li input {
+	width:230px;
+	height:20px;
+	font-size:16px;
+}
+
+.autwin ul li button {
+	width:90px;
+	height:30px;
+	border:2px #333333 solid;
+	border-radius:5px;
+	background-color:#99CCFF;
+	position:relative;
+	left:150px;
+	top:5px;
+	margin-right:5px;
+}
+
+.autwin ul li button b {
+	color:#333333;
+	font-size:15px;
+}
+
+.lyly {
+	background-color:#777;
+	z-index:2;
+	left:0px;
+	position:absolute;
+	top:0px;
+	display:none;
+	width:0px;
+	filter: Alpha(Opacity:50);
+	opacity:0.5; /*CSS 3*/
+}

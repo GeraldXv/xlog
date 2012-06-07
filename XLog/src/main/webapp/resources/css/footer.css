@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* CSS Document */
+
+ul, li{margin:0; border:0; padding:0; list-style:none;}
+img {border:0;}
+
+/* bottom */
+.bottom {
+	position:relative;
+	width:1000px;
+	left:50%;
+	margin-left:-500px;
+	padding-bottom:30px;
+}
+
+.bottom ul {
+}
+
+.bottom ul li {
+}
+
+.bottom ul a {
+	display:inline-block;
+	float:right;
+	width:80px;
+	
+	text-decoration:none;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#666;
+}
+
+.line {
+	height:1px;
+	background-color:#666;
+	border:none;
+	margin-bottom:8px;
+	margin-top:8px;
+}
