@@ -11,7 +11,6 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 
 	@Override
 	public Message get(String idAtService) {
-
 		return (Message) getHibernateTemplate().get(Message.class, idAtService);
 	}
 

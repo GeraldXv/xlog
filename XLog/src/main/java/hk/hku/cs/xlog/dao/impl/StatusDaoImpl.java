@@ -46,27 +46,22 @@ public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Status> getStatus(String refName) {
-		return (List<Status>) getHibernateTemplate().find(
-				"from Status where refUser=?", refName);
+		return (List<Status>) getHibernateTemplate().find("from Status where refUser=?", refName);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Status> getStatusAllByTime(String refName) {
 		getHibernateTemplate().setMaxResults(7);
-		return (List<Status>) getHibernateTemplate().find(
-				"from Status where refUser=? order by createdTime desc",
-				refName);
+		return (List<Status>) getHibernateTemplate().find("from Status where refUser=? order by createdTime desc", refName);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Status> getStatusAllByTimeAndService(String refName,
-			String service) {
+	public List<Status> getStatusAllByTimeAndService(String refName, String service) {
 		getHibernateTemplate().setMaxResults(10);
-		return (List<Status>) getHibernateTemplate()
-				.find("from Status where refUser=? and serviceProvider=? order by createdTime desc ",
-						new Object[] { refName, service });
+		return (List<Status>) getHibernateTemplate().find("from Status where refUser=? and serviceProvider=? order by createdTime desc ",
+				new Object[] { refName, service });
 	}
 
 }

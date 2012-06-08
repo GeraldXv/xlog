@@ -38,8 +38,7 @@ public class FriendDaoImpl extends HibernateDaoSupport implements FriendDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Friend> getFriends(String refName) {
-		return (List<Friend>) getHibernateTemplate().find(
-				"from Friend where refName=?", refName);
+		return (List<Friend>) getHibernateTemplate().find("from Friend where refName=?", refName);
 	}
 
 	@Override

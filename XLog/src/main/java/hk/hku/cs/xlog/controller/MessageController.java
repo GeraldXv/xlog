@@ -28,9 +28,7 @@ public class MessageController {
 	private UserConnectionDao userConnectionDaoImpl;
 
 	@Inject
-	public MessageController(MessageDao messageDaoImpl,
-			GmailAccountDao gmailAccountDaoImpl, UserDao userDaoImpl,
-			UserConnectionDao userConnectionDaoImpl) {
+	public MessageController(MessageDao messageDaoImpl, GmailAccountDao gmailAccountDaoImpl, UserDao userDaoImpl, UserConnectionDao userConnectionDaoImpl) {
 		this.messageDaoImpl = messageDaoImpl;
 		this.gmailAccountDaoImpl = gmailAccountDaoImpl;
 		this.userDaoImpl = userDaoImpl;
@@ -40,18 +38,13 @@ public class MessageController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
-		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser
-				.getName(),
-				gmailAccountDaoImpl.getByUserName(currentUser.getName())
-						.getAccount(), userConnectionDaoImpl
-						.getByNameAndProvider(currentUser.getName(), "twitter")
-						.getUserConPK().getProviderUserId());
+		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(), gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
+				userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
 		List<Message> newList = new ArrayList<Message>();
 		for (int i = 0; i < mList.size(); i++) {
 			boolean flag = false;
 			for (int j = 0; j < i; j++) {
-				if (mList.get(i).getFromName()
-						.equals(mList.get(j).getFromName()))
+				if (mList.get(i).getFromName().equals(mList.get(j).getFromName()))
 					flag = true;
 			}
 			if (!flag) {
@@ -59,30 +52,21 @@ public class MessageController {
 			}
 		}
 		model.addAttribute("friendList", newList);
-		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(
-				currentUser.getName(), mList.get(0).getFromName()));
+		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(currentUser.getName(), mList.get(0).getFromName()));
 		model.addAttribute("fromUser", mList.get(0).getFromName());
-		model.addAttribute("profileImage",
-				userDaoImpl.getByUserName(currentUser.getName())
-						.getProfileImage());
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		return "message";
 	}
 
 	@RequestMapping(value = "/{fromUser}", method = RequestMethod.GET)
-	public String services(Principal currentUser, Model model,
-			@PathVariable String fromUser) {
-		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser
-				.getName(),
-				gmailAccountDaoImpl.getByUserName(currentUser.getName())
-						.getAccount(), userConnectionDaoImpl
-						.getByNameAndProvider(currentUser.getName(), "twitter")
-						.getUserConPK().getProviderUserId());
+	public String services(Principal currentUser, Model model, @PathVariable String fromUser) {
+		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(), gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
+				userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
 		List<Message> newList = new ArrayList<Message>();
 		for (int i = 0; i < mList.size(); i++) {
 			boolean flag = false;
 			for (int j = 0; j < i; j++) {
-				if (mList.get(i).getFromName()
-						.equals(mList.get(j).getFromName()))
+				if (mList.get(i).getFromName().equals(mList.get(j).getFromName()))
 					flag = true;
 			}
 			if (!flag) {
@@ -90,12 +74,9 @@ public class MessageController {
 			}
 		}
 		model.addAttribute("friendList", newList);
-		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(
-				currentUser.getName(), fromUser));
+		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(currentUser.getName(), fromUser));
 		model.addAttribute("fromUser", fromUser);
-		model.addAttribute("profileImage",
-				userDaoImpl.getByUserName(currentUser.getName())
-						.getProfileImage());
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		return "message";
 	}
 

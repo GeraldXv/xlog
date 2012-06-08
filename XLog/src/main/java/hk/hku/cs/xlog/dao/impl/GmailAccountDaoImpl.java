@@ -5,13 +5,11 @@ import hk.hku.cs.xlog.entity.GmailAccount;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-public class GmailAccountDaoImpl extends HibernateDaoSupport implements
-		GmailAccountDao {
+public class GmailAccountDaoImpl extends HibernateDaoSupport implements GmailAccountDao {
 
 	@Override
 	public GmailAccount getByUserName(String refUser) {
-		return (GmailAccount) getHibernateTemplate().get(GmailAccount.class,
-				refUser);
+		return (GmailAccount) getHibernateTemplate().get(GmailAccount.class, refUser);
 	}
 
 	@Override

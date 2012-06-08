@@ -37,13 +37,9 @@ public class IndexController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
-		model.addAttribute("profileImage",
-				userDaoImpl.getByUserName(currentUser.getName())
-						.getProfileImage());
-		model.addAttribute("statusList",
-				statusDaoImpl.getStatusAllByTime(currentUser.getName()));
-		System.out.println(statusDaoImpl.getStatusAllByTime(
-				currentUser.getName()).size());
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
+		System.out.println(statusDaoImpl.getStatusAllByTime(currentUser.getName()).size());
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
 		model.addAttribute("providerId", "all");
 
@@ -51,25 +47,14 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/status/{providerId}", method = RequestMethod.GET)
-	public String services(Principal currentUser, Model model,
-			@PathVariable String providerId) {
-		model.addAttribute("profileImage",
-				userDaoImpl.getByUserName(currentUser.getName())
-						.getProfileImage());
+	public String services(Principal currentUser, Model model, @PathVariable String providerId) {
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		if (providerId.equals("gmail"))
-			model.addAttribute(
-					"statusList",
-					statusDaoImpl.getStatusAllByTimeAndService(
-							currentUser.getName(), providerId));
+			model.addAttribute("statusList", statusDaoImpl.getStatusAllByTimeAndService(currentUser.getName(), providerId));
 		else {
-			List<Message> mList = messageDaoImpl.getMessagesByTime(
-					currentUser.getName(),
-					gmailAccountDaoImpl.getByUserName(currentUser.getName())
-							.getAccount(),
-					userConnectionDaoImpl
-							.getByNameAndProvider(currentUser.getName(),
-									"twitter").getUserConPK()
-							.getProviderUserId());
+			List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(),
+					gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
+					userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
 			model.addAttribute("messageList", mList);
 		}
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());

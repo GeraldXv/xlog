@@ -17,9 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"file:src/test/resources/applicationContext-social.xml",
-		"classpath:applicationContext-dao.xml",
+@ContextConfiguration(locations = { "file:src/test/resources/applicationContext-social.xml", "classpath:applicationContext-dao.xml",
 		"classpath:applicationContext-hibernate.xml", })
 public class MessageClientTest {
 
@@ -38,10 +36,8 @@ public class MessageClientTest {
 		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
 		twitterApi = twitter.getApi();
 
-		List<DirectMessage> tRList = twitterApi.directMessageOperations()
-				.getDirectMessagesReceived();
-		List<DirectMessage> tSList = twitterApi.directMessageOperations()
-				.getDirectMessagesSent();
+		List<DirectMessage> tRList = twitterApi.directMessageOperations().getDirectMessagesReceived();
+		List<DirectMessage> tSList = twitterApi.directMessageOperations().getDirectMessagesSent();
 
 		messageClient.saveOrUpdateTwitterMessages("GeraldXv", tRList);
 		messageClient.saveOrUpdateTwitterMessages("GeraldXv", tSList);

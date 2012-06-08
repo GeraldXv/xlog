@@ -36,8 +36,7 @@ public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
 	@Override
 	public List<Tag> getMessagesByRank() {
 		getHibernateTemplate().setMaxResults(8);
-		return (List<Tag>) getHibernateTemplate().find(
-				"from Tag order by tagCount desc");
+		return (List<Tag>) getHibernateTemplate().find("from Tag order by tagCount desc");
 	}
 
 }

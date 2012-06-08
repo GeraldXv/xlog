@@ -15,7 +15,6 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,14 +24,10 @@ public class SourceController {
 	private Provider<ConnectionRepository> connectionRepositoryProvider;
 	private final ConnectionFactoryLocator connectionFactoryLocator;
 	private CheckSourceClient checkSourceClient;
-
 	@Inject
 	private UserDao userDaoImpl;
-
 	@Inject
-	public SourceController(
-			Provider<ConnectionRepository> connectionRepositoryProvider,
-			ConnectionFactoryLocator connectionFactoryLocator,
+	public SourceController(Provider<ConnectionRepository> connectionRepositoryProvider, ConnectionFactoryLocator connectionFactoryLocator,
 			CheckSourceClient checkSourceClient) {
 		this.connectionRepositoryProvider = connectionRepositoryProvider;
 		this.connectionFactoryLocator = connectionFactoryLocator;
@@ -41,33 +36,12 @@ public class SourceController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
-		Map<String, List<Connection<?>>> connections = getConnectionRepository()
-				.findAllConnections();
-		model.addAttribute("providerIds",
-				connectionFactoryLocator.registeredProviderIds());
+		Map<String, List<Connection<?>>> connections = getConnectionRepository().findAllConnections();
+		model.addAttribute("providerIds", connectionFactoryLocator.registeredProviderIds());
 		model.addAttribute("connectionMap", connections);
-		model.addAttribute("isGmailconnected",
-				checkSourceClient.isGmailConnected(currentUser.getName()));
-		model.addAttribute("profileImage",
-				userDaoImpl.getByUserName(currentUser.getName())
-						.getProfileImage());
+		model.addAttribute("isGmailconnected", checkSourceClient.isGmailConnected(currentUser.getName()));
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		return "source";
-	}
-
-	@RequestMapping(value = "/add/${providerId}", method = RequestMethod.GET)
-	public String addService(@PathVariable String providerId) {
-
-		if (providerId.equals("Twitter")) {
-			return "redirect:/connect/twitter";
-		}
-		return providerId;
-
-	}
-
-
-
-	@RequestMapping(value = "/service/remove", method = RequestMethod.GET)
-	public void removeService() {
 	}
 
 	private ConnectionRepository getConnectionRepository() {
