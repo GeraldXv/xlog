@@ -12,11 +12,8 @@ public class UserDaoImplTest {
 
 	@BeforeClass
 	public static void beforeClass() {
-		String[] configLocations = new String[] {
-				"classpath:applicationContext-hibernate.xml",
-				"classpath:applicationContext-dao.xml" };
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(
-				configLocations);
+		String[] configLocations = new String[] { "classpath:applicationContext-hibernate.xml", "classpath:applicationContext-dao.xml" };
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(configLocations);
 		userDao = (UserDao) ctx.getBean("userDaoImpl");
 	}
 

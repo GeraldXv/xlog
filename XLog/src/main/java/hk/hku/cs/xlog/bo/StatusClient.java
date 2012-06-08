@@ -19,14 +19,12 @@ public class StatusClient {
 	private StatusDaoImpl statusDaoImpl;
 
 	public void saveOrUpdateTwitterStatus(String userName, List<Tweet> tweets) {
-		statusDaoImpl.saveOrUpdateAll(statusAdapter.twitterStatusListAdapter(
-				userName, tweets));
+		statusDaoImpl.saveOrUpdateAll(statusAdapter.twitterStatusListAdapter(userName, tweets));
 
 	}
 
 	public void saveOrUpdateFacebookStatus(String userName, List<Post> posts) {
-		statusDaoImpl.saveOrUpdateAll(statusAdapter.facebookStatusListAdapter(
-				userName, posts));
+		statusDaoImpl.saveOrUpdateAll(statusAdapter.facebookStatusListAdapter(userName, posts));
 	}
 
 	public List<Status> getTopStatus(String userName) {

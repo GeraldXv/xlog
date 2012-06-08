@@ -22,7 +22,6 @@ public interface MessageDao {
 
 	List<Message> getMessagesByUserName(String refName, String fromUser);
 
-	List<Message> getMessagesByTime(String refName, String gmailaccount,
-			String twitteraccount);
+	List<Message> getMessagesByTime(String refName, String gmailaccount, String twitteraccount);
 
 }

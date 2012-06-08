@@ -19,8 +19,7 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public void createIndex(String serverName) {
-		SolrServer solrServer = SolrServerFactory
-				.getEmbeddedSolrServer(serverName);
+		SolrServer solrServer = SolrServerFactory.getEmbeddedSolrServer(serverName);
 		ModifiableSolrParams params = new ModifiableSolrParams();
 		params.set("qt", "/dataimport");
 		params.set("command", "full-import");
@@ -35,8 +34,7 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public void updateIndex(String servername) {
-		SolrServer solrServer = SolrServerFactory
-				.getEmbeddedSolrServer(servername);
+		SolrServer solrServer = SolrServerFactory.getEmbeddedSolrServer(servername);
 		ModifiableSolrParams params = new ModifiableSolrParams();
 		params.set("qt", "/dataimport");
 		params.set("command", "delta-import");
@@ -85,19 +83,15 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<Friend> searchFriends(String query) {
-		SolrServer solrServer = SolrServerFactory
-				.getEmbeddedSolrServer("friend");
-		PaginationSupport<Friend> friends = SolrClient.query(query,
-				Friend.class, 0, 10, solrServer);
+		SolrServer solrServer = SolrServerFactory.getEmbeddedSolrServer("friend");
+		PaginationSupport<Friend> friends = SolrClient.query(query, Friend.class, 0, 10, solrServer);
 		return friends.getItems();
 	}
 
 	@Override
 	public List<Status> searchStatus(String query) {
-		SolrServer solrServer = SolrServerFactory
-				.getEmbeddedSolrServer("status");
-		PaginationSupport<Status> status = SolrClient.query(query,
-				Status.class, 0, 10, solrServer);
+		SolrServer solrServer = SolrServerFactory.getEmbeddedSolrServer("status");
+		PaginationSupport<Status> status = SolrClient.query(query, Status.class, 0, 10, solrServer);
 		return status.getItems();
 	}
 
@@ -121,10 +115,8 @@ public class SearchServiceImpl implements SearchService {
 
 	@Override
 	public List<Message> searchMessages(String query) {
-		SolrServer solrServer = SolrServerFactory
-				.getEmbeddedSolrServer("message");
-		PaginationSupport<Message> messageList = SolrClient.query(query,
-				Message.class, 0, 10, solrServer);
+		SolrServer solrServer = SolrServerFactory.getEmbeddedSolrServer("message");
+		PaginationSupport<Message> messageList = SolrClient.query(query, Message.class, 0, 10, solrServer);
 		return messageList.getItems();
 	}
 

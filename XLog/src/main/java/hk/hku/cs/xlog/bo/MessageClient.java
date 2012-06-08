@@ -18,17 +18,13 @@ public class MessageClient {
 	@Autowired
 	private MessageDaoImpl messageDaoImpl;
 
-	public void saveOrUpdateTwitterMessages(String userName,
-			List<DirectMessage> messages) {
-		messageDaoImpl.saveOrUpdateAll(messageAdapter
-				.twitterMessageListAdapter(userName, messages));
+	public void saveOrUpdateTwitterMessages(String userName, List<DirectMessage> messages) {
+		messageDaoImpl.saveOrUpdateAll(messageAdapter.twitterMessageListAdapter(userName, messages));
 
 	}
 
-	public void saveOrUpdateGmailMessages(String userName,
-			List<JavaMailGmailMessage> message) {
-		messageDaoImpl.saveOrUpdateAll(messageAdapter.gmailMessageListAdapter(
-				userName, message));
+	public void saveOrUpdateGmailMessages(String userName, List<JavaMailGmailMessage> message) {
+		messageDaoImpl.saveOrUpdateAll(messageAdapter.gmailMessageListAdapter(userName, message));
 
 	}
 

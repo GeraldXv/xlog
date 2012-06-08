@@ -13,8 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext-dao.xml",
-		"classpath:applicationContext-hibernate.xml" })
+@ContextConfiguration(locations = { "classpath:applicationContext-dao.xml", "classpath:applicationContext-hibernate.xml" })
 public class MessageDaoImplTest {
 	@Autowired
 	MessageDao messageDaoImpl;
@@ -30,8 +29,7 @@ public class MessageDaoImplTest {
 		// List<Message> mXList = messageAdapter.gmailMessageListAdapter(
 		// "GeraldXv", mlist);
 		// messageDaoImpl.saveOrUpdateAll(mXList);
-		List<Message> ml = messageDaoImpl.getMessagesByTime("GeraldXv",
-				"gerald.xv@gmail.com", "Gerald.Xv");
+		List<Message> ml = messageDaoImpl.getMessagesByTime("GeraldXv", "gerald.xv@gmail.com", "Gerald.Xv");
 		System.out.println(ml.size());
 		for (Message m : ml) {
 			System.out.println(m.toString());

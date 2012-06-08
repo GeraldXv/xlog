@@ -20,9 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"file:src/test/resources/applicationContext-social.xml",
-		"classpath:applicationContext-dao.xml",
+@ContextConfiguration(locations = { "file:src/test/resources/applicationContext-social.xml", "classpath:applicationContext-dao.xml",
 		"classpath:applicationContext-hibernate.xml", })
 public class FriendClientTest {
 	@Autowired
@@ -45,16 +43,13 @@ public class FriendClientTest {
 		con = usersConnectionRepository.createConnectionRepository("GeraldXv");
 		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
 		twitterApi = twitter.getApi();
-		Connection<Facebook> facebook = con
-				.findPrimaryConnection(Facebook.class);
+		Connection<Facebook> facebook = con.findPrimaryConnection(Facebook.class);
 		facebookApi = facebook.getApi();
 		Connection<Google> google = con.findPrimaryConnection(Google.class);
 		googleApi = google.getApi();
 		// System.out.println(googleApi.personOperations().getPerson("110377639084744464746").get);
-		List<FacebookProfile> ffriends = facebookApi.friendOperations()
-				.getFriendProfiles(0, 500);
-		List<TwitterProfile> tfriends = twitterApi.friendOperations()
-				.getFriends();
+		List<FacebookProfile> ffriends = facebookApi.friendOperations().getFriendProfiles(0, 500);
+		List<TwitterProfile> tfriends = twitterApi.friendOperations().getFriends();
 		// List<Person> gfriends = googleApi.personOperations().;
 
 		// friendClient.saveOrUpdateFacebookFriends("GeraldXv", ffriends);

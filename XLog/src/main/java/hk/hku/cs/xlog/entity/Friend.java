@@ -96,10 +96,8 @@ public class Friend {
 
 	@Override
 	public String toString() {
-		return "Profile [" + "serviceProvider=" + serviceProvider
-				+ ", username=" + username + ", name=" + name + ", screenName="
-				+ screenName + ", gender=" + gender + ", homeLink=" + homeLink
-				+ ", email=" + email + "]";
+		return "Profile [" + "serviceProvider=" + serviceProvider + ", username=" + username + ", name=" + name + ", screenName=" + screenName + ", gender="
+				+ gender + ", homeLink=" + homeLink + ", email=" + email + "]";
 	}
 
 	public String getRefUser() {

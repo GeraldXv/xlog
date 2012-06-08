@@ -49,8 +49,7 @@ public class AccountInfo {
 
 	@Override
 	public String toString() {
-		return "AccountInfo [id=" + id + ", pictureUrl=" + pictureUrl
-				+ ", laguage=" + laguage + ", pageSize=" + pageSize + "]";
+		return "AccountInfo [id=" + id + ", pictureUrl=" + pictureUrl + ", laguage=" + laguage + ", pageSize=" + pageSize + "]";
 	}
 
 }

@@ -36,8 +36,7 @@ public class SearchClientImpl implements SearchClient {
 	}
 
 	@Override
-	public void createTwitterFriendsIndex(String userName,
-			List<TwitterProfile> tProfileList) {
+	public void createTwitterFriendsIndex(String userName, List<TwitterProfile> tProfileList) {
 
 		searchServiceImpl.createFriendIndex();
 

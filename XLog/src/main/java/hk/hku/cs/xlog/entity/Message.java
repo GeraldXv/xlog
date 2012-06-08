@@ -143,8 +143,7 @@ public class Message {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((idAtService == null) ? 0 : idAtService.hashCode());
+		result = prime * result + ((idAtService == null) ? 0 : idAtService.hashCode());
 		return result;
 	}
 
@@ -167,13 +166,9 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [idAtService=" + idAtService + ", serviceProvider="
-				+ serviceProvider + ", refUser=" + refUser + ", fromName="
-				+ fromName + ", fromEmail=" + fromEmail + ", fromId=" + fromId
-				+ ", fromProfileImage=" + fromProfileImage + ", toName="
-				+ toName + ", toEmail=" + toEmail + ", toId=" + toId
-				+ ", toProfileImage=" + toProfileImage + ", content=" + content
-				+ ", createdDate=" + createdDate + ", subject=" + subject
+		return "Message [idAtService=" + idAtService + ", serviceProvider=" + serviceProvider + ", refUser=" + refUser + ", fromName=" + fromName
+				+ ", fromEmail=" + fromEmail + ", fromId=" + fromId + ", fromProfileImage=" + fromProfileImage + ", toName=" + toName + ", toEmail=" + toEmail
+				+ ", toId=" + toId + ", toProfileImage=" + toProfileImage + ", content=" + content + ", createdDate=" + createdDate + ", subject=" + subject
 				+ ", attachedFile=" + attachedFile + "]";
 	}
 

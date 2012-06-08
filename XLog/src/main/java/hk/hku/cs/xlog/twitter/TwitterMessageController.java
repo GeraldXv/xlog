@@ -20,8 +20,7 @@ public class TwitterMessageController {
 
 	@RequestMapping(value = "/twitter/messages", method = RequestMethod.GET)
 	public String inbox(Model model) {
-		model.addAttribute("directMessages", twitter.directMessageOperations()
-				.getDirectMessagesReceived());
+		model.addAttribute("directMessages", twitter.directMessageOperations().getDirectMessagesReceived());
 		model.addAttribute("dmListType", "Received");
 		model.addAttribute("messageForm", new MessageForm());
 		return "twitter/messages";
@@ -29,8 +28,7 @@ public class TwitterMessageController {
 
 	@RequestMapping(value = "/twitter/messages/sent", method = RequestMethod.GET)
 	public String sent(Model model) {
-		model.addAttribute("directMessages", twitter.directMessageOperations()
-				.getDirectMessagesSent());
+		model.addAttribute("directMessages", twitter.directMessageOperations().getDirectMessagesSent());
 		model.addAttribute("dmListType", "Sent");
 		model.addAttribute("messageForm", new MessageForm());
 		return "twitter/messages";
@@ -38,8 +36,7 @@ public class TwitterMessageController {
 
 	@RequestMapping(value = "/twitter/messages", method = RequestMethod.POST)
 	public String sent(MessageForm message) {
-		twitter.directMessageOperations().sendDirectMessage(message.getTo(),
-				message.getText());
+		twitter.directMessageOperations().sendDirectMessage(message.getTo(), message.getText());
 		return "redirect:/twitter/messages";
 	}
 

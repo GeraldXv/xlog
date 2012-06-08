@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 
-	private final static Pattern p = Pattern
-			.compile("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#�?…�?&*（）—�?\\-+|{}【�?‘；：�?“�?。，、？]");
+	private final static Pattern p = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#�?…�?&*（）—�?\\-+|{}【�?‘；：�?“�?。，、？]");
 
 	/**
 	 * 

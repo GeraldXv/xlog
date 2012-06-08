@@ -22,11 +22,9 @@ public class FriendAdapter {
 		friend.setIdAtService(facebookProfile.getId());
 		friend.setServiceProvider("facebook");
 		friend.setGender(facebookProfile.getGender());
-		friend.setScreenName(facebookProfile.getFirstName() + " "
-				+ facebookProfile.getLastName());
+		friend.setScreenName(facebookProfile.getFirstName() + " " + facebookProfile.getLastName());
 		friend.setEmail(facebookProfile.getEmail());
-		friend.setImageUrl("https://graph.facebook.com/"
-				+ facebookProfile.getId() + "/" + "picture" + "?type=normal");
+		friend.setImageUrl("https://graph.facebook.com/" + facebookProfile.getId() + "/" + "picture" + "?type=normal");
 		friend.setHomeLink(facebookProfile.getLink());
 		return friend;
 	}
@@ -57,8 +55,7 @@ public class FriendAdapter {
 		return friend;
 	}
 
-	public List<Friend> twitterProfileListAdapter(String userName,
-			List<TwitterProfile> tProfileList) {
+	public List<Friend> twitterProfileListAdapter(String userName, List<TwitterProfile> tProfileList) {
 
 		for (TwitterProfile friend : tProfileList) {
 			Friend pr = twitterProfileAdapter(friend);
@@ -70,8 +67,7 @@ public class FriendAdapter {
 
 	}
 
-	public List<Friend> facebookProfileListAdapter(String userName,
-			List<FacebookProfile> fProfileList) {
+	public List<Friend> facebookProfileListAdapter(String userName, List<FacebookProfile> fProfileList) {
 
 		for (FacebookProfile fr : fProfileList) {
 			Friend f = facebookProfileAdapter(fr);
@@ -83,8 +79,7 @@ public class FriendAdapter {
 
 	}
 
-	public List<Friend> googleProfileListAdapter(String userName,
-			List<Person> gProfileList) {
+	public List<Friend> googleProfileListAdapter(String userName, List<Person> gProfileList) {
 
 		for (Person friend : gProfileList) {
 			Friend pr = googleProfileAdapter(friend);

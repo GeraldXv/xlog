@@ -48,27 +48,23 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	@Override
 	public List<Message> getMessages(String refName) {
 
-		return (List<Message>) getHibernateTemplate().find(
-				"from Message where refUser=?", refName);
+		return (List<Message>) getHibernateTemplate().find("from Message where refUser=?", refName);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Message> getMessagesByTime(String refName, String gmailAccount,
-			String twitterAccount) {
+	public List<Message> getMessagesByTime(String refName, String gmailAccount, String twitterAccount) {
 		getHibernateTemplate().setMaxResults(13);
-		return (List<Message>) getHibernateTemplate()
-				.find("from Message where refUser=? and (fromEmail <> ? or fromId <> ?) order by createdDate desc ",
-						new Object[] { refName, gmailAccount, twitterAccount });
+		return (List<Message>) getHibernateTemplate().find("from Message where refUser=? and (fromEmail <> ? or fromId <> ?) order by createdDate desc ",
+				new Object[] { refName, gmailAccount, twitterAccount });
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Message> getMessagesByUserName(String refName, String fromUser) {
 		getHibernateTemplate().setMaxResults(10);
-		return (List<Message>) getHibernateTemplate()
-				.find("from Message where refUser=? and (fromName=? or toName=?) order by createdDate desc ",
-						new Object[] { refName, fromUser, fromUser });
+		return (List<Message>) getHibernateTemplate().find("from Message where refUser=? and (fromName=? or toName=?) order by createdDate desc ",
+				new Object[] { refName, fromUser, fromUser });
 	}
 
 }

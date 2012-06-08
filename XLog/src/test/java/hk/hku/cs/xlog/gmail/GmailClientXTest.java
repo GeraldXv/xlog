@@ -13,8 +13,7 @@ public class GmailClientXTest {
 	@Test
 	public void test() {
 		GmailClientX Gc = new GmailClientX();
-		List<JavaMailGmailMessage> mlist = Gc
-				.getMessage("username", "password");
+		List<JavaMailGmailMessage> mlist = Gc.getMessage("username", "password");
 		List<JavaMailGmailMessage> nList = new ArrayList<JavaMailGmailMessage>();
 		System.out.println(mlist.size());
 		for (JavaMailGmailMessage m : mlist) {
@@ -25,12 +24,9 @@ public class GmailClientXTest {
 			// }
 
 			try {
-				System.out.println(m.getFrom().getName()
-						+ m.getSendDate().getTime()
-						+ m.getTo().get(0).getEmail());
+				System.out.println(m.getFrom().getName() + m.getSendDate().getTime() + m.getTo().get(0).getEmail());
 			} catch (GmailException e) {
-				System.out.println(m.getFrom().getName()
-						+ m.getSendDate().getTime() + "gerald.xv@gmail.com");
+				System.out.println(m.getFrom().getName() + m.getSendDate().getTime() + "gerald.xv@gmail.com");
 			}
 
 		}

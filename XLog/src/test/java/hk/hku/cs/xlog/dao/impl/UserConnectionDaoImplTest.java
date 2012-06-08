@@ -10,8 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext-dao.xml",
-		"classpath:applicationContext-hibernate.xml" })
+@ContextConfiguration(locations = { "classpath:applicationContext-dao.xml", "classpath:applicationContext-hibernate.xml" })
 public class UserConnectionDaoImplTest {
 	@Autowired
 	UserConnectionDao userConnectionDaoImpl;
@@ -19,8 +18,7 @@ public class UserConnectionDaoImplTest {
 	@Test
 	public void test() {
 
-		UserConnection uc = userConnectionDaoImpl.getByNameAndProvider(
-				"GeraldXv", "twitter");
+		UserConnection uc = userConnectionDaoImpl.getByNameAndProvider("GeraldXv", "twitter");
 
 		System.out.println(uc.getProfileUrl());
 

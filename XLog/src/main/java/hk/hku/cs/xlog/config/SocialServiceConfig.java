@@ -37,46 +37,38 @@ public class SocialServiceConfig {
 	@Bean
 	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 	public ConnectionRepository connectionRepository() {
-		Authentication authentication = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication == null) {
-			throw new IllegalStateException(
-					"Unable to get a ConnectionRepository: no user signed in");
+			throw new IllegalStateException("Unable to get a ConnectionRepository: no user signed in");
 		}
-		return usersConnectionRepository
-				.createConnectionRepository(authentication.getName());
+		return usersConnectionRepository.createConnectionRepository(authentication.getName());
 	}
 
 	@Bean
 	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 	public Facebook facebook() {
-		Connection<Facebook> facebook = connectionRepository()
-				.findPrimaryConnection(Facebook.class);
+		Connection<Facebook> facebook = connectionRepository().findPrimaryConnection(Facebook.class);
 		return facebook != null ? facebook.getApi() : new FacebookTemplate();
 	}
 
 	@Bean
 	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 	public Twitter twitter() {
-		Connection<Twitter> twitter = connectionRepository()
-				.findPrimaryConnection(Twitter.class);
+		Connection<Twitter> twitter = connectionRepository().findPrimaryConnection(Twitter.class);
 		return twitter != null ? twitter.getApi() : new TwitterTemplate();
 	}
 
 	@Bean
 	@Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 	public Google google() {
-		Connection<Google> google = connectionRepository()
-				.findPrimaryConnection(Google.class);
+		Connection<Google> google = connectionRepository().findPrimaryConnection(Google.class);
 		return google != null ? google.getApi() : new GoogleTemplate();
 	}
 
 	@Bean
 	public ConnectController connectController() {
-		ConnectController connectController = new ConnectController(
-				connectionFactoryLocator, connectionRepository());
-		connectController
-				.addInterceptor(new PostToWallAfterConnectInterceptor());
+		ConnectController connectController = new ConnectController(connectionFactoryLocator, connectionRepository());
+		connectController.addInterceptor(new PostToWallAfterConnectInterceptor());
 		connectController.addInterceptor(new TweetAfterConnectInterceptor());
 		return connectController;
 	}

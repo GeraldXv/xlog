@@ -24,12 +24,14 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 /**
- * Provides common connect support and utilities for Java web/servlet environments.
- * Used by {@link ConnectController} and {@link ProviderSignInController}.
+ * Provides common connect support and utilities for Java web/servlet
+ * environments. Used by {@link ConnectController} and
+ * {@link ProviderSignInController}.
+ * 
  * @author Keith Donald
  */
 public class ConnectSupport {
-	
+
 	private final static Log logger = LogFactory.getLog(ConnectSupport.class);
 
 	private boolean useAuthenticateUrl;
@@ -37,10 +39,15 @@ public class ConnectSupport {
 	private String applicationUrl;
 
 	/**
-	 * Flag indicating if this instance will support OAuth-based authentication instead of the traditional user authorization.
-	 * Some providers expose a special "authenticateUrl" the user should be redirected to as part of an OAuth-based authentication attempt.
-	 * Setting this flag to true has {@link #buildOAuthUrl(ConnectionFactory, NativeWebRequest) oauthUrl} return this authenticate URL.
-	 * @param useAuthenticateUrl whether to use the authenticat url or not
+	 * Flag indicating if this instance will support OAuth-based authentication
+	 * instead of the traditional user authorization. Some providers expose a
+	 * special "authenticateUrl" the user should be redirected to as part of an
+	 * OAuth-based authentication attempt. Setting this flag to true has
+	 * {@link #buildOAuthUrl(ConnectionFactory, NativeWebRequest) oauthUrl}
+	 * return this authenticate URL.
+	 * 
+	 * @param useAuthenticateUrl
+	 *            whether to use the authenticat url or not
 	 * @see OAuth1Operations#buildAuthenticateUrl(String, OAuth1Parameters)
 	 * @see OAuth2Operations#buildAuthenticateUrl(GrantType, OAuth2Parameters)
 	 */
@@ -49,36 +56,56 @@ public class ConnectSupport {
 	}
 
 	/**
-	 * Configures the base secure URL for the application this controller is being used in e.g. <code>https://myapp.com</code>. Defaults to null.
-	 * If specified, will be used to generate OAuth callback URLs.
-	 * If not specified, OAuth callback URLs are generated from {@link HttpServletRequest HttpServletRequests}. 
-	 * You may wish to set this property if requests into your application flow through a proxy to your application server.
-	 * In this case, the HttpServletRequest URI may contain a scheme, host, and/or port value that points to an internal server not appropriate for an external callback URL.
-	 * If you have this problem, you can set this property to the base external URL for your application and it will be used to construct the callback URL instead.
-	 * @param applicationUrl the application URL value
+	 * Configures the base secure URL for the application this controller is
+	 * being used in e.g. <code>https://myapp.com</code>. Defaults to null. If
+	 * specified, will be used to generate OAuth callback URLs. If not
+	 * specified, OAuth callback URLs are generated from
+	 * {@link HttpServletRequest HttpServletRequests}. You may wish to set this
+	 * property if requests into your application flow through a proxy to your
+	 * application server. In this case, the HttpServletRequest URI may contain
+	 * a scheme, host, and/or port value that points to an internal server not
+	 * appropriate for an external callback URL. If you have this problem, you
+	 * can set this property to the base external URL for your application and
+	 * it will be used to construct the callback URL instead.
+	 * 
+	 * @param applicationUrl
+	 *            the application URL value
 	 */
 	public void setApplicationUrl(String applicationUrl) {
 		this.applicationUrl = applicationUrl;
 	}
 
 	/**
-	 * Builds the provider URL to redirect the user to for connection authorization.
-	 * @param connectionFactory the service provider's connection factory e.g. FacebookConnectionFactory
-	 * @param request the current web request
+	 * Builds the provider URL to redirect the user to for connection
+	 * authorization.
+	 * 
+	 * @param connectionFactory
+	 *            the service provider's connection factory e.g.
+	 *            FacebookConnectionFactory
+	 * @param request
+	 *            the current web request
 	 * @return the URL to redirect the user to for authorization
-	 * @throws IllegalArgumentException if the connection factory is not OAuth1 based.
+	 * @throws IllegalArgumentException
+	 *             if the connection factory is not OAuth1 based.
 	 */
 	public String buildOAuthUrl(ConnectionFactory<?> connectionFactory, NativeWebRequest request) {
 		return buildOAuthUrl(connectionFactory, request, null);
 	}
-	
+
 	/**
-	 * Builds the provider URL to redirect the user to for connection authorization.
-	 * @param connectionFactory the service provider's connection factory e.g. FacebookConnectionFactory
-	 * @param request the current web request
-	 * @param additionalParameters parameters to add to the authorization URL.
+	 * Builds the provider URL to redirect the user to for connection
+	 * authorization.
+	 * 
+	 * @param connectionFactory
+	 *            the service provider's connection factory e.g.
+	 *            FacebookConnectionFactory
+	 * @param request
+	 *            the current web request
+	 * @param additionalParameters
+	 *            parameters to add to the authorization URL.
 	 * @return the URL to redirect the user to for authorization
-	 * @throws IllegalArgumentException if the connection factory is not OAuth1 based.
+	 * @throws IllegalArgumentException
+	 *             if the connection factory is not OAuth1 based.
 	 */
 	public String buildOAuthUrl(ConnectionFactory<?> connectionFactory, NativeWebRequest request, MultiValueMap<String, String> additionalParameters) {
 		if (connectionFactory instanceof OAuth1ConnectionFactory) {
@@ -87,17 +114,21 @@ public class ConnectSupport {
 			return buildOAuth2Url((OAuth2ConnectionFactory<?>) connectionFactory, request, additionalParameters);
 		} else {
 			throw new IllegalArgumentException("ConnectionFactory not supported");
-		}		
+		}
 	}
 
 	/**
 	 * Complete the connection to the OAuth1 provider.
-	 * @param connectionFactory the service provider's connection factory e.g. FacebookConnectionFactory
-	 * @param request the current web request
+	 * 
+	 * @param connectionFactory
+	 *            the service provider's connection factory e.g.
+	 *            FacebookConnectionFactory
+	 * @param request
+	 *            the current web request
 	 * @return a new connection to the service provider
 	 */
 	public Connection<?> completeConnection(OAuth1ConnectionFactory<?> connectionFactory, NativeWebRequest request) {
-		String verifier = request.getParameter("oauth_verifier"); 
+		String verifier = request.getParameter("oauth_verifier");
 		AuthorizedRequestToken requestToken = new AuthorizedRequestToken(extractCachedRequestToken(request), verifier);
 		OAuthToken accessToken = connectionFactory.getOAuthOperations().exchangeForAccessToken(requestToken, null);
 		return connectionFactory.createConnection(accessToken);
@@ -105,8 +136,12 @@ public class ConnectSupport {
 
 	/**
 	 * Complete the connection to the OAuth2 provider.
-	 * @param connectionFactory the service provider's connection factory e.g. FacebookConnectionFactory
-	 * @param request the current web request
+	 * 
+	 * @param connectionFactory
+	 *            the service provider's connection factory e.g.
+	 *            FacebookConnectionFactory
+	 * @param request
+	 *            the current web request
 	 * @return a new connection to the service provider
 	 */
 	public Connection<?> completeConnection(OAuth2ConnectionFactory<?> connectionFactory, NativeWebRequest request) {
@@ -122,7 +157,7 @@ public class ConnectSupport {
 	}
 
 	// internal helpers
-	
+
 	private String buildOAuth1Url(OAuth1ConnectionFactory<?> connectionFactory, NativeWebRequest request, MultiValueMap<String, String> additionalParameters) {
 		OAuth1Operations oauthOperations = connectionFactory.getOAuthOperations();
 		OAuth1Parameters parameters = new OAuth1Parameters(additionalParameters);
@@ -138,16 +173,16 @@ public class ConnectSupport {
 		if (oauthOperations.getVersion() == OAuth1Version.CORE_10_REVISION_A) {
 			return oauthOperations.fetchRequestToken(callbackUrl(request), null);
 		}
-		return oauthOperations.fetchRequestToken(null, null);				
+		return oauthOperations.fetchRequestToken(null, null);
 	}
 
 	private String buildOAuth2Url(OAuth2ConnectionFactory<?> connectionFactory, NativeWebRequest request, MultiValueMap<String, String> additionalParameters) {
 		OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
 		OAuth2Parameters parameters = getOAuth2Parameters(request, additionalParameters);
-		if (useAuthenticateUrl) { 
-			return oauthOperations.buildAuthenticateUrl(GrantType.AUTHORIZATION_CODE, parameters);						
+		if (useAuthenticateUrl) {
+			return oauthOperations.buildAuthenticateUrl(GrantType.AUTHORIZATION_CODE, parameters);
 		} else {
-			return oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, parameters);			
+			return oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, parameters);
 		}
 	}
 
@@ -177,7 +212,7 @@ public class ConnectSupport {
 
 	private String buildOAuth1Url(OAuth1Operations oauthOperations, String requestToken, OAuth1Parameters parameters) {
 		if (useAuthenticateUrl) {
-			return oauthOperations.buildAuthenticateUrl(requestToken, parameters);			
+			return oauthOperations.buildAuthenticateUrl(requestToken, parameters);
 		} else {
 			return oauthOperations.buildAuthorizeUrl(requestToken, parameters);
 		}
@@ -188,7 +223,7 @@ public class ConnectSupport {
 		request.removeAttribute(OAUTH_TOKEN_ATTRIBUTE, RequestAttributes.SCOPE_SESSION);
 		return requestToken;
 	}
-	
+
 	private static final String OAUTH_TOKEN_ATTRIBUTE = "oauthToken";
 
 }

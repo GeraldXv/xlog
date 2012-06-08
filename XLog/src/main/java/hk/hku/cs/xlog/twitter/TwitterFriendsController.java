@@ -41,8 +41,7 @@ public class TwitterFriendsController {
 
 	@RequestMapping(value = "/twitter/followers", method = RequestMethod.GET)
 	public String followers(Model model) {
-		model.addAttribute("profiles", twitter.friendOperations()
-				.getFollowers());
+		model.addAttribute("profiles", twitter.friendOperations().getFollowers());
 		return "twitter/friends";
 	}
 

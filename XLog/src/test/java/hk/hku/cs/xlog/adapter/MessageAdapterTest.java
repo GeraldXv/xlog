@@ -16,11 +16,9 @@ public class MessageAdapterTest {
 	@Test
 	public void test() {
 		GmailClientX Gc = new GmailClientX();
-		List<JavaMailGmailMessage> mlist = Gc.getMessage("Gerald.Xv",
-				"pkpbxjg0");
+		List<JavaMailGmailMessage> mlist = Gc.getMessage("Gerald.Xv", "pkpbxjg0");
 
-		List<Message> mXList = messageAdapter.gmailMessageListAdapter(
-				"GeraldXv", mlist);
+		List<Message> mXList = messageAdapter.gmailMessageListAdapter("GeraldXv", mlist);
 		for (Message MM : mXList) {
 			System.out.println(MM.toString());
 		}

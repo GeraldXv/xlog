@@ -36,8 +36,7 @@ public class TwitterSearchController {
 
 	@RequestMapping(value = "/twitter/search", method = RequestMethod.GET)
 	public String showTrends(@RequestParam("query") String query, Model model) {
-		model.addAttribute("timeline", twitter.searchOperations().search(query)
-				.getTweets());
+		model.addAttribute("timeline", twitter.searchOperations().search(query).getTweets());
 		return "twitter/timeline";
 	}
 

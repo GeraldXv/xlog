@@ -24,8 +24,7 @@ public class StatusAdapter {
 		status = new Status();
 		status.setIdAtService(post.getId());
 		status.setServiceProvider("facebook");
-		status.setUserImage("https://graph.facebook.com/"
-				+ post.getFrom().getId() + "/" + "picture" + "?type=normal");
+		status.setUserImage("https://graph.facebook.com/" + post.getFrom().getId() + "/" + "picture" + "?type=normal");
 		status.setFromUser(post.getFrom().getName());
 		status.setCreatedTime(post.getCreatedTime());
 		status.setPicture(post.getPicture());
@@ -35,8 +34,7 @@ public class StatusAdapter {
 			status.setContent(post.getStory());
 		if (post.getMessage() == null && post.getStory() == null)
 			status.setContent(post.getDescription());
-		if (post.getMessage() == null && post.getStory() == null
-				&& post.getDescription() == null)
+		if (post.getMessage() == null && post.getStory() == null && post.getDescription() == null)
 			status.setContent(post.getName());
 
 		// status.setUserImage(post.getIcon());
@@ -57,8 +55,7 @@ public class StatusAdapter {
 
 	}
 
-	public List<Status> facebookStatusListAdapter(String userName,
-			List<Post> fPostList) {
+	public List<Status> facebookStatusListAdapter(String userName, List<Post> fPostList) {
 		statusList = new ArrayList<Status>();
 		for (Post fp : fPostList) {
 			Status f = facebookStatusAdapter(fp);
@@ -72,8 +69,7 @@ public class StatusAdapter {
 
 	}
 
-	public List<Status> twitterStatusListAdapter(String userName,
-			List<Tweet> tTweetList) {
+	public List<Status> twitterStatusListAdapter(String userName, List<Tweet> tTweetList) {
 		statusList = new ArrayList<Status>();
 		for (Tweet friend : tTweetList) {
 			Status pr = twitterStatusAdapter(friend);

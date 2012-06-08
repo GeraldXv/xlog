@@ -12,11 +12,9 @@ public class GmailClientX {
 	ImapGmailConnection connection = new ImapGmailConnection();
 	GmailTemplate client = new GmailTemplate(ImapGmailLabel.IMPORTANT);
 
-	public List<JavaMailGmailMessage> getMessage(String userName,
-			String password) {
+	public List<JavaMailGmailMessage> getMessage(String userName, String password) {
 
-		Credentials gmailCredential = new Credentials(userName,
-				password.toCharArray());
+		Credentials gmailCredential = new Credentials(userName, password.toCharArray());
 		connection.setLoginCredentials(gmailCredential);
 		client.setConnection(connection);
 

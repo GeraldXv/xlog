@@ -42,10 +42,8 @@ public class FacebookPhotosController {
 
 	@RequestMapping(value = "/facebook/album/{albumId}", method = RequestMethod.GET)
 	public String showAlbum(@PathVariable("albumId") String albumId, Model model) {
-		model.addAttribute("album", facebook.mediaOperations()
-				.getAlbum(albumId));
-		model.addAttribute("photos",
-				facebook.mediaOperations().getPhotos(albumId));
+		model.addAttribute("album", facebook.mediaOperations().getAlbum(albumId));
+		model.addAttribute("photos", facebook.mediaOperations().getPhotos(albumId));
 		return "facebook/album";
 	}
 

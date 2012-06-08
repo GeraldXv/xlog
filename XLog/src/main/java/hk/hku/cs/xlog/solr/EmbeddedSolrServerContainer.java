@@ -72,9 +72,7 @@ public class EmbeddedSolrServerContainer {
 		logger.info("搜索server持久化完成！");
 	}
 
-	public synchronized void addCore(String solrName, String instanceDir,
-			boolean isPersist) throws ParserConfigurationException,
-			IOException, SAXException {
+	public synchronized void addCore(String solrName, String instanceDir, boolean isPersist) throws ParserConfigurationException, IOException, SAXException {
 		CoreDescriptor p = new CoreDescriptor(container, solrName, instanceDir);
 		SolrCore core = container.create(p);
 		container.register(solrName, core, false);
@@ -94,8 +92,7 @@ public class EmbeddedSolrServerContainer {
 
 		@Override
 		public CoreContainer initialize() {
-			return new CoreContainer(new SolrResourceLoader(
-					SolrResourceLoader.locateSolrHome()));
+			return new CoreContainer(new SolrResourceLoader(SolrResourceLoader.locateSolrHome()));
 		}
 	}
 

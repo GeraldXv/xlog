@@ -37,13 +37,11 @@ public class GoogleplusProfileController {
 	public String home(Principal currentUser, Model model) {
 		try {
 
-			Connection<Google> connection = connectionRepository
-					.findPrimaryConnection(Google.class);
+			Connection<Google> connection = connectionRepository.findPrimaryConnection(Google.class);
 			if (connection == null) {
 				return "redirect:connect/google";
 			}
-			model.addAttribute("profile", connection.getApi().userOperations()
-					.getUserProfile());
+			model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
 			return "googleplus/profile";
 		} catch (Exception ExpiredAuthorizationException) {
 			return "redirect:connect/google";

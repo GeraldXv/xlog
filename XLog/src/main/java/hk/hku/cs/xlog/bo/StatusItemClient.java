@@ -2,15 +2,13 @@ package hk.hku.cs.xlog.bo;
 
 public interface StatusItemClient {
 
-	void reply(String servicePovider, String userId, String statusId,
-			String content);
+	void reply(String servicePovider, String userId, String statusId, String content);
 
 	void markFav(String statusId, String userId);
 
 	void removeFav(String statusId, String userId);
 
-	void share(String servicePovider, String userId, String statusId,
-			String content);
+	void share(String servicePovider, String userId, String statusId, String content);
 
 	void delete(String statusId, String userId);
 

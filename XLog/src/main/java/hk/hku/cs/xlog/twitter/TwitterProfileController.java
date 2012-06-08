@@ -25,16 +25,12 @@ public class TwitterProfileController {
 
 	@RequestMapping(value = "/twitter", method = RequestMethod.GET)
 	public String home(Principal currentUser, Model model) {
-		Connection<Twitter> connection = connectionRepository
-				.findPrimaryConnection(Twitter.class);
+		Connection<Twitter> connection = connectionRepository.findPrimaryConnection(Twitter.class);
 		if (connection == null) {
 			return "redirect:/connect/twitter";
 		}
-		model.addAttribute("profile", connection.getApi().userOperations()
-				.getUserProfile());
-		System.out.println(profileadapter.twitterProfileAdapter(
-				connection.getApi().userOperations().getUserProfile())
-				.toString());
+		model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
+		System.out.println(profileadapter.twitterProfileAdapter(connection.getApi().userOperations().getUserProfile()).toString());
 		return "twitter/profile";
 	}
 

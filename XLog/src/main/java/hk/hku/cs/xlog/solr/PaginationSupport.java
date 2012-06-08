@@ -3,7 +3,6 @@ package hk.hku.cs.xlog.solr;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class PaginationSupport<T> {
 
 	// ---------------------------------------------------------
@@ -82,16 +81,14 @@ public class PaginationSupport<T> {
 		setOffset(offset);
 	}
 
-	public PaginationSupport(List<T> items, int totalCount, int offset,
-			int maxPageItems) {
+	public PaginationSupport(List<T> items, int totalCount, int offset, int maxPageItems) {
 		setMaxPageItems(maxPageItems);
 		setTotalCount(totalCount);
 		setItems(items);
 		setOffset(offset);
 	}
 
-	public PaginationSupport(List<T> items, int totalCount, int offset,
-			int maxPageItems, int maxIndexPages, String index) {
+	public PaginationSupport(List<T> items, int totalCount, int offset, int maxPageItems, int maxIndexPages, String index) {
 		setMaxPageItems(maxPageItems);
 		setTotalCount(totalCount);
 		setItems(items);
@@ -172,8 +169,7 @@ public class PaginationSupport<T> {
 					pages[i] = i + 1;
 				}
 				pages[maxPageIndexNumber - 2] = 0;
-			} else if (this.currentPage > maxPageIndexNumber / 2
-					&& this.currentPage < (totalPage - maxPageIndexNumber / 2)) {
+			} else if (this.currentPage > maxPageIndexNumber / 2 && this.currentPage < (totalPage - maxPageIndexNumber / 2)) {
 				int tmp = (maxPageIndexNumber - 2) / 2;
 				pages[1] = 0;
 				for (int i = 2; i <= maxPageIndexNumber - 3; i++) {

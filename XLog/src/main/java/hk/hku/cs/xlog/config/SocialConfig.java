@@ -36,23 +36,18 @@ public class SocialConfig {
 	@Scope(value = "singleton", proxyMode = ScopedProxyMode.INTERFACES)
 	public ConnectionFactoryLocator connectionFactoryLocator() {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-		registry.addConnectionFactory(new TwitterConnectionFactory(environment
-				.getProperty("twitter.consumerKey"), environment
+		registry.addConnectionFactory(new TwitterConnectionFactory(environment.getProperty("twitter.consumerKey"), environment
 				.getProperty("twitter.consumerSecret")));
-		registry.addConnectionFactory(new FacebookConnectionFactory(environment
-				.getProperty("facebook.clientId"), environment
+		registry.addConnectionFactory(new FacebookConnectionFactory(environment.getProperty("facebook.clientId"), environment
 				.getProperty("facebook.clientSecret")));
-		registry.addConnectionFactory(new GoogleConnectionFactory(environment
-				.getProperty("google.clientId"), environment
-				.getProperty("google.clientSecret")));
+		registry.addConnectionFactory(new GoogleConnectionFactory(environment.getProperty("google.clientId"), environment.getProperty("google.clientSecret")));
 		return registry;
 	}
 
 	@Bean
 	@Scope(value = "singleton", proxyMode = ScopedProxyMode.INTERFACES)
 	public UsersConnectionRepository usersConnectionRepository() {
-		return new JdbcUsersConnectionRepository(dataSource,
-				connectionFactoryLocator(), Encryptors.noOpText());
+		return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator(), Encryptors.noOpText());
 	}
 
 }

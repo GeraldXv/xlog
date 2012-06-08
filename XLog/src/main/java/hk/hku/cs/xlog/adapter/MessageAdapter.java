@@ -20,8 +20,7 @@ public class MessageAdapter {
 	private List<Message> messageList;
 
 	public Message GmailMessageAdapter(JavaMailGmailMessage gMessage) {
-		if (gMessage.getPreview().startsWith(
-				"javax.mail.internet.MimeMultipart"))
+		if (gMessage.getPreview().startsWith("javax.mail.internet.MimeMultipart"))
 			return null;
 
 		message = new Message();
@@ -57,8 +56,7 @@ public class MessageAdapter {
 
 	}
 
-	public List<Message> gmailMessageListAdapter(String userName,
-			List<JavaMailGmailMessage> gMessageList) {
+	public List<Message> gmailMessageListAdapter(String userName, List<JavaMailGmailMessage> gMessageList) {
 		messageList = new ArrayList<Message>();
 		for (JavaMailGmailMessage gm : gMessageList) {
 			Message m;
@@ -80,8 +78,7 @@ public class MessageAdapter {
 		return messageList;
 	}
 
-	public List<Message> twitterMessageListAdapter(String userName,
-			List<DirectMessage> tMessageList) {
+	public List<Message> twitterMessageListAdapter(String userName, List<DirectMessage> tMessageList) {
 		messageList = new ArrayList<Message>();
 		for (DirectMessage dm : tMessageList) {
 			Message tm = twitterMessageAdapter(dm);

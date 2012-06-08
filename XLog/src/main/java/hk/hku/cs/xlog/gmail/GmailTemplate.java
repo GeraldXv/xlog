@@ -44,8 +44,7 @@ public class GmailTemplate extends GmailClient {
 	 * @since 0.4
 	 */
 	public GmailTemplate(final ImapGmailLabel label) {
-		this.srcFolder = ((label == null) ? ImapGmailLabel.INBOX.getName()
-				: label.getName());
+		this.srcFolder = ((label == null) ? ImapGmailLabel.INBOX.getName() : label.getName());
 	}
 
 	/**
@@ -60,8 +59,7 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			final Folder folder = getFolder(this.srcFolder, store);
 			folder.open(Folder.READ_ONLY);
-			for (final Message msg : folder.search(new FlagTerm(new Flags(
-					Flags.Flag.SEEN), false))) {
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false))) {
 				unread.add(new JavaMailGmailMessage(msg));
 			}
 			return unread;
@@ -76,8 +74,7 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			final Folder folder = getFolder(this.srcFolder, store);
 			folder.open(Folder.READ_ONLY);
-			for (final Message msg : folder.search(new FlagTerm(new Flags(
-					Flags.Flag.SEEN), false))) {
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false))) {
 				read.add(new JavaMailGmailMessage(msg));
 			}
 			return read;
@@ -97,8 +94,7 @@ public class GmailTemplate extends GmailClient {
 		if (connection instanceof ImapGmailConnection) {
 			return ((ImapGmailConnection) connection).openGmailStore();
 		}
-		throw new GmailException(
-				"ImapGmailClient requires ImapGmailConnection!");
+		throw new GmailException("ImapGmailClient requires ImapGmailConnection!");
 	}
 
 	/**
@@ -112,8 +108,7 @@ public class GmailTemplate extends GmailClient {
 		if (connection instanceof ImapGmailConnection) {
 			return ((ImapGmailConnection) connection).getTransport();
 		}
-		throw new GmailException(
-				"ImapGmailClient requires ImapGmailConnection!");
+		throw new GmailException("ImapGmailClient requires ImapGmailConnection!");
 	}
 
 	@Override
@@ -124,24 +119,20 @@ public class GmailTemplate extends GmailClient {
 			try {
 				final JavaMailGmailMessage msg = (JavaMailGmailMessage) message;
 				transport = getGmailTransport();
-				transport.sendMessage(msg.getMessage(), msg.getMessage()
-						.getAllRecipients());
+				transport.sendMessage(msg.getMessage(), msg.getMessage().getAllRecipients());
 			} catch (final Exception e) {
-				throw new GmailException("Failed sending message: " + message,
-						e);
+				throw new GmailException("Failed sending message: " + message, e);
 			} finally {
 				if (transport.isConnected()) {
 					try {
 						transport.close();
 					} catch (final Exception e) {
-						LOG.warn("Cannot Close ImapGmailConnection : "
-								+ transport, e);
+						LOG.warn("Cannot Close ImapGmailConnection : " + transport, e);
 					}
 				}
 			}
 		} else {
-			throw new GmailException(
-					"ImapGmailClient requires JavaMailGmailMessage!");
+			throw new GmailException("ImapGmailClient requires JavaMailGmailMessage!");
 		}
 	}
 
@@ -156,8 +147,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void moveToTrash(final GmailMessage[] gmailMessages) {
 		if (gmailMessages == null || gmailMessages.length <= 0) {
-			LOG.warn("ImapGmailClient requires GmailMessage(s) to move"
-					+ " to move messages to trash folder");
+			LOG.warn("ImapGmailClient requires GmailMessage(s) to move" + " to move messages to trash folder");
 			return;
 		}
 		Folder folder = null;
@@ -172,8 +162,7 @@ public class GmailTemplate extends GmailClient {
 			List<Message> markedMsgList = new ArrayList<Message>();
 			for (GmailMessage gmailMessage : gmailMessages) {
 				// get only messages that match to the specified message number
-				Message message = folder.getMessage(gmailMessage
-						.getMessageNumber());
+				Message message = folder.getMessage(gmailMessage.getMessageNumber());
 				message.setFlag(Flags.Flag.SEEN, true);
 				// mark message as delete
 				message.setFlag(Flags.Flag.DELETED, true);
@@ -182,18 +171,14 @@ public class GmailTemplate extends GmailClient {
 
 			Folder trash = getFolder(ImapGmailLabel.TRASH.getName(), store);
 			if (folder.getURLName().equals(trash.getURLName())) {
-				LOG.warn("ImapGmailClient trying to move GmailMessage(s) within"
-						+ " same folder(ImapGmailLabel.TRASH.getName())");
+				LOG.warn("ImapGmailClient trying to move GmailMessage(s) within" + " same folder(ImapGmailLabel.TRASH.getName())");
 			}
 			// move the marked messages to trash folder
 			if (!markedMsgList.isEmpty()) {
-				folder.copyMessages(markedMsgList.toArray(new Message[0]),
-						trash);
+				folder.copyMessages(markedMsgList.toArray(new Message[0]), trash);
 			}
 		} catch (Exception e) {
-			throw new GmailException(
-					"ImapGmailClient failed moving GmailMessage(s)"
-							+ " to trash folder: " + e);
+			throw new GmailException("ImapGmailClient failed moving GmailMessage(s)" + " to trash folder: " + e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -209,8 +194,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void markAsRead(int messageNumber) {
 		if (messageNumber <= 0) {
-			throw new GmailException("ImapGmailClient invalid "
-					+ "GmailMessage number");
+			throw new GmailException("ImapGmailClient invalid " + "GmailMessage number");
 		}
 		Folder folder = null;
 
@@ -223,8 +207,7 @@ public class GmailTemplate extends GmailClient {
 				message.setFlag(Flags.Flag.SEEN, true);
 			}
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed marking"
-					+ " GmailMessage as read : " + messageNumber, e);
+			throw new GmailException("ImapGmailClient failed marking" + " GmailMessage as read : " + messageNumber, e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -243,13 +226,11 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			folder = getFolder(this.srcFolder, store);
 			folder.open(Folder.READ_WRITE);
-			for (final Message message : folder.search(new FlagTerm(new Flags(
-					Flags.Flag.SEEN), false))) {
+			for (final Message message : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false))) {
 				message.setFlag(Flags.Flag.SEEN, true);
 			}
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed marking"
-					+ " all GmailMessage as read", e);
+			throw new GmailException("ImapGmailClient failed marking" + " all GmailMessage as read", e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -265,8 +246,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void markAsUnread(int messageNumber) {
 		if (messageNumber <= 0) {
-			throw new GmailException("ImapGmailClient invalid "
-					+ "GmailMessage number");
+			throw new GmailException("ImapGmailClient invalid " + "GmailMessage number");
 		}
 		Folder folder = null;
 
@@ -279,8 +259,7 @@ public class GmailTemplate extends GmailClient {
 				message.setFlag(Flags.Flag.SEEN, false);
 			}
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed marking"
-					+ " GmailMessage as unread : " + messageNumber, e);
+			throw new GmailException("ImapGmailClient failed marking" + " GmailMessage as unread : " + messageNumber, e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -296,8 +275,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void addStar(int messageNumber) {
 		if (messageNumber <= 0) {
-			throw new GmailException("ImapGmailClient invalid "
-					+ "GmailMessage number");
+			throw new GmailException("ImapGmailClient invalid " + "GmailMessage number");
 		}
 		Folder folder = null;
 
@@ -310,8 +288,7 @@ public class GmailTemplate extends GmailClient {
 				message.setFlag(Flags.Flag.FLAGGED, true);
 			}
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed flagging"
-					+ " GmailMessage as starred : " + messageNumber, e);
+			throw new GmailException("ImapGmailClient failed flagging" + " GmailMessage as starred : " + messageNumber, e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -327,8 +304,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void removeStar(int messageNumber) {
 		if (messageNumber <= 0) {
-			throw new GmailException("ImapGmailClient invalid "
-					+ "GmailMessage number");
+			throw new GmailException("ImapGmailClient invalid " + "GmailMessage number");
 		}
 		Folder folder = null;
 
@@ -341,8 +317,7 @@ public class GmailTemplate extends GmailClient {
 				message.setFlag(Flags.Flag.FLAGGED, false);
 			}
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed removing"
-					+ " GmailMessage star flag : " + messageNumber, e);
+			throw new GmailException("ImapGmailClient failed removing" + " GmailMessage star flag : " + messageNumber, e);
 		} finally {
 			closeFolder(folder);
 		}
@@ -361,8 +336,7 @@ public class GmailTemplate extends GmailClient {
 	 */
 	public void moveTo(ImapGmailLabel destFolder, int messageNumber) {
 		if (messageNumber <= 0) {
-			throw new GmailException(
-					"ImapGmailClient invalid GmailMessage number");
+			throw new GmailException("ImapGmailClient invalid GmailMessage number");
 		}
 
 		Folder fromFolder = null;
@@ -378,22 +352,18 @@ public class GmailTemplate extends GmailClient {
 				toFolder = getFolder(destFolder.getName(), store);
 
 				if (fromFolder.getURLName().equals(toFolder.getURLName())) {
-					throw new GmailException("ImapGmailClient cannot move "
-							+ "GmailMessage within same folder " + "(from "
-							+ fromFolder.getFullName() + " to "
+					throw new GmailException("ImapGmailClient cannot move " + "GmailMessage within same folder " + "(from " + fromFolder.getFullName() + " to "
 							+ toFolder.getFullName() + ")");
 				}
 				// copy from source folder to destination folder
 				fromFolder.copyMessages(new Message[] { message }, toFolder);
 				// move the copied message to trash folder
-				moveToTrash(new GmailMessage[] { new JavaMailGmailMessage(
-						message) });
+				moveToTrash(new GmailMessage[] { new JavaMailGmailMessage(message) });
 			}
 		} catch (GmailException ge) {
 			throw ge;
 		} catch (Exception e) {
-			throw new GmailException("ImapGmailClient failed moving"
-					+ " GmailMessage from " + fromFolder.getFullName(), e);
+			throw new GmailException("ImapGmailClient failed moving" + " GmailMessage from " + fromFolder.getFullName(), e);
 		} finally {
 			closeFolder(fromFolder);
 		}
@@ -417,8 +387,7 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			Folder folder = getFolder(ImapGmailLabel.IMPORTANT.getName(), store);
 			folder.open(Folder.READ_ONLY);
-			for (final Message msg : folder.search(new FlagTerm(new Flags(
-					Flags.Flag.SEEN), !unreadOnly))) {
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), !unreadOnly))) {
 				priorityMessages.add(new JavaMailGmailMessage(msg));
 			}
 
@@ -449,8 +418,7 @@ public class GmailTemplate extends GmailClient {
 				return folder;
 			}
 		} catch (final Exception e) {
-			throw new GmailException("ImapGmailClient failed getting "
-					+ "Folder: " + name, e);
+			throw new GmailException("ImapGmailClient failed getting " + "Folder: " + name, e);
 		}
 
 		throw new GmailException("ImapGmailClient Folder name cannot be null");

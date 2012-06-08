@@ -17,9 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"file:src/test/resources/applicationContext-social.xml",
-		"classpath:applicationContext-dao.xml",
+@ContextConfiguration(locations = { "file:src/test/resources/applicationContext-social.xml", "classpath:applicationContext-dao.xml",
 		"classpath:applicationContext-hibernate.xml", })
 public class StatusClientTest {
 
@@ -42,8 +40,7 @@ public class StatusClientTest {
 	public void test() {
 		con = usersConnectionRepository.createConnectionRepository("GeraldXv");
 		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
-		Connection<Facebook> facebook = con
-				.findPrimaryConnection(Facebook.class);
+		Connection<Facebook> facebook = con.findPrimaryConnection(Facebook.class);
 		twitterApi = twitter.getApi();
 		facebookApi = facebook.getApi();
 		List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);

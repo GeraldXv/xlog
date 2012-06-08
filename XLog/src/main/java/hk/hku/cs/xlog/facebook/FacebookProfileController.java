@@ -33,13 +33,11 @@ public class FacebookProfileController {
 
 	@RequestMapping(value = "/facebook", method = RequestMethod.GET)
 	public String home(Model model) {
-		Connection<Facebook> connection = connectionRepository
-				.findPrimaryConnection(Facebook.class);
+		Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
 		if (connection == null) {
 			return "redirect:/connect/facebook";
 		}
-		model.addAttribute("profile", connection.getApi().userOperations()
-				.getUserProfile());
+		model.addAttribute("profile", connection.getApi().userOperations().getUserProfile());
 		return "facebook/profile";
 	}
 

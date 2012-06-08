@@ -74,8 +74,7 @@ public class EntityConvert {
 
 					f = cls.getDeclaredField(fieldName);
 					fieldType = f.getType();
-					m = cls.getMethod(getMethodName(fieldName, "set"),
-							fieldType);
+					m = cls.getMethod(getMethodName(fieldName, "set"), fieldType);
 					// 如果 int, float等基本类型，则需要转
 					if (fieldType.equals(Integer.TYPE)) {
 						fieldType = Integer.class;
@@ -125,8 +124,7 @@ public class EntityConvert {
 	 * @param entityList
 	 * @return Collection<SolrInputDocument>
 	 */
-	public static <T> Collection<SolrInputDocument> entityList2SolrInputDocument(
-			List<T> entityList) {
+	public static <T> Collection<SolrInputDocument> entityList2SolrInputDocument(List<T> entityList) {
 		if (entityList != null && entityList.size() > 0) {
 			Collection<SolrInputDocument> solrInputDocumentList = new ArrayList<SolrInputDocument>();
 			SolrInputDocument sid = null;
@@ -149,8 +147,7 @@ public class EntityConvert {
 	 * @param cls
 	 * @return List<T>
 	 */
-	public static <T> List<T> solrDocument2Entity(
-			SolrDocumentList solrDocumentList, Class<T> cls) {
+	public static <T> List<T> solrDocument2Entity(SolrDocumentList solrDocumentList, Class<T> cls) {
 		if (solrDocumentList != null && solrDocumentList.size() > 0) {
 			List<T> objectList = new ArrayList<T>();
 			for (SolrDocument sd : solrDocumentList) {
@@ -173,8 +170,7 @@ public class EntityConvert {
 	 * @param object
 	 * @return SolrInputDocument
 	 */
-	public static SolrInputDocument solrDocument2SolrInputDocument(
-			SolrDocument sd, Object object) {
+	public static SolrInputDocument solrDocument2SolrInputDocument(SolrDocument sd, Object object) {
 		if (object != null && sd != null) {
 			SolrInputDocument sid = new SolrInputDocument();
 			Collection<String> fieldNameCollection = sd.getFieldNames();// 得到
@@ -185,12 +181,9 @@ public class EntityConvert {
 			for (String fieldName : fieldNameCollection) {
 				try {
 					// 如果对应的属性的值为空或者为0，这不需要更
-					o = cls.getMethod(
-							EntityConvert.getMethodName(fieldName, "get"))
-							.invoke(object);
+					o = cls.getMethod(EntityConvert.getMethodName(fieldName, "get")).invoke(object);
 
-					Class<?> fieldType = cls.getDeclaredField(fieldName)
-							.getType();
+					Class<?> fieldType = cls.getDeclaredField(fieldName).getType();
 
 					if (fieldType.equals(Integer.TYPE)) {
 						Integer fieldValue = Integer.class.cast(o);
@@ -209,14 +202,12 @@ public class EntityConvert {
 						}
 					} else if (fieldType.equals(Short.TYPE)) {
 						Short fieldValue = Short.class.cast(o);
-						if (fieldValue != null
-								&& fieldValue.compareTo((short) 0) != 0) {
+						if (fieldValue != null && fieldValue.compareTo((short) 0) != 0) {
 							sid.addField(fieldName, fieldValue);
 						}
 					} else if (fieldType.equals(Long.TYPE)) {
 						Long fieldValue = Long.class.cast(o);
-						if (fieldValue != null
-								&& fieldValue.compareTo((long) 0) != 0) {
+						if (fieldValue != null && fieldValue.compareTo((long) 0) != 0) {
 							sid.addField(fieldName, fieldValue);
 						}
 					} else {
@@ -255,15 +246,13 @@ public class EntityConvert {
 	 * @param objectMap
 	 * @return List<SolrInputDocument>
 	 */
-	public static List<SolrInputDocument> solrDocumentList2SolrInputDocumentList(
-			SolrDocumentList sdl, String idName, Map<Object, Object> objectMap) {
+	public static List<SolrInputDocument> solrDocumentList2SolrInputDocumentList(SolrDocumentList sdl, String idName, Map<Object, Object> objectMap) {
 		List<SolrInputDocument> solrInputDocuemntList = new ArrayList<SolrInputDocument>();
 
 		// 获得元素的主键的类型，即Map的key类型
 		Class<?> cls = null;
 		try {
-			cls = objectMap.get(0).getClass().getDeclaredField(idName)
-					.getType();
+			cls = objectMap.get(0).getClass().getDeclaredField(idName).getType();
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
@@ -283,41 +272,33 @@ public class EntityConvert {
 				for (String fieldName : fieldNameCollection) {
 					try {
 						// 如果对应的属性的值为空或者为0，这不需要更
-						o = cls.getMethod(
-								EntityConvert.getMethodName(fieldName, "get"))
-								.invoke(object);
+						o = cls.getMethod(EntityConvert.getMethodName(fieldName, "get")).invoke(object);
 
-						Class<?> fieldType = cls.getDeclaredField(fieldName)
-								.getType();
+						Class<?> fieldType = cls.getDeclaredField(fieldName).getType();
 
 						if (fieldType.equals(Integer.TYPE)) {
 							Integer fieldValue = Integer.class.cast(o);
-							if (fieldValue != null
-									&& fieldValue.compareTo(0) != 0) {
+							if (fieldValue != null && fieldValue.compareTo(0) != 0) {
 								sid.addField(fieldName, fieldValue);
 							}
 						} else if (fieldType.equals(Float.TYPE)) {
 							Float fieldValue = Float.class.cast(o);
-							if (fieldValue != null
-									&& fieldValue.compareTo(0f) != 0) {
+							if (fieldValue != null && fieldValue.compareTo(0f) != 0) {
 								sid.addField(fieldName, fieldValue);
 							}
 						} else if (fieldType.equals(Double.TYPE)) {
 							Double fieldValue = Double.class.cast(o);
-							if (fieldValue != null
-									&& fieldValue.compareTo(0d) != 0) {
+							if (fieldValue != null && fieldValue.compareTo(0d) != 0) {
 								sid.addField(fieldName, fieldValue);
 							}
 						} else if (fieldType.equals(Short.TYPE)) {
 							Short fieldValue = Short.class.cast(o);
-							if (fieldValue != null
-									&& fieldValue.compareTo((short) 0) != 0) {
+							if (fieldValue != null && fieldValue.compareTo((short) 0) != 0) {
 								sid.addField(fieldName, fieldValue);
 							}
 						} else if (fieldType.equals(Long.TYPE)) {
 							Long fieldValue = Long.class.cast(o);
-							if (fieldValue != null
-									&& fieldValue.compareTo((long) 0) != 0) {
+							if (fieldValue != null && fieldValue.compareTo((long) 0) != 0) {
 								sid.addField(fieldName, fieldValue);
 							}
 						} else {
@@ -356,8 +337,7 @@ public class EntityConvert {
 	 * @return String
 	 */
 	public static String getMethodName(String property, String prefix) {
-		String prop = Character.toUpperCase(property.charAt(0))
-				+ property.substring(1);
+		String prop = Character.toUpperCase(property.charAt(0)) + property.substring(1);
 		return prefix + prop;
 	}
 

@@ -35,8 +35,7 @@ public class FacebookFriendsController {
 
 	@RequestMapping(value = "/facebook/friends", method = RequestMethod.GET)
 	public String showFeed(Model model) {
-		model.addAttribute("friends", facebook.friendOperations()
-				.getFriendProfiles());
+		model.addAttribute("friends", facebook.friendOperations().getFriendProfiles());
 		return "facebook/friends";
 	}
 

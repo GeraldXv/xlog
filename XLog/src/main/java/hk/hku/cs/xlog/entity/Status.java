@@ -117,12 +117,9 @@ public class Status {
 
 	@Override
 	public String toString() {
-		return "Status [idAtService=" + idAtService + ", serviceProvider="
-				+ serviceProvider + ", refUser=" + refUser + ", fromUser="
-				+ fromUser + ", createdTime=" + createdTime + ", content="
-				+ content + ", picture=" + picture + ", link=" + link
-				+ ", userImage=" + userImage + ", stared=" + stared + ", tags="
-				+ tags + "]";
+		return "Status [idAtService=" + idAtService + ", serviceProvider=" + serviceProvider + ", refUser=" + refUser + ", fromUser=" + fromUser
+				+ ", createdTime=" + createdTime + ", content=" + content + ", picture=" + picture + ", link=" + link + ", userImage=" + userImage
+				+ ", stared=" + stared + ", tags=" + tags + "]";
 	}
 
 	//

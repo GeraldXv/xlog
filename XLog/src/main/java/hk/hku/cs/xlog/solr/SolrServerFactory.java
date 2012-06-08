@@ -16,10 +16,8 @@ import org.slf4j.LoggerFactory;
  */
 public class SolrServerFactory {
 
-	private static Logger logger = LoggerFactory
-			.getLogger(SolrServerFactory.class);
-	private static Map<String, SolrServer> solrServerMap = Collections
-			.synchronizedMap(new HashMap<String, SolrServer>());
+	private static Logger logger = LoggerFactory.getLogger(SolrServerFactory.class);
+	private static Map<String, SolrServer> solrServerMap = Collections.synchronizedMap(new HashMap<String, SolrServer>());
 	private static Map<String, EmbeddedSolrServerContainer> esscMap = new HashMap<String, EmbeddedSolrServerContainer>();
 
 	private SolrServerFactory() {
@@ -33,8 +31,7 @@ public class SolrServerFactory {
 	 */
 	public static SolrServer getEmbeddedSolrServer(String solrName) {
 		ResourceBundle solrProperties = ResourceBundle.getBundle("solrclient");
-		return getEmbeddedSolrServer(
-				solrProperties.getString("solrServerHome"), solrName);
+		return getEmbeddedSolrServer(solrProperties.getString("solrServerHome"), solrName);
 	}
 
 	/**
@@ -45,12 +42,10 @@ public class SolrServerFactory {
 	 * @param solrName
 	 * @return SolrServer
 	 */
-	public static SolrServer getEmbeddedSolrServer(String solrServerHome,
-			String solrName) {
+	public static SolrServer getEmbeddedSolrServer(String solrServerHome, String solrName) {
 		// 当第获取SOLR_HOME的EmbeddedSolrServer的时候，将所有核心服务全部加载起
 		if (!esscMap.containsKey(solrServerHome)) {
-			EmbeddedSolrServerContainer essc = new EmbeddedSolrServerContainer(
-					solrServerHome);
+			EmbeddedSolrServerContainer essc = new EmbeddedSolrServerContainer(solrServerHome);
 			if (essc != null) {
 				esscMap.put(solrServerHome, essc);
 				CoreContainer cc = essc.getContainer();

@@ -24,31 +24,25 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.WebRequest;
 
-public class TweetAfterConnectInterceptor implements
-		ConnectInterceptor<Twitter> {
+public class TweetAfterConnectInterceptor implements ConnectInterceptor<Twitter> {
 
-	public void preConnect(ConnectionFactory<Twitter> provider,
-			MultiValueMap<String, String> parameters, WebRequest request) {
+	public void preConnect(ConnectionFactory<Twitter> provider, MultiValueMap<String, String> parameters, WebRequest request) {
 		if (StringUtils.hasText(request.getParameter(POST_TWEET_PARAMETER))) {
-			request.setAttribute(POST_TWEET_ATTRIBUTE, Boolean.TRUE,
-					WebRequest.SCOPE_SESSION);
+			request.setAttribute(POST_TWEET_ATTRIBUTE, Boolean.TRUE, WebRequest.SCOPE_SESSION);
 		}
 	}
 
 	public void postConnect(Connection<Twitter> connection, WebRequest request) {
-		if (request
-				.getAttribute(POST_TWEET_ATTRIBUTE, WebRequest.SCOPE_SESSION) != null) {
+		if (request.getAttribute(POST_TWEET_ATTRIBUTE, WebRequest.SCOPE_SESSION) != null) {
 			try {
 				connection.updateStatus("I've connected with XLOG!");
 			} catch (DuplicateStatusException e) {
 			}
-			request.removeAttribute(POST_TWEET_ATTRIBUTE,
-					WebRequest.SCOPE_SESSION);
+			request.removeAttribute(POST_TWEET_ATTRIBUTE, WebRequest.SCOPE_SESSION);
 		}
 	}
 
 	private static final String POST_TWEET_PARAMETER = "postTweet";
 
-	private static final String POST_TWEET_ATTRIBUTE = "twitterConnect."
-			+ POST_TWEET_PARAMETER;
+	private static final String POST_TWEET_ATTRIBUTE = "twitterConnect." + POST_TWEET_PARAMETER;
 }

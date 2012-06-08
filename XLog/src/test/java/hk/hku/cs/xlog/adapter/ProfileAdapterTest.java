@@ -16,13 +16,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"file:src/test/resources/applicationContext-social.xml",
-		"classpath:applicationContext-dao.xml",
+@ContextConfiguration(locations = { "file:src/test/resources/applicationContext-social.xml", "classpath:applicationContext-dao.xml",
 		"classpath:applicationContext-hibernate.xml", })
 public class ProfileAdapterTest {
-	private static final Logger logger = LoggerFactory
-			.getLogger(ProfileAdapterTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(ProfileAdapterTest.class);
 	@Autowired
 	FriendAdapter friendAdapter;
 	@Autowired
@@ -44,8 +41,7 @@ public class ProfileAdapterTest {
 		twitterApi = twitter.getApi();
 		Connection<Google> google = con.findPrimaryConnection(Google.class);
 		googleApi = google.getApi();
-		System.out.println(twitterApi.friendOperations().getFriends().get(0)
-				.getName());
+		System.out.println(twitterApi.friendOperations().getFriends().get(0).getName());
 		// System.out.println(googleApi.personOperations().getPerson("110377639084744464746").get);
 	}
 

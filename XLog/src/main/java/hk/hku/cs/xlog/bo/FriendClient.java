@@ -18,23 +18,18 @@ public class FriendClient {
 	@Autowired
 	private FriendDaoImpl friendDaoImpl;
 
-	public void saveOrUpdateTwitterFriends(String userName,
-			List<TwitterProfile> tFriends) {
-		friendDaoImpl.saveOrUpdateAll(friendAdapter.twitterProfileListAdapter(
-				userName, tFriends));
+	public void saveOrUpdateTwitterFriends(String userName, List<TwitterProfile> tFriends) {
+		friendDaoImpl.saveOrUpdateAll(friendAdapter.twitterProfileListAdapter(userName, tFriends));
 
 	}
 
-	public void saveOrUpdateFacebookFriends(String userName,
-			List<FacebookProfile> fFriends) {
-		friendDaoImpl.saveOrUpdateAll(friendAdapter.facebookProfileListAdapter(
-				userName, fFriends));
+	public void saveOrUpdateFacebookFriends(String userName, List<FacebookProfile> fFriends) {
+		friendDaoImpl.saveOrUpdateAll(friendAdapter.facebookProfileListAdapter(userName, fFriends));
 
 	}
 
 	public void saveOrUpdateGplusFriends(String userName, List<Person> gFriends) {
-		friendDaoImpl.saveOrUpdateAll(friendAdapter.googleProfileListAdapter(
-				userName, gFriends));
+		friendDaoImpl.saveOrUpdateAll(friendAdapter.googleProfileListAdapter(userName, gFriends));
 
 	}
 }

@@ -16,7 +16,6 @@ public interface SearchClient {
 
 	void updateFriendsIndex();
 
-	void createTwitterFriendsIndex(String userName,
-			List<TwitterProfile> tProfileList);
+	void createTwitterFriendsIndex(String userName, List<TwitterProfile> tProfileList);
 
 }
