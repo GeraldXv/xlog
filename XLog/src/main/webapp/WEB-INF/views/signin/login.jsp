@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Login</title>
-<link rel="stylesheet" href="<c:url value="/resources/css/register.css" />" type="text/css" media="screen" />
+<link rel="stylesheet" href="<c:url value="/resources/css/register.css" />s" type="text/css" media="screen" />
 <link rel="stylesheet" href="<c:url value="/resources/css/footer.css" />" type="text/css" media="screen" />
 <script type="text/javascript" src="<c:url value="/resources/js/headerC.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/register.js" />"></script>
