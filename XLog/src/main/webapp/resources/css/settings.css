@@ -129,23 +129,23 @@ a {text-decoration:none;}
 	margin-left:20px;
 }
 
-.ssource ul li ul li img {
+.ssource ul li ul li form img {
 	display:inline-block;
 	
 	background-color:#FFF;
 	
 	width:50px;
 	height:50px;
-	border:20px #CCCCCC solid;
+	border:50px #CCCCCC solid;
 	border-radius:20px;
 }
 
-.ssource ul li ul li a {
+.ssource ul li ul li form a {
 	display:inline-block;
 	width:85px;
 }
 
-.ssource ul li ul li a img {
+.ssource ul li ul li form a img {
 	margin-left:30px;
 	margin-top:3px;
 	
