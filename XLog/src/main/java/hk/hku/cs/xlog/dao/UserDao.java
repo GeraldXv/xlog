@@ -20,5 +20,9 @@ public interface UserDao {
 	void delete(Integer id);
 
 	List<User> getAll();
+	
+	long getUpdateTime(String userName);
+	
+	void updateTime(String userName);
 
 }

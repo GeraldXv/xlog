@@ -84,6 +84,7 @@
 
 <div id="autbg" class="lyly"></div>
 <div id="autwin" class="autwin">
+<form>
 	<ul>
 		<li style="height: 1px"></li>
 		<li>To authorize your account, please enter your information.</li>
@@ -99,11 +100,13 @@
 			</button>
 		</li>
 	</ul>
+</form>
 </div>
 
 <!-- window of delete confirm -->
 <div id="delcon" class="delcon" onmouseup="up()"
 	onmousemove="movepos(ev)" onmousedown="down()">
+	<form>
 	<input type="hidden">
 	<ul>
 		<li>Are you sure you want to delete this source from your X-Log?
@@ -112,9 +115,9 @@
 			<button type="button" onclick="concli('ca')">
 				<b>Cancel</b>
 			</button>
-			<button type="button" onclick="concli('co')">
+			<button type="submit" onclick="concli('co')">
 				<b>Confirm</b>
 			</button>
 		</li>
-	</ul>
+	</ul></form>
 </div>

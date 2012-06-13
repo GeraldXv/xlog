@@ -9,6 +9,7 @@ public class User {
 	private String lastName;
 	private String profileImage;
 	private String email;
+	private long updateTime;
 
 	public User() {
 	}
@@ -73,6 +74,14 @@ public class User {
 
 	public void setProfileImage(String profileImage) {
 		this.profileImage = profileImage;
+	}
+
+	public long getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(long updateTime) {
+		this.updateTime = updateTime;
 	}
 
 	@Override

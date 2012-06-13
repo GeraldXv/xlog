@@ -2,6 +2,11 @@
 //indexcontrol
 
 
+function clicktofinish(id)
+{
+	document.getElementById("taginput").value = document.getElementById(id).innerHTML;
+}
+
 function picsel()
 {
 	if(document.getElementById("pics").name == "selected") 

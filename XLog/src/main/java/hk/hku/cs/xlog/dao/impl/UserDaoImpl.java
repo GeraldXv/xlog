@@ -4,6 +4,7 @@ import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.User;
 import hk.hku.cs.xlog.exception.UsernameAlreadyInUseException;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,6 +58,19 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	@Override
 	public List<User> getAll() {
 		return (List<User>) getHibernateTemplate().find("from User");
+	}
+
+	@Override
+	public long getUpdateTime(String userName) {
+		return ((User) getHibernateTemplate().find("from User where userName=?", userName).get(0)).getUpdateTime();
+	}
+
+	@Override
+	public void updateTime(String userName) {
+		Date date = new Date();
+		User user = (User) getHibernateTemplate().find("from User where userName=?", userName).get(0);
+		user.setUpdateTime(date.getTime());
+		getHibernateTemplate().update(user);
 	}
 
 }

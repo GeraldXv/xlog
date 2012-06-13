@@ -12,6 +12,7 @@
 	</ul>
 	<ul>
 		<div class="searchoption">
+		<form>
 			<table>
 				<tr>
 					<td><a href="#" onclick="picsel()"> <!-- <img id="pics" name="unselect" src="image/picture.png" />-->
@@ -25,16 +26,7 @@
 					</td>
 				</tr>
 			</table>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
+		</form>
 		</div>
 		<!--end of search option-->
 	</ul>
@@ -185,13 +177,19 @@
 
 <!-- hidden tag div -->
 <div id="tagdiv" class="tagfunc">
+    <ul id="leftborder">
+    </ul>
+    <ul id="lefthalf">
+    <li>Commonly used tags:</li> 
+	<li>Tags you wants: </li>
+    </ul>
+    <ul id="righthalf">
+    <li><a id="sug1" onclick="clicktofinish('sug1')">Apple</a> <a id="sug2" onclick="clicktofinish('sug2')">Brother</a></li><br>
+    <li><input id="taginput" type="text" /></li>
+    </ul>
+    <ul id="rightborder">
+    </ul>
 	<input type="hidden" value="no" id="lastid">
-	<li>Commonly used tags: <a>Apple</a> <a>Brother</a></li>
-	
-	<li class="spiltline"></li>
-	<li>Tags you wants: <input type="text" />
-	</li>
 </div>
 <!-- end of hidden tag div -->
-
 </div>

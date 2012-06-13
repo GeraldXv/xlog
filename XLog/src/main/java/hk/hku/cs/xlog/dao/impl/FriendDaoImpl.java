@@ -47,7 +47,8 @@ public class FriendDaoImpl extends HibernateDaoSupport implements FriendDao {
 		// // System.out.println(friend.getIdAtService());
 		// getHibernateTemplate().saveOrUpdate(friend);
 		// }
-		getHibernateTemplate().saveOrUpdateAll(friends);
+		for (Friend f : friends)
+			getHibernateTemplate().merge(f);
 	}
 
 }

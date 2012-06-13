@@ -26,12 +26,12 @@ img {border:0;}
 
 .status ul li textarea {
 	position:relative;
-	width:313px;
+	width:315px;
 	height:34px;
 	left:50%;
 	margin-top:10px;
 	margin-bottom:3px;
-	margin-left:-173px;
+	margin-left:-172px;
 	margin-left:-170px\9;
 	resize:none;
 }
@@ -442,9 +442,9 @@ img {border:0;}
 }
 
 .words span {
-	display:inline-block;
+	display:block;
 	width:280px;
-	height:40px;
+	height:35px;
 	overflow:hidden;
 }
 
@@ -581,21 +581,60 @@ img {border:0;}
 /* tag add div */
 
 .tagfunc {
-	background-image:url(../image/tagbckg.png);
-	height:86px;
-	width:325px;
+	height:84px;
 	
 	position:absolute;
 	left:0;
 	top:0;
 	z-index:100;
 	display:none;
+	font-size:0px;
 }
 
-.tagfunc li {
+.tagfunc ul {
+	display:inline-block;
+	height:84px;
+	vertical-align:top;
+}
+
+#leftborder {
+	display:inline-block;
+	width:19px;
+	background-repeat:no-repeat;
+	background-position:bottom;
+	background-image:url(../image/leftbg.png);
+}
+
+#lefthalf {
+	display:inline-block;
+	width:144px;
+	background-image:url(../image/lefthaftbg.png);
+}
+
+#righthalf {
+	display:inline-block;
+	height:84px;
+	background-repeat:repeat-x;
+	background-position:bottom;
+	background-image:url(../image/midbg.png);
+}
+
+#rightborder {
+	display:inline-block;
+	width:19px;
+	background-repeat:no-repeat;
+	background-position:bottom;
+	background-image:url(../image/rightbg.png);
+}
+
+.tagfunc ul li {
+	display:block;
 	position:relative;
+	height:20px;
+	margin-bottom:5px;
 	top:25px;
-	margin-left:20px;
+	font-size:12px;
+	font-family:arial;
 }
 
 .tagfunc li a {
@@ -605,15 +644,9 @@ img {border:0;}
 	margin-left:5px;
 }
 
-.tagfunc li.spiltline {
-	margin:3px 0 3px 2px;
-	width:320px;
-	border-top:1px #000000 solid;
-}
 
 .tagfunc li input {
 	position:relative;
-	left:35px;
 	width:100px;
 }
 

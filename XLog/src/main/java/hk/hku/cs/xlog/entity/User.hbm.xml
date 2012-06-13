@@ -13,5 +13,6 @@
 		<property name="lastName" column="lastName" type="string" />
 		<property name="email" column="email" type="string" />
 		<property name="profileImage" column="profileImage" type="string" />
+		<property name="updateTime" column="updateTime" type="long" />
 	</class>
 </hibernate-mapping>

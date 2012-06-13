@@ -8,8 +8,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="refUser" column="refUser" type="string" />
-		<property name="serviceProvider" column="serviceProvider"
-			type="string" />
+		<property name="serviceProvider" column="serviceProvider" type="string" />
 		<property name="fromUser" column="fromUser" type="string" />
 		<property name="content" column="ContentText" type="string" />
 		<property name="picture" column="picture" type="string" />

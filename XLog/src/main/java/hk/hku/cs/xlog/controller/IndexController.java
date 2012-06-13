@@ -10,9 +10,13 @@ import hk.hku.cs.xlog.dao.TagDao;
 import hk.hku.cs.xlog.dao.UserConnectionDao;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.Message;
+
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
@@ -57,10 +61,15 @@ public class IndexController {
 	Twitter twitterApi;
 	Facebook facebookApi;
 	Google googleApi;
+	long updateGap = 3600000;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
-		sycInfromation(currentUser.getName());
+		Date date = new Date();
+		if (userDaoImpl.getUpdateTime(currentUser.getName()) == 0)
+			sycInfromation(currentUser.getName());
+		else if (date.getTime() - userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
+			sycInfromation(currentUser.getName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		System.out.println(statusDaoImpl.getStatusAllByTime(currentUser.getName()).size());
@@ -89,22 +98,32 @@ public class IndexController {
 	public void sycInfromation(String userName) {
 		con = usersConnectionRepository.createConnectionRepository(userName);
 		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
-		twitterApi = twitter.getApi();
+		if (twitter != null) {
+			twitterApi = twitter.getApi();
+			List<TwitterProfile> tfriends = twitterApi.friendOperations().getFriends();
+			List<DirectMessage> tRList = twitterApi.directMessageOperations().getDirectMessagesReceived();
+			List<DirectMessage> tSList = twitterApi.directMessageOperations().getDirectMessagesSent();
+			List<Tweet> tweets = twitterApi.timelineOperations().getHomeTimeline(0, 200);
+			messageClient.saveOrUpdateTwitterMessages(userName, tRList);
+			messageClient.saveOrUpdateTwitterMessages(userName, tSList);
+			friendClient.saveOrUpdateTwitterFriends(userName, tfriends);
+			statusClient.saveOrUpdateTwitterStatus(userName, tweets);
+		}
+
 		Connection<Facebook> facebook = con.findPrimaryConnection(Facebook.class);
-		facebookApi = facebook.getApi();
-//		Connection<Google> google = con.findPrimaryConnection(Google.class);
-//		googleApi = google.getApi();
-		List<FacebookProfile> ffriends = facebookApi.friendOperations().getFriendProfiles(0, 500);
-		List<TwitterProfile> tfriends = twitterApi.friendOperations().getFriends();
-		List<DirectMessage> tRList = twitterApi.directMessageOperations().getDirectMessagesReceived();
-		List<DirectMessage> tSList = twitterApi.directMessageOperations().getDirectMessagesSent();
-		List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);
-		List<Tweet> tweets = twitterApi.timelineOperations().getHomeTimeline(0, 200);
-		friendClient.saveOrUpdateTwitterFriends(userName, tfriends);
-		friendClient.saveOrUpdateFacebookFriends(userName, ffriends);
-		messageClient.saveOrUpdateTwitterMessages(userName, tRList);
-		messageClient.saveOrUpdateTwitterMessages(userName, tSList);
-		statusClient.saveOrUpdateFacebookStatus(userName, posts);
-		statusClient.saveOrUpdateTwitterStatus(userName, tweets);
+		if (facebook != null) {
+			facebookApi = facebook.getApi();
+			List<FacebookProfile> ffriends = facebookApi.friendOperations().getFriendProfiles(0, 500);
+			List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);
+			friendClient.saveOrUpdateFacebookFriends(userName, ffriends);
+			statusClient.saveOrUpdateFacebookStatus(userName, posts);
+		}
+
+		Connection<Google> google = con.findPrimaryConnection(Google.class);
+		if (google != null) {
+			googleApi = google.getApi();
+		}
+
+		userDaoImpl.updateTime(userName);
 	}
 }

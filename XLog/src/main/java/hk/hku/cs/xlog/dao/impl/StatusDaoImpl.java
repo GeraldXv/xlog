@@ -27,7 +27,8 @@ public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
 
 	@Override
 	public void saveOrUpdateAll(List<Status> status) {
-		getHibernateTemplate().saveOrUpdateAll(status);
+		for (Status s : status)
+			getHibernateTemplate().merge(s);
 
 	}
 

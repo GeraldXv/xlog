@@ -26,6 +26,10 @@
 	z-index:3;
 }
 
+.autwin form {
+	height:160px;
+}
+
 .autwin ul li {
 	width:340px;
 	position:relative;

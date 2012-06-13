@@ -16,7 +16,7 @@ a {text-decoration:none;}
 }
 
 .Settings ul li {
-	width:306px;
+	width:298px;
 	height:30px;
 	font-size:0px;
 	background-color:#CCCCCC;
@@ -33,6 +33,9 @@ a {text-decoration:none;}
 	padding:4px;
 	padding-right:9px;
 	padding-left:8px;
+	
+	top:-1px;
+	position:relative;
 	
 	text-align:center;
 	font-family:Arial,serif,sans-serif;
@@ -126,12 +129,16 @@ a {text-decoration:none;}
 .ssource ul li ul li {	
 	display:inline-block;
 	position:relative;
-	margin-left:20px;
+	height:0px;
+}
+
+.ssource ul li ul li form {
 }
 
 .ssource ul li ul li img {
 	display:inline-block;
 	
+	margin-left:20px;
 	background-color:#FFF;
 	
 	width:50px;
@@ -143,6 +150,7 @@ a {text-decoration:none;}
 .ssource ul li ul li a {
 	display:inline-block;
 	width:85px;
+	margin-left:20px;
 }
 
 .ssource ul li ul li a img {
@@ -374,6 +382,10 @@ a {text-decoration:none;}
 	left:50%;
 	top:300px;
 	margin-left:-135px;
+}
+
+.delcon form {
+	height:73px;
 }
 
 .delcon ul {

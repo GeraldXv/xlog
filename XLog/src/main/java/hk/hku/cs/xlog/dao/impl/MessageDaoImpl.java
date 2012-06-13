@@ -28,7 +28,8 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 
 	@Override
 	public void saveOrUpdateAll(List<Message> messages) {
-		getHibernateTemplate().saveOrUpdateAll(messages);
+		for (Message m : messages)
+			getHibernateTemplate().merge(m);
 
 	}
 
