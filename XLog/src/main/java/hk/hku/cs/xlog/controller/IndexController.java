@@ -72,7 +72,6 @@ public class IndexController {
 			sycInfromation(currentUser.getName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
-		System.out.println(statusDaoImpl.getStatusAllByTime(currentUser.getName()).size());
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
 		model.addAttribute("providerId", "all");
 

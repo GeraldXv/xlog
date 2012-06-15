@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ page session="false"%>
 
 
@@ -109,8 +110,10 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="state" colspan="2">${status.fromUser}. ${status.createdTime}. <a href="">share</a>.<a href="">reply</a>.<a
-										href="javascript:void(0)" id="m${s.index}" onclick="showtagf('m${s.index}')">tag</a>.<a href="">delete</a>.
+
+									<td class="state" colspan="2">${status.fromUser}. <fmt:formatDate value="${status.createdTime}" type="both"
+											pattern="yyyy-MM-dd HH:mm:ss" />. <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}"
+										onclick="showtagf('m${s.index}')">tag</a>.<a href="">delete</a>.
 									</td>
 									<td class="source"><a href="#"> <s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img
 											src="<c:url value="${iconUrl}" />" />

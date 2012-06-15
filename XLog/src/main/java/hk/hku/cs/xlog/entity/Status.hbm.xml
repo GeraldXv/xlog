@@ -4,8 +4,8 @@
 
 <hibernate-mapping>
 	<class name="hk.hku.cs.xlog.entity.Status" table="status">
-		<id name="id" column="id" type="long">
-			<generator class="native" />
+		<id name="id" column="id" type="string">
+			<generator class="assigned" />
 		</id>
 		<property name="idAtService" column="idAtService" type="string" />
 		<property name="refUser" column="refUser" type="string" />
@@ -16,7 +16,8 @@
 		<property name="link" column="link" type="string" />
 		<property name="userImage" column="userImage" type="string" />
 		<property name="stared" column="stared" type="boolean" />
-		<property name="createdTime" column="createdTime" type="date" />
+		<property name="deleted" column="deleted" type="boolean" />
+		<property name="createdTime" column="createdTime" type="timestamp" />
 		<set name="tags" inverse="true" cascade="save-update" table="status_tag" lazy="false">
 			<key column="id"></key>
 			<many-to-many class="hk.hku.cs.xlog.entity.Tag" column="tagName"></many-to-many>

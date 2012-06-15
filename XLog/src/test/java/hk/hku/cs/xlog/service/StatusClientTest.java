@@ -44,11 +44,11 @@ public class StatusClientTest {
 		twitterApi = twitter.getApi();
 		facebookApi = facebook.getApi();
 		List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);
-
+		System.out.println(posts.get(0).getCreatedTime());
 		// List<Tweet> tweets =
 		// twitterApi.timelineOperations().getHomeTimeline(0, 200);
 		//
-		statusClient.saveOrUpdateFacebookStatus("GeraldXv", posts);
+		// statusClient.saveOrUpdateFacebookStatus("GeraldXv", posts);
 		// statusClient.saveOrUpdateTwitterStatus("GeraldXv", tweets);
 
 	}

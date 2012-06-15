@@ -37,8 +37,6 @@ public class StatusAdapter {
 		if (post.getMessage() == null && post.getStory() == null && post.getDescription() == null)
 			status.setContent(post.getName());
 
-		// status.setUserImage(post.getIcon());
-
 		return status;
 	}
 
@@ -61,6 +59,7 @@ public class StatusAdapter {
 			Status f = facebookStatusAdapter(fp);
 			if (f != null) {
 				f.setRefUser(userName);
+				f.setId(f.getIdAtService() + userName);
 				statusList.add(f);
 			}
 		}
@@ -71,10 +70,11 @@ public class StatusAdapter {
 
 	public List<Status> twitterStatusListAdapter(String userName, List<Tweet> tTweetList) {
 		statusList = new ArrayList<Status>();
-		for (Tweet friend : tTweetList) {
-			Status pr = twitterStatusAdapter(friend);
-			pr.setRefUser(userName);
-			statusList.add(pr);
+		for (Tweet ft : tTweetList) {
+			Status t = twitterStatusAdapter(ft);
+			t.setRefUser(userName);
+			t.setId(t.getIdAtService() + userName);
+			statusList.add(t);
 
 		}
 
