@@ -5,27 +5,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Status {
+	private long id;
 	private String idAtService;
-
 	private String serviceProvider;
-
 	private String refUser;
-
 	private String fromUser;
-
 	private Date createdTime;
-
 	private String content;
-
 	private String picture;
-
 	private String link;
-
 	private String userImage;
-
 	private boolean stared;
-
 	private Set<Tag> tags = new HashSet<Tag>();
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getIdAtService() {
 		return idAtService;
@@ -121,16 +120,6 @@ public class Status {
 				+ ", createdTime=" + createdTime + ", content=" + content + ", picture=" + picture + ", link=" + link + ", userImage=" + userImage
 				+ ", stared=" + stared + ", tags=" + tags + "]";
 	}
-
-	//
-	// public static void main(String args[]){
-	//
-	// Status status=new Status();
-	// status.setContent("hhhh");
-	// status.setContent(null);
-	// System.out.println(status.toString());
-	// }
-	//
 
 	// // TODO not support at version 2
 	// private String link;

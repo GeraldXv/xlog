@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ page session="false"%>
 
 
@@ -12,21 +12,21 @@
 	</ul>
 	<ul>
 		<div class="searchoption">
-		<form>
-			<table>
-				<tr>
-					<td><a href="#" onclick="picsel()"> <!-- <img id="pics" name="unselect" src="image/picture.png" />-->
-					</a></td>
-					<td><input id="cfb" type="checkbox" /> <input id="cgp" type="checkbox" /> <input id="ctw" type="checkbox" /></td>
-					<td><label id="lfb" for="cfb" onclick="chk(this)"></label></td>
-					<td><label id="lgp" for="cgp" onclick="chk(this)"></label></td>
-					<td><label id="ltw" for="ctw" onclick="chk(this)"></label></td>
-					<td>
-						<button type="submit" class="postsearch">Send</button>
-					</td>
-				</tr>
-			</table>
-		</form>
+			<form>
+				<table>
+					<tr>
+						<td><a href="#" onclick="picsel()"> <!-- <img id="pics" name="unselect" src="image/picture.png" />-->
+						</a></td>
+						<td><input id="cfb" type="checkbox" /> <input id="cgp" type="checkbox" /> <input id="ctw" type="checkbox" /></td>
+						<td><label id="lfb" for="cfb" onclick="chk(this)"></label></td>
+						<td><label id="lgp" for="cgp" onclick="chk(this)"></label></td>
+						<td><label id="ltw" for="ctw" onclick="chk(this)"></label></td>
+						<td>
+							<button type="submit" class="postsearch">Send</button>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 		<!--end of search option-->
 	</ul>
@@ -177,18 +177,19 @@
 
 <!-- hidden tag div -->
 <div id="tagdiv" class="tagfunc">
-    <ul id="leftborder">
-    </ul>
-    <ul id="lefthalf">
-    <li>Commonly used tags:</li> 
-	<li>Tags you wants: </li>
-    </ul>
-    <ul id="righthalf">
-    <li><a id="sug1" onclick="clicktofinish('sug1')">Apple</a> <a id="sug2" onclick="clicktofinish('sug2')">Brother</a></li><br>
-    <li><input id="taginput" type="text" /></li>
-    </ul>
-    <ul id="rightborder">
-    </ul>
+	<ul id="leftborder">
+	</ul>
+	<ul id="lefthalf">
+		<li>Commonly used tags:</li>
+		<li>Tags you wants:</li>
+	</ul>
+	<ul id="righthalf">
+		<li><a id="sug1" onclick="clicktofinish('sug1')">Apple</a> <a id="sug2" onclick="clicktofinish('sug2')">Brother</a></li>
+		<br>
+		<li><input id="taginput" type="text" /></li>
+	</ul>
+	<ul id="rightborder">
+	</ul>
 	<input type="hidden" value="no" id="lastid">
 </div>
 <!-- end of hidden tag div -->

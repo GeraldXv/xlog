@@ -10,8 +10,7 @@
 		<property name="tagCount" column="tagCount" type="int" />
 		<set name="status" inverse="true" cascade="save-update" table="status_tag" lazy="false">
 			<key column="tagName"></key>
-			<many-to-many class="hk.hku.cs.xlog.entity.Status"
-				column="idAtService"></many-to-many>
+			<many-to-many class="hk.hku.cs.xlog.entity.Status" column="statusId"></many-to-many>
 		</set>
 	</class>
 </hibernate-mapping>
