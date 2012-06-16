@@ -1,7 +1,6 @@
 package hk.hku.cs.xlog.service;
 
-import hk.hku.cs.xlog.bo.MessageClient;
-import hk.hku.cs.xlog.dao.GmailAccountDao;
+import hk.hku.cs.xlog.bo.StatusClient;
 
 import java.util.List;
 
@@ -11,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
-import org.springframework.social.twitter.api.DirectMessage;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.Post;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,35 +19,37 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/test/resources/applicationContext-social.xml", "classpath:applicationContext-dao.xml",
 		"classpath:applicationContext-hibernate.xml", })
-public class MessageClientTest {
+public class StatusItemClientTest {
 
 	@Autowired
 	UsersConnectionRepository usersConnectionRepository;
 	@Autowired
-	MessageClient messageClient;
-	@Autowired
-	GmailAccountDao gmailAccountDaoImpl;
+	StatusClient statusClient;
+
 	ConnectionRepository con;
 	Twitter twitterApi;
+	Facebook facebookApi;
+
+	public boolean uniqueID() {
+
+		return false;
+
+	}
 
 	@Test
 	public void test() {
 		con = usersConnectionRepository.createConnectionRepository("GeraldXv");
 		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
+		Connection<Facebook> facebook = con.findPrimaryConnection(Facebook.class);
 		twitterApi = twitter.getApi();
+		facebookApi = facebook.getApi();
+		List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);
+		System.out.println(posts.get(0).getCreatedTime());
+		// List<Tweet> tweets =
+		// twitterApi.timelineOperations().getHomeTimeline(0, 200);
+		//
+		// statusClient.saveOrUpdateFacebookStatus("GeraldXv", posts);
+		// statusClient.saveOrUpdateTwitterStatus("GeraldXv", tweets);
 
-		List<DirectMessage> tRList = twitterApi.directMessageOperations().getDirectMessagesReceived();
-		List<DirectMessage> tSList = twitterApi.directMessageOperations().getDirectMessagesSent();
-
-		messageClient.saveOrUpdateTwitterMessages("GeraldXv", tRList);
-		messageClient.saveOrUpdateTwitterMessages("GeraldXv", tSList);
-//		 GmailClientX Gc = new GmailClientX();
-//		 GmailAccount gaccount =
-//		 gmailAccountDaoImpl.getByUserName("GeraldXv");
-//		 List<JavaMailGmailMessage> mlist =
-//		 Gc.getMessage(gaccount.getAccount(),
-//		 gaccount.getPassword());
-//		
-//		 messageClient.saveOrUpdateGmailMessages("GeraldXv", mlist);
 	}
 }

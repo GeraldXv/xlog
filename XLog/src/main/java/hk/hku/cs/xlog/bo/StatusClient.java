@@ -28,9 +28,14 @@ public class StatusClient {
 	}
 
 	public List<Status> getTopStatus(String userName) {
-
 		return null;
+	}
+
+	public void sendTwitterStatus(String text, String userName) {
 
 	}
 
+	public void sendFacebookStatus(String text, String userName) {
+
+	}
 }

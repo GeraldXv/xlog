@@ -5,7 +5,8 @@ import hk.hku.cs.xlog.dao.impl.MessageDaoImpl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.social.twitter.api.DirectMessage;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,9 @@ import com.googlecode.gmail4j.javamail.JavaMailGmailMessage;
 
 @Service
 public class MessageClient {
-	@Autowired
+	@Inject
 	private MessageAdapter messageAdapter;
-	@Autowired
+	@Inject
 	private MessageDaoImpl messageDaoImpl;
 
 	public void saveOrUpdateTwitterMessages(String userName, List<DirectMessage> messages) {
@@ -27,5 +28,6 @@ public class MessageClient {
 		messageDaoImpl.saveOrUpdateAll(messageAdapter.gmailMessageListAdapter(userName, message));
 
 	}
-
+	
+	
 }

@@ -1,5 +1,6 @@
-package hk.hku.cs.xlog.bo;
+package hk.hku.cs.xlog.bo.impl;
 
+import hk.hku.cs.xlog.bo.SearchClient;
 import hk.hku.cs.xlog.search.SearchServiceImpl;
 
 import java.util.List;

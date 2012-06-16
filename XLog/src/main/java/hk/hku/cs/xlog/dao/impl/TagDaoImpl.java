@@ -8,6 +8,11 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
+	@Override
+	public Tag get(String tagName) {
+
+		return (Tag) getHibernateTemplate().get(Tag.class, tagName);
+	}
 
 	@Override
 	public void save(Tag tag) {

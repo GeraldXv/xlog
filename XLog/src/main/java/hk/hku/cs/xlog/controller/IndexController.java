@@ -3,6 +3,7 @@ package hk.hku.cs.xlog.controller;
 import hk.hku.cs.xlog.bo.FriendClient;
 import hk.hku.cs.xlog.bo.MessageClient;
 import hk.hku.cs.xlog.bo.StatusClient;
+import hk.hku.cs.xlog.controller.form.StatusForm;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
 import hk.hku.cs.xlog.dao.StatusDao;
@@ -17,8 +18,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
@@ -30,6 +29,7 @@ import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.TwitterProfile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,10 +57,13 @@ public class IndexController {
 	StatusClient statusClient;
 	@Inject
 	MessageClient messageClient;
-	ConnectionRepository con;
-	Twitter twitterApi;
-	Facebook facebookApi;
+	@Inject
+	Twitter twitter;
+	@Inject
+	Facebook facebook;
+
 	Google googleApi;
+
 	long updateGap = 3600000;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -74,7 +77,7 @@ public class IndexController {
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
 		model.addAttribute("providerId", "all");
-
+		model.addAttribute("statusForm", new StatusForm());
 		return "index";
 	}
 
@@ -90,38 +93,48 @@ public class IndexController {
 			model.addAttribute("messageList", mList);
 		}
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
+		model.addAttribute("statusForm", new StatusForm());
 		return "index";
+	}
+
+	@RequestMapping(value = "/status", method = RequestMethod.POST)
+	public String send(Principal currentUser, Model model, @ModelAttribute("statusForm") StatusForm statusForm) {
+		String[] f = statusForm.getProvider();
+		if (f.length == 2) {
+			facebook.feedOperations().updateStatus(statusForm.getText());
+			twitter.timelineOperations().updateStatus(statusForm.getText());
+		} else if (f.length != 0 && f[0].equals("facebook")) {
+			facebook.feedOperations().updateStatus(statusForm.getText());
+		} else if (f.length != 0 && f[0].equals("twitter")) {
+			twitter.timelineOperations().updateStatus(statusForm.getText());
+		}
+		return "redirect:/";
 	}
 
 	// internal helper
 	public void sycInfromation(String userName) {
-		con = usersConnectionRepository.createConnectionRepository(userName);
-		Connection<Twitter> twitter = con.findPrimaryConnection(Twitter.class);
 		if (twitter != null) {
-			twitterApi = twitter.getApi();
-			List<TwitterProfile> tfriends = twitterApi.friendOperations().getFriends();
-			List<DirectMessage> tRList = twitterApi.directMessageOperations().getDirectMessagesReceived();
-			List<DirectMessage> tSList = twitterApi.directMessageOperations().getDirectMessagesSent();
-			List<Tweet> tweets = twitterApi.timelineOperations().getHomeTimeline(0, 200);
+			List<TwitterProfile> tfriends = twitter.friendOperations().getFriends();
+			List<DirectMessage> tRList = twitter.directMessageOperations().getDirectMessagesReceived();
+			List<DirectMessage> tSList = twitter.directMessageOperations().getDirectMessagesSent();
+			List<Tweet> tweets = twitter.timelineOperations().getHomeTimeline(0, 200);
 			messageClient.saveOrUpdateTwitterMessages(userName, tRList);
 			messageClient.saveOrUpdateTwitterMessages(userName, tSList);
 			friendClient.saveOrUpdateTwitterFriends(userName, tfriends);
 			statusClient.saveOrUpdateTwitterStatus(userName, tweets);
 		}
 
-		Connection<Facebook> facebook = con.findPrimaryConnection(Facebook.class);
 		if (facebook != null) {
-			facebookApi = facebook.getApi();
-			List<FacebookProfile> ffriends = facebookApi.friendOperations().getFriendProfiles(0, 500);
-			List<Post> posts = facebookApi.feedOperations().getHomeFeed(0, 50);
+			List<FacebookProfile> ffriends = facebook.friendOperations().getFriendProfiles(0, 500);
+			List<Post> posts = facebook.feedOperations().getHomeFeed(0, 50);
 			friendClient.saveOrUpdateFacebookFriends(userName, ffriends);
 			statusClient.saveOrUpdateFacebookStatus(userName, posts);
 		}
 
-		Connection<Google> google = con.findPrimaryConnection(Google.class);
-		if (google != null) {
-			googleApi = google.getApi();
-		}
+		// Connection<Google> google = con.findPrimaryConnection(Google.class);
+		// if (google != null) {
+		// googleApi = google.getApi();
+		// }
 
 		userDaoImpl.updateTime(userName);
 	}

@@ -7,18 +7,20 @@
 
 
 <div class="status">
+	<c:url var="sendStatusUrl" value="/status" />
+	<sf:form action="${sendStatusUrl}" method="post" modelAttribute="statusForm">
 	<ul>
-		<li><textarea></textarea></li>
+		<li><sf:textarea path="text"></sf:textarea></li>
 		<!--end of input-->
 	</ul>
 	<ul>
 		<div class="searchoption">
-			<form>
 				<table>
 					<tr>
 						<td><a href="#" onclick="picsel()"> <!-- <img id="pics" name="unselect" src="image/picture.png" />-->
 						</a></td>
-						<td><input id="cfb" type="checkbox" /> <input id="cgp" type="checkbox" /> <input id="ctw" type="checkbox" /></td>
+						<td><sf:checkbox path="provider" id="cfb" value=" facebook" /> <sf:checkbox path="provider" id="ctw" value=" twitter" /></td>
+						<!--  	<td><input id="cfb" type="checkbox" /> <input id="cgp" type="checkbox" /> <input id="ctw" type="checkbox" /></td>-->
 						<td><label id="lfb" for="cfb" onclick="chk(this)"></label></td>
 						<td><label id="lgp" for="cgp" onclick="chk(this)"></label></td>
 						<td><label id="ltw" for="ctw" onclick="chk(this)"></label></td>
@@ -27,10 +29,11 @@
 						</td>
 					</tr>
 				</table>
-			</form>
+			
 		</div>
 		<!--end of search option-->
 	</ul>
+	</sf:form>
 </div>
 <!--end of status-->
 

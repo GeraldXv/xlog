@@ -10,8 +10,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
 
 	@Override
-	public Status get(String idAtService) {
-		return (Status) getHibernateTemplate().get(Status.class, idAtService);
+	public Status get(String statusId) {
+		return (Status) getHibernateTemplate().get(Status.class, statusId);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface StatusDao {
 
-	Status get(String idAtService);
+	Status get(String statusId);
 
 	void save(Status status);
 

@@ -23,11 +23,18 @@ public class GmailClientX {
 	}
 
 	public List<GmailMessage> getNewMessage(String userName, String password) {
-		return null;
+		Credentials gmailCredential = new Credentials(userName, password.toCharArray());
+		connection.setLoginCredentials(gmailCredential);
+		client.setConnection(connection);
+		return client.getUnreadMessages();
 
 	}
 
-	public void sendMessage(String userName, String password) {
-
+	public void sendMessage(String userName, String password, GmailMessage gmessage) {
+		Credentials gmailCredential = new Credentials(userName, password.toCharArray());
+		connection.setLoginCredentials(gmailCredential);
+		client.setConnection(connection);
+		client.send(gmessage);
 	}
+	
 }

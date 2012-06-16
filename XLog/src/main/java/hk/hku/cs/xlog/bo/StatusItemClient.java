@@ -1,23 +1,25 @@
 package hk.hku.cs.xlog.bo;
 
+import hk.hku.cs.xlog.entity.Tag;
+
+import java.util.ArrayList;
+
 public interface StatusItemClient {
 
-	void reply(String servicePovider, String userId, String statusId, String content);
+	void reply(String servicePovider, String statusId, String content);
 
-	void markFav(String statusId, String userId);
+	void markFav(String statusId);
 
-	void removeFav(String statusId, String userId);
+	void removeFav(String statusId);
 
-	void share(String servicePovider, String userId, String statusId, String content);
+	void share(String servicePovider, String statusId, String content);
 
-	void delete(String statusId, String userId);
+	void delete(String statusId);
 
-	void addTags(String statusId, String Tags);// TODO
+	void addTags(String statusId, String Tags);
 
-	void showTags();// TODO
+	ArrayList<Tag> showTags(String idAtService);
 
-	void showFullContent(String statusId);// Message Can be large
-
-	void hiddenFullContent(String statusId);
+	
 
 }

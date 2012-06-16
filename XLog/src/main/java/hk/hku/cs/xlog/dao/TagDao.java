@@ -5,6 +5,7 @@ import hk.hku.cs.xlog.entity.Tag;
 import java.util.List;
 
 public interface TagDao {
+	Tag get(String tagName);
 
 	void save(Tag tag);
 

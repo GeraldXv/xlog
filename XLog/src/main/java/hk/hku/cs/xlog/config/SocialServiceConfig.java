@@ -1,8 +1,6 @@
 package hk.hku.cs.xlog.config;
 
 import hk.hku.cs.xlog.connect.ConnectController;
-import hk.hku.cs.xlog.facebook.PostToWallAfterConnectInterceptor;
-import hk.hku.cs.xlog.twitter.TweetAfterConnectInterceptor;
 
 import javax.inject.Inject;
 
@@ -68,8 +66,6 @@ public class SocialServiceConfig {
 	@Bean
 	public ConnectController connectController() {
 		ConnectController connectController = new ConnectController(connectionFactoryLocator, connectionRepository());
-		connectController.addInterceptor(new PostToWallAfterConnectInterceptor());
-		connectController.addInterceptor(new TweetAfterConnectInterceptor());
 		return connectController;
 	}
 
