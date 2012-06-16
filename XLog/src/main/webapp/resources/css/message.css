@@ -234,10 +234,6 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	margin-left:5px;
 }
 
-#gmsubject {
-	display:none;
-}
-
 #gmsubject input {
 	width:281px;
 	height:18px;

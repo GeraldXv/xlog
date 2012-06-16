@@ -98,9 +98,9 @@ public class MessageController {
 			twitter.directMessageOperations().sendDirectMessage(messageForm.getTo(), messageForm.getText());
 		} else if (providerId.equals("gmail")) {
 			GmailAccount gaccount = gmailAccountDaoImpl.getByUserName(currentUser.getName());
-			GmailMessage gmessage=new JavaMailGmailMessage();
-			gmessage.setContentText( messageForm.getText());
-			EmailAddress from = new EmailAddress(currentUser.getName(), gaccount.getAccount()+"@gmail.com");
+			GmailMessage gmessage = new JavaMailGmailMessage();
+			gmessage.setContentText(messageForm.getText());
+			EmailAddress from = new EmailAddress(currentUser.getName(), gaccount.getAccount() + "@gmail.com");
 			EmailAddress to = new EmailAddress(messageForm.getTo());
 			gmessage.setFrom(from);
 			gmessage.setSubject(messageForm.getSubject());
@@ -108,7 +108,7 @@ public class MessageController {
 			GmailClientX Gc = new GmailClientX();
 			Gc.sendMessage(gaccount.getAccount(), gaccount.getPassword(), gmessage);
 		}
-		return "message";
+		return "redirect:/message/";
 
 	}
 }

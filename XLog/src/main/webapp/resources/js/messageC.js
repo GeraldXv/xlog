@@ -2,10 +2,13 @@
 
 function newmsg()
 {
-	if(document.getElementById("msgb").style.display != "block")
-		document.getElementById("msgb").style.display = "block";
-	else 
-		document.getElementById("msgb").style.display = "none";
+	if(document.getElementById("msgb1").style.display != "block"&&document.getElementById("msgb2").style.display != "block")
+		document.getElementById("msgb1").style.display = "block";
+	else
+	{
+		document.getElementById("msgb1").style.display = "none";
+		document.getElementById("msgb2").style.display = "none";
+	}
 }
 
 function sendmsg()
@@ -15,7 +18,8 @@ function sendmsg()
 
 function cancelmsg()
 {
-	document.getElementById("msgb").style.display = "none";
+	document.getElementById("msgb1").style.display = "none";
+	document.getElementById("msgb2").style.display = "none";
 }
 
 function chgps(id)
@@ -27,21 +31,16 @@ function chgps(id)
 		document.getElementById("cselp").innerHTML = document.getElementById("na"+id).innerHTML;}
 }
 
-function selsrv(ob)
+function selsrv1()
 {
-	j = ob.id.substr(0,1);
-	if(j == 't')
-	{
-		document.getElementById("gltw").id = "ptw";
-		document.getElementById("pgm").id = "glgm";
-		document.getElementById("gmsubject").style.display = "none";
-		document.getElementById("msgb").style.height = "205px";
-	}
-	else if (j == 'g')
-	{
-		document.getElementById("glgm").id = "pgm";
-		document.getElementById("ptw").id = "gltw";
-		document.getElementById("gmsubject").style.display = "block";
-		document.getElementById("msgb").style.height = "235px";	
-	}
+	document.getElementById("msgb2").style.display = "none";
+	document.getElementById("msgb1").style.display = "block";
+	document.getElementById("msgb1").style.height = "205px";
+}
+
+function selsrv2()
+{
+	document.getElementById("msgb1").style.display = "none";
+	document.getElementById("msgb2").style.display = "block";
+	document.getElementById("msgb2").style.height = "235px";	
 }
