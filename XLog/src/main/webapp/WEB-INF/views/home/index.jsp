@@ -113,9 +113,8 @@
 									</td>
 								</tr>
 								<tr>
-
 									<td class="state" colspan="2">${status.fromUser}. <fmt:formatDate value="${status.createdTime}" type="both"
-											pattern="yyyy-MM-dd HH:mm:ss" />. <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}"
+											pattern="MM-dd HH:mm" /> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}"
 										onclick="showtagf('m${s.index}')">tag</a>.<a href="">delete</a>.
 									</td>
 									<td class="source"><a href="#"> <s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img

@@ -4,9 +4,10 @@
 
 <hibernate-mapping>
 	<class name="hk.hku.cs.xlog.entity.Friend" table="friend">
-		<id name="idAtService" column="idAtService" type="string">
+		<id name="id" column="id" type="string">
 			<generator class="assigned" />
 		</id>
+		<property name="idAtService" column="idAtService" type="string" />
 		<property name="refUser" column="refUser" type="string" />
 		<property name="serviceProvider" column="serviceProvider" type="string" />
 		<property name="username" column="username" type="string" />

@@ -10,7 +10,9 @@ import hk.hku.cs.xlog.dao.StatusDao;
 import hk.hku.cs.xlog.dao.TagDao;
 import hk.hku.cs.xlog.dao.UserConnectionDao;
 import hk.hku.cs.xlog.dao.UserDao;
+import hk.hku.cs.xlog.entity.GmailAccount;
 import hk.hku.cs.xlog.entity.Message;
+import hk.hku.cs.xlog.gmail.GmailClientX;
 
 import java.security.Principal;
 import java.util.Date;
@@ -33,6 +35,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.googlecode.gmail4j.javamail.JavaMailGmailMessage;
 
 @Controller
 @RequestMapping("/")
@@ -69,10 +73,11 @@ public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
 		Date date = new Date();
-		if (userDaoImpl.getUpdateTime(currentUser.getName()) == 0)
-			sycInfromation(currentUser.getName());
-		else if (date.getTime() - userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
-			sycInfromation(currentUser.getName());
+		// if (userDaoImpl.getUpdateTime(currentUser.getName()) == 0)
+		// sycInfromation(currentUser.getName());
+		// else if (date.getTime() -
+		// userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
+		sycInfromation(currentUser.getName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
@@ -131,10 +136,17 @@ public class IndexController {
 			statusClient.saveOrUpdateFacebookStatus(userName, posts);
 		}
 
-		// Connection<Google> google = con.findPrimaryConnection(Google.class);
-		// if (google != null) {
-		// googleApi = google.getApi();
-		// }
+		// TODO google
+
+		if (gmailAccountDaoImpl.getByUserName(userName) != null) {
+			System.out.println("in..");
+			GmailClientX gmailClientX = new GmailClientX();
+			GmailAccount gaccount = gmailAccountDaoImpl.getByUserName(userName);
+			List<JavaMailGmailMessage> mlist = gmailClientX.getMessage(gaccount.getAccount(), gaccount.getPassword());
+			System.out.println(gaccount.getAccount());
+			System.out.println(mlist.size());
+			messageClient.saveOrUpdateGmailMessages(userName, mlist);
+		}
 
 		userDaoImpl.updateTime(userName);
 	}

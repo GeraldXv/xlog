@@ -7,7 +7,6 @@ import com.googlecode.gmail4j.auth.Credentials;
 import com.googlecode.gmail4j.javamail.ImapGmailConnection;
 import com.googlecode.gmail4j.javamail.ImapGmailLabel;
 import com.googlecode.gmail4j.javamail.JavaMailGmailMessage;
-
 public class GmailClientX {
 	ImapGmailConnection connection = new ImapGmailConnection();
 	GmailTemplate client = new GmailTemplate(ImapGmailLabel.IMPORTANT);

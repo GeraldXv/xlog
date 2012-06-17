@@ -74,7 +74,22 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			final Folder folder = getFolder(this.srcFolder, store);
 			folder.open(Folder.READ_ONLY);
-			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false))) {
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), true))) {
+				read.add(new JavaMailGmailMessage(msg));
+			}
+			return read;
+		} catch (final Exception e) {
+			throw new GmailException("Failed getting All messages", e);
+		}
+	}
+
+	public List<JavaMailGmailMessage> getRecentMessages() {
+		try {
+			final List<JavaMailGmailMessage> read = new ArrayList<JavaMailGmailMessage>();
+			final Store store = openGmailStore();
+			final Folder folder = getFolder(this.srcFolder, store);
+			folder.open(Folder.READ_ONLY);
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.RECENT), true))) {
 				read.add(new JavaMailGmailMessage(msg));
 			}
 			return read;

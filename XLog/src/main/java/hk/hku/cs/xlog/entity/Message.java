@@ -3,6 +3,7 @@ package hk.hku.cs.xlog.entity;
 import java.util.Date;
 
 public class Message {
+	private String id;
 	private String idAtService;
 	private String serviceProvider;
 	private String refUser;
@@ -18,6 +19,15 @@ public class Message {
 	private Date createdDate;
 	private String subject;
 	private String attachedFile;
+	private boolean xread;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getIdAtService() {
 		return idAtService;
@@ -162,6 +172,14 @@ public class Message {
 		} else if (!idAtService.equals(other.idAtService))
 			return false;
 		return true;
+	}
+
+	public boolean isXread() {
+		return xread;
+	}
+
+	public void setXread(boolean xread) {
+		this.xread = xread;
 	}
 
 	@Override

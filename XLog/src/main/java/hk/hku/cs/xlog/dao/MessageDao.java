@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MessageDao {
 
-	Message get(String idAtService);
+	Message get(String id);
 
 	void save(Message message);
 
@@ -16,11 +16,17 @@ public interface MessageDao {
 
 	void delete(Message message);
 
-	void delete(String idAtService);
+	void delete(String id);
+
+	int getUnreadGmail(String refUser);
+
+	int getUnreadTwitterMessage(String refUser);
+
+	void markAllRead(String refUser);
 
 	List<Message> getMessages(String refName);
 
-	List<Message> getMessagesByUserName(String refName, String fromUser);
+	List<Message> getMessagesByUserName(String refUser, String fromUser);
 
 	List<Message> getMessagesByTime(String refName, String gmailaccount, String twitteraccount);
 

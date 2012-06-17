@@ -4,17 +4,16 @@
 
 <hibernate-mapping>
 	<class name="hk.hku.cs.xlog.entity.Message" table="message">
-		<id name="idAtService" column="idAtService" type="string">
+		<id name="id" column="id" type="string">
 			<generator class="assigned" />
 		</id>
+		<property name="idAtService" column="idAtService" type="string" />
 		<property name="refUser" column="refUser" type="string" />
-		<property name="serviceProvider" column="serviceProvider"
-			type="string" />
+		<property name="serviceProvider" column="serviceProvider" type="string" />
 		<property name="fromName" column="fromName" type="string" />
 		<property name="fromEmail" column="fromEmail" type="string" />
 		<property name="fromId" column="fromId" type="string" />
-		<property name="fromProfileImage" column="fromProfileImage"
-			type="string" />
+		<property name="fromProfileImage" column="fromProfileImage" type="string" />
 		<property name="toName" column="toName" type="string" />
 		<property name="toEmail" column="toEmail" type="string" />
 		<property name="toId" column="toId" type="string" />
@@ -23,6 +22,7 @@
 		<property name="createdDate" column="createdDate" type="date" />
 		<property name="subject" column="subject" type="string" />
 		<property name="attachedFile" column="attachedFile" type="string" />
+		<property name="xread" column="xread" type="boolean" />
 
 	</class>
 

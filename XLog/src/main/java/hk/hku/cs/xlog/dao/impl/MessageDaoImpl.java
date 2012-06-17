@@ -10,8 +10,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 
 	@Override
-	public Message get(String idAtService) {
-		return (Message) getHibernateTemplate().get(Message.class, idAtService);
+	public Message get(String id) {
+		return (Message) getHibernateTemplate().get(Message.class, id);
 	}
 
 	@Override
@@ -66,6 +66,32 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 		getHibernateTemplate().setMaxResults(10);
 		return (List<Message>) getHibernateTemplate().find("from Message where refUser=? and (fromName=? or toName=?) order by createdDate desc ",
 				new Object[] { refName, fromUser, fromUser });
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int getUnreadGmail(String refUser) {
+
+		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread=0 and serviceProvider=gmail", new Object[] { refUser }))
+				.size();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int getUnreadTwitterMessage(String refUser) {
+		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread=0 and serviceProvider=twitter", new Object[] { refUser }))
+				.size();
+
+	}
+
+	@Override
+	public void markAllRead(String refUser) {
+		@SuppressWarnings("unchecked")
+		List<Message> mlist = (List<Message>) getHibernateTemplate().find("from Message where xread=0 and refUser=?", refUser);
+		for (Message m : mlist) {
+			m.setXread(true);
+		}
+		getHibernateTemplate().saveOrUpdateAll(mlist);
 	}
 
 }
