@@ -11,5 +11,6 @@
 	<context:component-scan base-package="hk.hku.cs.xlog.search" />
 	<context:component-scan base-package="hk.hku.cs.xlog.solr" />
 	<context:component-scan base-package="hk.hku.cs.xlog.bo" />
+	
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />  
 </beans>
