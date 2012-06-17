@@ -65,6 +65,8 @@ public class IndexController {
 	Twitter twitter;
 	@Inject
 	Facebook facebook;
+	@Inject
+	GmailClientX gmailClientX;
 
 	Google googleApi;
 
@@ -73,11 +75,10 @@ public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
 		Date date = new Date();
-		// if (userDaoImpl.getUpdateTime(currentUser.getName()) == 0)
-		// sycInfromation(currentUser.getName());
-		// else if (date.getTime() -
-		// userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
-		sycInfromation(currentUser.getName());
+		if (userDaoImpl.getUpdateTime(currentUser.getName()) == 0)
+			sycInfromation(currentUser.getName());
+		else if (date.getTime() - userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
+			sycInfromation(currentUser.getName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
@@ -139,12 +140,9 @@ public class IndexController {
 		// TODO google
 
 		if (gmailAccountDaoImpl.getByUserName(userName) != null) {
-			System.out.println("in..");
-			GmailClientX gmailClientX = new GmailClientX();
+
 			GmailAccount gaccount = gmailAccountDaoImpl.getByUserName(userName);
-			List<JavaMailGmailMessage> mlist = gmailClientX.getMessage(gaccount.getAccount(), gaccount.getPassword());
-			System.out.println(gaccount.getAccount());
-			System.out.println(mlist.size());
+			List<JavaMailGmailMessage> mlist = gmailClientX.getRecentMessages(gaccount.getAccount(), gaccount.getPassword());
 			messageClient.saveOrUpdateGmailMessages(userName, mlist);
 		}
 
