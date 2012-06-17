@@ -141,14 +141,34 @@ function chk(ob)
 	else if(j != "c")
 	ob.id += "c";
 }
+
 function showdetail(id)
-{
+{alert(id);
 	t = document.getElementById("currentexp").name;
-	if(id != t||t == "none"){
-	document.getElementById("arro"+id).className = "arrowed";
-	if(t != "none")
-		document.getElementById("arro"+t).className = "arrow";
-	document.getElementById("currentexp").name = id;
-	document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-	document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;	}
+	if(id != t||t == "none")
+	{
+		document.getElementById("arro"+id).className = "arrowed";
+		if(t != "none")
+			document.getElementById("arro"+t).className = "arrow";
+		document.getElementById("currentexp").name = id;
+		document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+		document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+	}
+}
+
+function delmsg(ob)
+{
+	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
+	mainbody = obj.parentNode;
+	//obj.style.display = "none";
+	oid = obj.id.substring(3);
+	mainbody.removeChild(obj);
+	if(oid == document.getElementById("currentexp").name)
+	{
+		id = mainbody.childNodes[4].id.substring(3);
+		document.getElementById("arro"+id).className = "arrowed";
+		document.getElementById("currentexp").name = id;
+		document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+		document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+	}
 }

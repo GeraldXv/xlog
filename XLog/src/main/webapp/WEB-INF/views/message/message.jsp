@@ -50,7 +50,7 @@
 		</li>
 
 		<c:forEach var="message" items="${messages}">
-			<li><a>
+			<li><a href="javascript:void(0)" onclick="expmsg(this)">
 					<ul class="pic">
 						<c:if test="${not empty message.fromProfileImage}">
 							<img src="<c:url value="${message.fromProfileImage}" />" />
@@ -62,7 +62,7 @@
 					</ul>
 					<ul>
 						<li class="name"><c:out value="${message.fromName}"></c:out><label><c:out value="${message.createdDate}"></c:out></label></li>
-						<li><c:out value="${message.content}"></c:out></li>
+						<li class="clo"><c:out value="${message.content}"></c:out></li>
 					</ul>
 			</a></li>
 		</c:forEach>
@@ -102,7 +102,7 @@
 			<li><sf:textarea path="text"></sf:textarea></li>
 			<li>
 				<button type="submit" onclick="sendmsg()">Send</button>
-				<button onclick="cancelmsg()">Cancel</button>
+				<button type="button" onclick="cancelmsg()">Cancel</button>
 			</li>
 		</ul>
 	</div>

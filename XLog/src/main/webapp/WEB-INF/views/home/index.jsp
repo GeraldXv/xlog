@@ -17,10 +17,9 @@
 		<div class="searchoption">
 				<table>
 					<tr>
-						<td><a href="#" onclick="picsel()"> <!-- <img id="pics" name="unselect" src="image/picture.png" />-->
+						<td><a href="#" onclick="picsel()"> 
 						</a></td>
 						<td><sf:checkbox path="provider" id="cfb" value=" facebook" /> <sf:checkbox path="provider" id="ctw" value=" twitter" /></td>
-						<!--  	<td><input id="cfb" type="checkbox" /> <input id="cgp" type="checkbox" /> <input id="ctw" type="checkbox" /></td>-->
 						<td><label id="lfb" for="cfb" onclick="chk(this)"></label></td>
 						<td><label id="lgp" for="cgp" onclick="chk(this)"></label></td>
 						<td><label id="ltw" for="ctw" onclick="chk(this)"></label></td>
@@ -115,7 +114,7 @@
 								<tr>
 									<td class="state" colspan="2">${status.fromUser}. <fmt:formatDate value="${status.createdTime}" type="both"
 											pattern="MM-dd HH:mm" /> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}"
-										onclick="showtagf('m${s.index}')">tag</a>.<a href="">delete</a>.
+										onclick="showtagf('m${s.index}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this)">delete</a>.
 									</td>
 									<td class="source"><a href="#"> <s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img
 											src="<c:url value="${iconUrl}" />" />

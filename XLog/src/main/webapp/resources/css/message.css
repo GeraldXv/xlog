@@ -44,20 +44,26 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 .spl {
 	display:inline-block;
-	width:1px !important;
+	width:1px;
+	max-width:1px !important;
 	border:2px #FFFFFF solid;
-	height:640px;
+	height:100%;
+	min-height:600px;
 	background-color:#000000;
 }
 
 .mess ul.meslist {
 	display:inline-block;
+	position:relative;
 	width:625px;
 	font-size:12px;
 	vertical-align:top;
+	min-height:600px;
 }
 
 .mess ul.meslist li {
+	display:block;
+	position:relative;
 	margin-left:15px;
 }
 
@@ -102,18 +108,33 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 }
 
 .mess ul.meslist li ul li {
-	height:auto;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
-	color:#000000;
-	position:relative;
-	top:4px;
+	padding:0;
+	vertical-align:top;
 	margin-left:15px;
-	width:535px;
+	position:relative;
+	min-width:485px;
+	max-width:485px;
+	color:#000000;
+}
+
+.mess ul.meslist li ul li.clo {
 	height:16px;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	padding:0;
+}
+
+
+.mess ul.meslist li ul li.exp {
+	overflow:visible;
+}
+
+.mess ul.meslist li ul li.name {
+	font-weight:bold;
+	height:16px;
+	overflow:hidden;
+	text-overflow:ellipsis;
 }
 
 .mess ul.meslist li ul li label {
@@ -135,17 +156,17 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .mess ul li a ul {
 	display:inline-block;
 	width:200px;
-	height:40px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#FF0000;
-	vertical-align:bottom;
+	vertical-align:top;
 }
 
 .mess ul li a ul.pic {
 	display:inline-block;
 	width:40px;
 	height:40px;
+	vertical-align:top;
 }
 
 .mess ul li a ul.pic img {
@@ -173,10 +194,6 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	font-size:12px;
 	color:#000000;
 	width:580px;
-}
-
-.name {
-	font-weight:bold;
 }
 
 #nmsg {
@@ -232,6 +249,10 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	width:320px;
 	height:18px;
 	margin-left:5px;
+}
+
+#gmsubject {
+	display:none;
 }
 
 #gmsubject input {
@@ -300,7 +321,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 #pgm {
 	display:inline-block;
-	background: url(../image/gmail.png) no-repeat left;
+	background: url(../image/Gmail.png) no-repeat left;
 	background-size:24px 24px;
 	width:24px;
 	height:24px;
