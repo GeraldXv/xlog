@@ -180,6 +180,7 @@
 <!-- end of content -->
 
 <!-- hidden tag div -->
+<form>
 <div id="tagdiv" class="tagfunc">
 	<ul id="leftborder">
 	</ul>
@@ -196,5 +197,6 @@
 	</ul>
 	<input type="hidden" value="no" id="lastid">
 </div>
+</form>
 <!-- end of hidden tag div -->
 </div>
