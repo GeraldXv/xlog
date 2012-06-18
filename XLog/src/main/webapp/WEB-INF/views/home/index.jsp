@@ -190,7 +190,7 @@
 	<ul id="righthalf">
 		<li><a id="sug1" onclick="clicktofinish('sug1')">Apple</a> <a id="sug2" onclick="clicktofinish('sug2')">Brother</a></li>
 		<br>
-		<li><input id="taginput" type="text" /></li>
+		<li><input id="taginput" type="text" /><button>Tag it</button></li>
 	</ul>
 	<ul id="rightborder">
 	</ul>
