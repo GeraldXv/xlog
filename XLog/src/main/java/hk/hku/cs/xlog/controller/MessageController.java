@@ -1,5 +1,6 @@
 package hk.hku.cs.xlog.controller;
 
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.MessageForm;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
@@ -35,6 +36,8 @@ public class MessageController {
 	private UserConnectionDao userConnectionDaoImpl;
 	@Inject
 	Twitter twitter;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 
 	@Inject
 	public MessageController(MessageDao messageDaoImpl, GmailAccountDao gmailAccountDaoImpl, UserDao userDaoImpl, UserConnectionDao userConnectionDaoImpl) {
@@ -65,6 +68,8 @@ public class MessageController {
 		model.addAttribute("fromUser", mList.get(0).getFromName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("messageForm", new MessageForm());
+		notificationClientImpl.MakeAllMessageRead(currentUser.getName());
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "message";
 
 	}

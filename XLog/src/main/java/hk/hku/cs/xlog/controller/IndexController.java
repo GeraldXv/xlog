@@ -3,6 +3,7 @@ package hk.hku.cs.xlog.controller;
 import hk.hku.cs.xlog.bo.FriendClient;
 import hk.hku.cs.xlog.bo.MessageClient;
 import hk.hku.cs.xlog.bo.StatusClient;
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.StatusForm;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
@@ -67,6 +68,8 @@ public class IndexController {
 	Facebook facebook;
 	@Inject
 	GmailClientX gmailClientX;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 
 	Google googleApi;
 
@@ -83,6 +86,7 @@ public class IndexController {
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
 		model.addAttribute("providerId", "all");
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("statusForm", new StatusForm());
 		return "index";
 	}
@@ -100,6 +104,7 @@ public class IndexController {
 		}
 		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
 		model.addAttribute("statusForm", new StatusForm());
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "index";
 	}
 
@@ -140,9 +145,8 @@ public class IndexController {
 		// TODO google
 
 		if (gmailAccountDaoImpl.getByUserName(userName) != null) {
-
 			GmailAccount gaccount = gmailAccountDaoImpl.getByUserName(userName);
-			List<JavaMailGmailMessage> mlist = gmailClientX.getRecentMessages(gaccount.getAccount(), gaccount.getPassword());
+			List<JavaMailGmailMessage> mlist = gmailClientX.getUnreadMessage(gaccount.getAccount(), gaccount.getPassword());
 			messageClient.saveOrUpdateGmailMessages(userName, mlist);
 		}
 

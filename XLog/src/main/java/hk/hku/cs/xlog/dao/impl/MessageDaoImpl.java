@@ -72,14 +72,14 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	@Override
 	public int getUnreadGmail(String refUser) {
 
-		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread=0 and serviceProvider=gmail", new Object[] { refUser }))
+		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread='0' and serviceProvider='gmail'", new Object[] { refUser }))
 				.size();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getUnreadTwitterMessage(String refUser) {
-		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread=0 and serviceProvider=twitter", new Object[] { refUser }))
+		return ((List<Message>) getHibernateTemplate().find("from Message where refUser=? and xread='0' and serviceProvider='twitter'", new Object[] { refUser }))
 				.size();
 
 	}
@@ -87,7 +87,7 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 	@Override
 	public void markAllRead(String refUser) {
 		@SuppressWarnings("unchecked")
-		List<Message> mlist = (List<Message>) getHibernateTemplate().find("from Message where xread=0 and refUser=?", refUser);
+		List<Message> mlist = (List<Message>) getHibernateTemplate().find("from Message where xread='0' and refUser=?", refUser);
 		for (Message m : mlist) {
 			m.setXread(true);
 		}

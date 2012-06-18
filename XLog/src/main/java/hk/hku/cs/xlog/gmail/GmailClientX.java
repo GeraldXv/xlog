@@ -23,7 +23,7 @@ public class GmailClientX {
 
 	}
 
-	public List<JavaMailGmailMessage> getRecentMessages(String userName, String password) {
+	public List<JavaMailGmailMessage> getUnreadMessage(String userName, String password) {
 		Credentials gmailCredential = new Credentials(userName, password.toCharArray());
 		connection.setLoginCredentials(gmailCredential);
 		client.setConnection(connection);
@@ -31,13 +31,6 @@ public class GmailClientX {
 
 	}
 
-	public List<GmailMessage> getUnreadMessage(String userName, String password) {
-		Credentials gmailCredential = new Credentials(userName, password.toCharArray());
-		connection.setLoginCredentials(gmailCredential);
-		client.setConnection(connection);
-		return client.getUnreadMessages();
-
-	}
 
 	public void sendMessage(String userName, String password, GmailMessage gmessage) {
 		Credentials gmailCredential = new Credentials(userName, password.toCharArray());

@@ -89,7 +89,9 @@ public class GmailTemplate extends GmailClient {
 			final Store store = openGmailStore();
 			final Folder folder = getFolder(this.srcFolder, store);
 			folder.open(Folder.READ_ONLY);
-			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.RECENT), true))) {
+			// RECENT flag is not implemeted by Gmail. So use unread to replace
+			// Recent flag
+			for (final Message msg : folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false))) {
 				read.add(new JavaMailGmailMessage(msg));
 			}
 			return read;
