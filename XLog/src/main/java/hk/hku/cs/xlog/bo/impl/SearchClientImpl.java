@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.TwitterProfile;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SearchClientImpl implements SearchClient {
 	@Autowired
 	private SearchServiceImpl searchServiceImpl;
