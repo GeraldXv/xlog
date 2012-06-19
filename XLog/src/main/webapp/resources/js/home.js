@@ -160,15 +160,74 @@ function delmsg(ob)
 {
 	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
 	mainbody = obj.parentNode;
+	oid = obj.id.substring(3);
+	
+	
+				mainbody.removeChild(obj);
+				if(oid == document.getElementById("currentexp").name)
+				{
+					id = mainbody.childNodes[4].id.substring(3);
+					document.getElementById("arro"+id).className = "arrowed";
+					document.getElementById("currentexp").name = id;
+					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+				}
+	
+}
+
+function delmsggg2(ob)
+{
+	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
+	mainbody = obj.parentNode;
 	//obj.style.display = "none";
 	oid = obj.id.substring(3);
-	mainbody.removeChild(obj);
-	if(oid == document.getElementById("currentexp").name)
+	
+	val xmlhttp;
+	
+	if(window.XMLHttpRequest)
 	{
-		id = mainbody.childNodes[4].id.substring(3);
-		document.getElementById("arro"+id).className = "arrowed";
-		document.getElementById("currentexp").name = id;
-		document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-		document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+	      //FireFox,Mozillar,Opera,Safari,IE7,IE8
+	       xmlhttp = new XMLHttpRequest();
+	       
+	       //mozillar bug
+	       if(xmlhttp.overrideMineType){
+	          xmlhttp.overrideMineType("text/xml");
+	       }
 	}
+	else if(window.ActiveXObject)
+	{
+	       //IE5，IE5.5，IE6
+	       
+	       var activexName = ["MSXML2.XMLHTTP","Microsoft.XMLHTTP"];
+	       for(var i = 0; i<activeName.length; i++){
+	           try{
+	              xmlhttp = new ActiveXObject(activexName[i]);
+	              break;
+	           }catch(e){}
+	       }
+	} 
+	
+	xmlhttp.onreadystatechange = function () {
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				var resbonseText = xmlhttp.responseText;
+				
+				mainbody.removeChild(obj);
+				if(oid == document.getElementById("currentexp").name)
+				{
+					id = mainbody.childNodes[4].id.substring(3);
+					document.getElementById("arro"+id).className = "arrowed";
+					document.getElementById("currentexp").name = id;
+					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+				}
+			}
+		}
+		
+	}
+	
+	xmlhttp.open("GET","/status?statusid="+oid+" method+'delete'",true);
+	
+	xmlhttp.send(null);
+	
 }
