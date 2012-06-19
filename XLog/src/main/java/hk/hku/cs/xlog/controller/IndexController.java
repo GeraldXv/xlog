@@ -136,9 +136,15 @@ public class IndexController {
 
 	@RequestMapping(value = "/status/mark")
 	public @ResponseBody
-	String mark(Principal currentUser, @RequestParam("statusId") String statusId) {
-		statusItemClientImpl.markFav(statusId);
-		return "true";
+	String mark(Principal currentUser, @RequestParam("statusId") String statusId, @RequestParam("isMarked") String isMarked) {
+		if (isMarked.equals(true)) {
+			statusItemClientImpl.removeFav(statusId);
+			return "false";
+		} else {
+			statusItemClientImpl.markFav(statusId);
+			return "true";
+		}
+
 	}
 
 	// internal helper
