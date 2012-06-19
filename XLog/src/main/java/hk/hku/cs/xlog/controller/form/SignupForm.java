@@ -1,4 +1,4 @@
-package hk.hku.cs.xlog.controller;
+package hk.hku.cs.xlog.controller.form;
 
 public class SignupForm {
 

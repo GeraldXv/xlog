@@ -18,10 +18,7 @@ import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
-/**
- * Spring Social Configuration.
- * 
- */
+
 @Configuration
 @PropertySource("classpath:hk/hku/cs/xlog/config/application.properties")
 public class SocialConfig {
