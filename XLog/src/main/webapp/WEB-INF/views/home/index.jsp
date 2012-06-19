@@ -80,11 +80,10 @@
 			<div class="contentpreview">
 				<input type="hidden" id="currentexp" name="0">
 				<ul>
-					<!-- start of a message-->
 
 					<c:forEach var="status" items="${statusList}" varStatus="s">
 
-						<li id="msg${s.index }">
+						<li id="msg${s.index }" title="${status.id}">
 							<table width="390px">
 								<tr>
 									<td class="picc" width="50px"><c:if test="${not empty status.userImage}">
@@ -124,9 +123,6 @@
 						</li>
 					</c:forEach>
 
-
-
-					<!--end of a message-->
 
 					<li>
 						<!-- use to be the border-->

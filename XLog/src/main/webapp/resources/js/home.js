@@ -154,35 +154,51 @@ function showdetail(id)
 		document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
 		document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
 	}
+} 
+
+function delmsgo(ob)
+{
+	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
+	mainbody = obj.parentNode;
+	oid = obj.id.substring(3);
+	
+				mainbody.removeChild(obj);
+				nodes = filterSpaceNode(mainbody.childNodes);
+				if(oid == document.getElementById("currentexp").name)
+				{
+					id = nodes[0].id.substring(3);
+					document.getElementById("arro"+id).className = "arrowed";
+					document.getElementById("currentexp").name = id;
+					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+				}
+				if(nodes.length == 1)
+				{
+					
+				}
+	
 }
+
+function filterSpaceNode(nodes) 
+{  
+    var arr = [];  
+    for(var i=0;i<nodes.length;i++) {
+            if (nodes[i].nodeType ==3 && /^\s/.test(nodes[i].nodeValue)) {  
+            	continue;  
+            }  
+    	arr.push(nodes[i]);
+    }  
+    return arr;  
+} 
 
 function delmsg(ob)
 {
 	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
 	mainbody = obj.parentNode;
 	oid = obj.id.substring(3);
+	oname = obj.title;
 	
-	
-				mainbody.removeChild(obj);
-				if(oid == document.getElementById("currentexp").name)
-				{
-					id = mainbody.childNodes[4].id.substring(3);
-					document.getElementById("arro"+id).className = "arrowed";
-					document.getElementById("currentexp").name = id;
-					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
-				}
-	
-}
-
-function delmsggg2(ob)
-{
-	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
-	mainbody = obj.parentNode;
-	//obj.style.display = "none";
-	oid = obj.id.substring(3);
-	
-	val xmlhttp;
+	var xmlhttp;
 	
 	if(window.XMLHttpRequest)
 	{
@@ -212,21 +228,29 @@ function delmsggg2(ob)
 			if(xmlhttp.status == 200){
 				var resbonseText = xmlhttp.responseText;
 				
-				mainbody.removeChild(obj);
-				if(oid == document.getElementById("currentexp").name)
-				{
-					id = mainbody.childNodes[4].id.substring(3);
-					document.getElementById("arro"+id).className = "arrowed";
-					document.getElementById("currentexp").name = id;
-					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+				if(resbonseText == "true") {
+					mainbody.removeChild(obj);
+					nodes = filterSpaceNode(mainbody.childNodes);
+					if(oid == document.getElementById("currentexp").name)
+					{
+						id = nodes[0].id.substring(3);
+						document.getElementById("arro"+id).className = "arrowed";
+						document.getElementById("currentexp").name = id;
+						document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
+						document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+					}
+					if(nodes.length == 1)
+					{
+						
+					}
 				}
 			}
 		}
+		else document.getElementById("test").innerHTML = xmlhttp.readyState;
 		
 	}
 	
-	xmlhttp.open("GET","/status?statusid="+oid+" method+'delete'",true);
+	xmlhttp.open("GET","/XLog/status/delete?statusId="+oname,true);
 	
 	xmlhttp.send(null);
 	

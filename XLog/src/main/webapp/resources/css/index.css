@@ -390,6 +390,7 @@ img {border:0;}
 .contentpreview {
 	position:relative;
 	width:390px;
+	min-height:550px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0){
@@ -648,6 +649,19 @@ img {border:0;}
 .tagfunc li input {
 	position:relative;
 	width:100px;
+}
+
+.tagfunc li button {
+	position:relative;
+	background-color:#36F;
+	border:1px solid #06F;
+	border-radius:2px;
+	color:white;
+	height:22px;
+}
+
+.tagfunc li button:hover {
+	background-color:#06C;
 }
 
 /* legalinfo */
