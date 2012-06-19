@@ -171,7 +171,6 @@ function chgmark(ob)
 		ismarked = "false";
 	}
 	sid = ob.parentNode.parentNode.parentNode.parentNode.parentNode.title;
-	alert("/XLog/status/mark?statusId="+sid+"&isMarked="+ismarked);
 	
 	xmlhttp.onreadystatechange = function () {
 		if(xmlhttp.readyState == 4){
