@@ -18,7 +18,7 @@ public interface StatusItemClient {
 
 	void addTags(String statusId, String Tags);
 
-	ArrayList<Tag> showTags(String idAtService);
+	ArrayList<Tag> showTags(String idAtservice);
 
 	
 
