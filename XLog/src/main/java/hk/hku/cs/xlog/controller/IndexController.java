@@ -4,6 +4,7 @@ import hk.hku.cs.xlog.bo.FriendClient;
 import hk.hku.cs.xlog.bo.MessageClient;
 import hk.hku.cs.xlog.bo.StatusClient;
 import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
+import hk.hku.cs.xlog.bo.impl.StatusItemClientImpl;
 import hk.hku.cs.xlog.controller.form.StatusForm;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
@@ -36,6 +37,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.googlecode.gmail4j.javamail.JavaMailGmailMessage;
 
@@ -70,6 +73,8 @@ public class IndexController {
 	GmailClientX gmailClientX;
 	@Inject
 	NotificationClientImpl notificationClientImpl;
+	@Inject
+	StatusItemClientImpl statusItemClientImpl;
 
 	Google googleApi;
 
@@ -120,6 +125,20 @@ public class IndexController {
 			twitter.timelineOperations().updateStatus(statusForm.getText());
 		}
 		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/status/delete")
+	public @ResponseBody
+	String delete(Principal currentUser, @RequestParam("statusId") String statusId) {
+		statusItemClientImpl.delete(statusId);
+		return "true";
+	}
+
+	@RequestMapping(value = "/status/mark")
+	public @ResponseBody
+	String mark(Principal currentUser, @RequestParam("statusId") String statusId) {
+		statusItemClientImpl.markFav(statusId);
+		return "true";
 	}
 
 	// internal helper

@@ -12,10 +12,13 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author Gerald.xv at gmail.com
  * @version 创建时间：2012-6-15 下午2:08:43
  */
+@Service
 public class StatusItemClientImpl implements StatusItemClient {
 
 	@Inject

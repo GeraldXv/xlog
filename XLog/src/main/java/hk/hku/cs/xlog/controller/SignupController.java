@@ -1,5 +1,6 @@
 package hk.hku.cs.xlog.controller;
 
+import hk.hku.cs.xlog.controller.form.SignupForm;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.User;
 import hk.hku.cs.xlog.exception.UsernameAlreadyInUseException;
