@@ -468,6 +468,7 @@ img {border:0;}
 	width:22px;
 	height:22px;
 	display:block;
+	cursor:pointer;
 	background:url(../image/unmark.png) no-repeat;
 }
 
@@ -475,6 +476,7 @@ img {border:0;}
 	width:22px;
 	height:22px;
 	display:block;
+	cursor:pointer;
 	background:url(../image/marked.png) no-repeat;
 }
 

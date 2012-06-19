@@ -96,10 +96,10 @@
 											<img src="<c:url value="${status.picture}" />" />
 										</c:if></td>
 									<c:if test="${status.stared==true }">
-										<td width="25px"><a class="marked"></a></td>
+										<td width="25px"><a class="marked" onclick="chgmark(this)"></a></td>
 									</c:if>
 									<c:if test="${status.stared==false }">
-										<td width="25px"><a class="mark"></a></td>
+										<td width="25px"><a class="mark" onclick="chgmark(this)"></a></td>
 									</c:if>
 									<c:if test="${s.index==0}">
 										<td id="arro${s.index}" class="arrowed" width="15px" rowspan="2">

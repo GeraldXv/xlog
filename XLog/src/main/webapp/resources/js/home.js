@@ -143,7 +143,7 @@ function chk(ob)
 }
 
 function showdetail(id)
-{alert(id);
+{
 	t = document.getElementById("currentexp").name;
 	if(id != t||t == "none")
 	{
@@ -156,27 +156,40 @@ function showdetail(id)
 	}
 } 
 
-function delmsgo(ob)
+function chgmark(ob)
 {
-	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
-	mainbody = obj.parentNode;
-	oid = obj.id.substring(3);
+	var xmlhttp = xmlhttpgenerator();
 	
-				mainbody.removeChild(obj);
-				nodes = filterSpaceNode(mainbody.childNodes);
-				if(oid == document.getElementById("currentexp").name)
-				{
-					id = nodes[0].id.substring(3);
-					document.getElementById("arro"+id).className = "arrowed";
-					document.getElementById("currentexp").name = id;
-					document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-					document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
-				}
-				if(nodes.length == 1)
-				{
-					
-				}
+	if(ob.className == "marked")
+	{
+		wname = "mark";
+		ismarked = "true";
+	}
+	else
+	{
+		wname = "marked";
+		ismarked = "false";
+	}
+	sid = ob.parentNode.parentNode.parentNode.parentNode.parentNode.title;
+	alert("/XLog/status/mark?statusId="+sid+"&isMarked="+ismarked);
 	
+	xmlhttp.onreadystatechange = function () {
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				var resbonseText = xmlhttp.responseText;
+				
+				if(resbonseText == "true") {
+					ob.className = wname;
+				}
+			}
+		}
+		else document.getElementById("test").innerHTML = xmlhttp.readyState;
+		
+	}
+	
+	xmlhttp.open("GET","/XLog/status/mark?statusId="+sid+"&isMarked="+ismarked,true);
+	
+	xmlhttp.send(null);
 }
 
 function filterSpaceNode(nodes) 
@@ -191,15 +204,9 @@ function filterSpaceNode(nodes)
     return arr;  
 } 
 
-function delmsg(ob)
+function xmlhttpgenerator()
 {
-	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
-	mainbody = obj.parentNode;
-	oid = obj.id.substring(3);
-	oname = obj.title;
-	
 	var xmlhttp;
-	
 	if(window.XMLHttpRequest)
 	{
 	      //FireFox,Mozillar,Opera,Safari,IE7,IE8
@@ -221,7 +228,18 @@ function delmsg(ob)
 	              break;
 	           }catch(e){}
 	       }
-	} 
+	}
+	return xmlhttp;
+}
+
+function delmsg(ob)
+{
+	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
+	mainbody = obj.parentNode;
+	oid = obj.id.substring(3);
+	oname = obj.title;
+	
+	var xmlhttp = xmlhttpgenerator(); 
 	
 	xmlhttp.onreadystatechange = function () {
 		if(xmlhttp.readyState == 4){
