@@ -69,13 +69,21 @@ public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
 	public List<Tag> getTagsbyIdAtservice(String idAtService) {
 		@SuppressWarnings("unchecked")
 		List<Status> statusList = (List<Status>) getHibernateTemplate().find("from Status where idAtService=?  ", idAtService);
-		System.out.println(statusList.size());
 		List<Tag> tags = new ArrayList<Tag>();
 		for (Status s : statusList) {
-			System.out.println(s.getTags().size());
-				tags.addAll(s.getTags());
+			tags.addAll(s.getTags());
 		}
-		System.out.println(tags.size());
+		return tags;
+	}
+
+	@Override
+	public List<Tag> getTagsbyFromUser(String fromUser) {
+		@SuppressWarnings("unchecked")
+		List<Status> statusList = (List<Status>) getHibernateTemplate().find("from Status where fromUser=?  ", fromUser);
+		List<Tag> tags = new ArrayList<Tag>();
+		for (Status s : statusList) {
+			tags.addAll(s.getTags());
+		}
 		return tags;
 	}
 }

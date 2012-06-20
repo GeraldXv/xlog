@@ -449,13 +449,27 @@ img {border:0;}
 	overflow:hidden;
 }
 
+.words img.exp {
+	display:block;
+	max-width:inherit;
+	max-height:inherit;
+}
+
+.words img.max {
+	display:block;
+	position:relative;
+	max-width:270px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 .words img {
 	display:block;
 	position:relative;
-	left:50%;
-	margin-left:-35px;
 	max-width:70px;
 	max-height:40px;
+	margin-top:5px;
+	margin-bottom:5px;
 }
 
 .source img {
@@ -664,6 +678,35 @@ img {border:0;}
 
 .tagfunc li button:hover {
 	background-color:#06C;
+}
+
+.suctag {
+	display:none;
+	position:absolute;
+	left:50%;
+	margin-left:-180px;
+	top:200px;
+	width:360px;
+	height:24px;
+	background-color:#CCC;
+	opacity:0.3;
+	z-index:1;
+}
+
+.suctag div {
+	display:block;
+	position:relative;
+	width:256px;
+	height:20px;
+	left:2px;
+	top:2px;
+	color:black;
+	background-color:white;
+	font-size:18px;
+	text-align:center;
+	padding-top:10px;
+	opacity:1;
+	z-index:10;
 }
 
 /* legalinfo */

@@ -93,7 +93,7 @@
 											<img src="<c:url value="${defaultUrl}" />" />
 										</c:if></td>
 									<td id="shortc1" class="words" width="300px"><span> ${status.content } </span> <c:if test="${not empty status.picture}">
-											<img src="<c:url value="${status.picture}" />" />
+											<img src="<c:url value="${status.picture}" />" onclick="chgsize(this)" />
 										</c:if></td>
 									<c:if test="${status.stared==true }">
 										<td width="25px"><a class="marked" onclick="chgmark(this)"></a></td>
@@ -107,13 +107,13 @@
 									<c:if test="${s.index!=0}">
 										<td id="arro${s.index}" class="arrow" width="15px" rowspan="2">
 									</c:if>
-									<a onclick="showdetail(${s.index})"></a>
+									<a href="javascript:void(0)" onclick="showdetail(${s.index})"></a>
 									</td>
 								</tr>
 								<tr>
-									<td class="state" colspan="2">${status.fromUser}. <fmt:formatDate value="${status.createdTime}" type="both"
-											pattern="MM-dd HH:mm" /> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}"
-										onclick="showtagf('m${s.index}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this)">delete</a>.
+									<td class="state" colspan="2"><span id="name${s.index}">${status.fromUser}</span>. <span id="time${s.index}"><fmt:formatDate value="${status.createdTime}" type="both"
+											pattern="MM-dd HH:mm" /></span> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}" name="${status.idAtService}"
+										onclick="showtagf('m${s.index}','${status.idAtService}','${status.statusId}','${status.fromUser}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this)">delete</a>.
 									</td>
 									<td class="source"><a href="#"> <s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img
 											src="<c:url value="${iconUrl}" />" />
@@ -187,12 +187,18 @@
 	<ul id="righthalf">
 		<li><a id="sug1" onclick="clicktofinish('sug1')">Apple</a> <a id="sug2" onclick="clicktofinish('sug2')">Brother</a></li>
 		<br>
-		<li><input id="taginput" type="text" /><button>Tag it</button></li>
+		<li><input id="taginput" type="text" /><button type="button" id="tagbutton" onclick="tagit(this)">Tag it</button></li>
 	</ul>
 	<ul id="rightborder">
 	</ul>
 	<input type="hidden" value="no" id="lastid">
 </div>
 </form>
+
+<div class="suctag">
+	<div>
+		<img />Your tag has been successfully added!
+	</div>
+</div>
 <!-- end of hidden tag div -->
 </div>

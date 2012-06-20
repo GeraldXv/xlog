@@ -63,7 +63,7 @@ function chgstate(id)
 	}
 }
 
-function showtagf(id)
+function showtagf(id,idas,statusid,fromuser)
 {
 	var pos = getElementPos(id);
 	document.all.tagdiv.style.pixelTop = (pos.y + 13);
@@ -73,8 +73,54 @@ function showtagf(id)
 	{
 		document.all.tagdiv.style.display="none";
 	}
-		else document.all.tagdiv.style.display="block";
+	else 
+	{
+		
+		var xmlhttp = xmlhttpgenerator();
+		
+		xmlhttp.onreadystatechange = function () {
+			if(xmlhttp.readyState == 4){
+				if(xmlhttp.status == 200){
+					var json = eval('(' + xmlhttp.responseText + ')');
+					document.getElementById("sug1").innerHTML = json.tag1;
+					document.getElementById("sug2").innerHTML = json.tag2;
+					document.getElementById("tagbutton").id = statusid;
+				}
+			}
+		}
+		
+		xmlhttp.open("GET","/XLog/status/showTag?idAtService="+idas+"&fromUser="+fromuser,true);
+		
+		xmlhttp.send(null);
+		
+		document.all.tagdiv.style.display="block";
+	}
 	document.getElementById("lastid").value = id;
+}
+
+function tagit(ob)
+{
+	id = ob.id;
+
+	var xmlhttp = xmlhttpgenerator();
+	
+	xmlhttp.onreadystatechange = function () {
+		if(xmlhttp.readyState == 4){
+			if(xmlhttp.status == 200){
+				if(xmlhttp.responseText == "true")
+				{
+					document.getElementById(id).id = "tagbutton";
+					document.all.tagdiv.style.display="none";
+				}
+			}
+		}
+	}
+
+	xmlhttp.open("GET","/XLog/status/addTag?statusId="+id+"&tag="+document.getElementById("taginput").text,true);
+	
+	xmlhttp.send(null);
+	
+	//document.all.tagdiv.style.display="none";
 }
 
 function getElementPos(elementId) {
@@ -152,7 +198,10 @@ function showdetail(id)
 			document.getElementById("arro"+t).className = "arrow";
 		document.getElementById("currentexp").name = id;
 		document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
-		document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
+		
+		
+		
+		document.getElementById("dcont").innerHTML = "<h5>Sent</h5>:"+document.getElementById("time"+id).innerHTML+"<br /><h5>To</h5>: "+document.getElementById("name"+id).innerHTML+" <br />"+document.getElementById("shortc"+id).innerHTML;
 	}
 } 
 
@@ -176,7 +225,6 @@ function chgmark(ob)
 		if(xmlhttp.readyState == 4){
 			if(xmlhttp.status == 200){
 				var resbonseText = xmlhttp.responseText;
-				
 				if(resbonseText == "true") {
 					ob.className = wname;
 				}
@@ -263,7 +311,6 @@ function delmsg(ob)
 				}
 			}
 		}
-		else document.getElementById("test").innerHTML = xmlhttp.readyState;
 		
 	}
 	
@@ -271,4 +318,25 @@ function delmsg(ob)
 	
 	xmlhttp.send(null);
 	
+}
+
+function chgsize(ob)
+{
+	image = new Image();
+	image.src = ob.src;
+	if(ob.className == "")
+	{
+		if(image.width > 270)
+		{
+			ob.className = "max";
+		}
+		else 
+		{
+			ob.className = "exp";
+		}
+	}
+	else
+	{
+		ob.className = "";
+	}
 }

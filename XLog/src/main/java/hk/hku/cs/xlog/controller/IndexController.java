@@ -158,8 +158,8 @@ public class IndexController {
 
 	@RequestMapping(value = "/status/showTag")
 	public @ResponseBody
-	TagContainner showTag(@RequestParam("idAtService") String idAtService) {
-		return statusItemClientImpl.showTags(idAtService);
+	TagContainner showTag(@RequestParam("idAtService") String idAtService,@RequestParam("fromUser") String fromUser) {
+		return statusItemClientImpl.showTags(idAtService, fromUser);
 
 	}
 

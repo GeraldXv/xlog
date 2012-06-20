@@ -20,6 +20,8 @@ public interface StatusDao {
 	void delete(String statusId);
 	
 	List<Tag> getTagsbyIdAtservice(String idAtService);
+	
+	List<Tag> getTagsbyFromUser(String fromUser);
 
 	List<Status> getStatus(String refName);
 

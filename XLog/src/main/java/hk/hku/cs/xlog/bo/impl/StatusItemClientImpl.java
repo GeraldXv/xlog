@@ -64,6 +64,8 @@ public class StatusItemClientImpl implements StatusItemClient {
 	@Override
 	public void addTags(String statusId, String tagName) {
 		Status s = statusDaoImpl.get(statusId);
+		System.out.println(statusId);
+		System.out.println(s.getFromUser());
 		Set<Tag> tlist = new HashSet<Tag>();
 		Tag tag = null;
 		if (tagDaoImpl.get(tagName) != null) {
@@ -82,16 +84,13 @@ public class StatusItemClientImpl implements StatusItemClient {
 	}
 
 	@Override
-	public TagContainner showTags(String idAtService) {
+	public TagContainner showTags(String idAtService,String fromUser) {
 		List<Tag> tags = statusDaoImpl.getTagsbyIdAtservice(idAtService);
+		List<Tag> tagFromUser = statusDaoImpl.getTagsbyFromUser(fromUser);
 		List<Tag> tagsFromDB = tagDaoImpl.getTagByRank();
-		if (tags.size() == 0) {
-			tags.add(tagsFromDB.get(0));
-			tags.add(tagsFromDB.get(1));
-		} else if (tags.size() == 1) {
-			tags.add(tagsFromDB.get(0));
-		}
-		TagContainner tagc=new TagContainner();
+		tags.addAll(tagFromUser);
+		tags.addAll(tagsFromDB);
+		TagContainner tagc = new TagContainner();
 		tagc.setTag1(tags.get(0).getTagName());
 		tagc.setTag2(tags.get(1).getTagName());
 		return tagc;
