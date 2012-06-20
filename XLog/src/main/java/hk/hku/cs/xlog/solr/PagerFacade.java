@@ -1,13 +1,10 @@
 package hk.hku.cs.xlog.solr;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  */
 public abstract class PagerFacade {
 
-	private static Logger log = LoggerFactory.getLogger(PagerFacade.class);
 
 	/**
 	 * Offset
@@ -20,9 +17,7 @@ public abstract class PagerFacade {
 		try {
 			offset = Integer.parseInt(pagerOffset);
 		} catch (NumberFormatException e) {
-			if (log.isDebugEnabled()) {
-				log.debug("Error during get pager.offset", e);
-			}
+			
 		}
 		return offset;
 	}

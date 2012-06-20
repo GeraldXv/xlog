@@ -11,23 +11,10 @@ import java.util.Map;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/**
- * 实体类与SolrInputDocument或SolrDocument转换<br/>
- * 注意：在使用的时候，实体类必须严格遵JAVABEAN 规范 <br/>
- */
 public class EntityConvert {
 
-	private static Logger logger = LoggerFactory.getLogger(EntityConvert.class);
 
-	/**
-	 * 实体类与SolrInputDocument转换
-	 * 
-	 * @param obj
-	 * @return SolrInputDocument
-	 */
 	public static SolrInputDocument entity2SolrInputDocument(Object obj) {
 		if (obj != null) {
 			Class<?> cls = obj.getClass();
@@ -52,17 +39,9 @@ public class EntityConvert {
 			}
 			return sid;
 		}
-		logger.warn("即将要转换的实体类为null");
 		return null;
 	}
 
-	/**
-	 * SolrDocument与实体类转换
-	 * 
-	 * @param sd
-	 * @param cls
-	 * @return <T>
-	 */
 	public static <T> T solrDocument2Entity(SolrDocument sd, Class<T> cls) {
 		if (sd != null) {
 			try {
@@ -75,7 +54,6 @@ public class EntityConvert {
 					f = cls.getDeclaredField(fieldName);
 					fieldType = f.getType();
 					m = cls.getMethod(getMethodName(fieldName, "set"), fieldType);
-					// 如果 int, float等基本类型，则需要转
 					if (fieldType.equals(Integer.TYPE)) {
 						fieldType = Integer.class;
 					} else if (fieldType.equals(Float.TYPE)) {
@@ -94,12 +72,10 @@ public class EntityConvert {
 				}
 				return cls.cast(obj);
 			} catch (ClassCastException e) {
-				logger.error("请检查schema.xml中的各个field的数据类型与PO类的是否");
 				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				logger.error("请检查PO类中的field对应的各个setter和getter是否存在");
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
@@ -110,20 +86,12 @@ public class EntityConvert {
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {
-				logger.error("请检查schema中的field是否不存在于PO类中");
 				e.printStackTrace();
 			}
 		}
-		logger.warn("即将要转换的SolrDocument为null");
 		return null;
 	}
 
-	/**
-	 * 批量转换, 将实体类的List转换为SolrInputDocument Collection
-	 * 
-	 * @param entityList
-	 * @return Collection<SolrInputDocument>
-	 */
 	public static <T> Collection<SolrInputDocument> entityList2SolrInputDocument(List<T> entityList) {
 		if (entityList != null && entityList.size() > 0) {
 			Collection<SolrInputDocument> solrInputDocumentList = new ArrayList<SolrInputDocument>();
@@ -136,17 +104,9 @@ public class EntityConvert {
 			}
 			return solrInputDocumentList;
 		}
-		logger.warn("即将要转换的entityList为null or size");
 		return null;
 	}
 
-	/**
-	 * 批量转换, 将solrDocumentList转换为实体类 List
-	 * 
-	 * @param solrDocumentList
-	 * @param cls
-	 * @return List<T>
-	 */
 	public static <T> List<T> solrDocument2Entity(SolrDocumentList solrDocumentList, Class<T> cls) {
 		if (solrDocumentList != null && solrDocumentList.size() > 0) {
 			List<T> objectList = new ArrayList<T>();
@@ -158,29 +118,18 @@ public class EntityConvert {
 			}
 			return objectList;
 		}
-		logger.warn("即将要转换的solrDocumentList为null或size");
 		return null;
 	}
 
-	/**
-	 * 更新数据时用到，给出要更新的对象，Id为必须给出的属�?，然后加上要更新的属�? 如果对应的属性的值为空或者为0，这不需要更�?
-	 * 
-	 * @param sd
-	 *            查询到得SolrDocument
-	 * @param object
-	 * @return SolrInputDocument
-	 */
 	public static SolrInputDocument solrDocument2SolrInputDocument(SolrDocument sd, Object object) {
 		if (object != null && sd != null) {
 			SolrInputDocument sid = new SolrInputDocument();
-			Collection<String> fieldNameCollection = sd.getFieldNames();// 得到
-																		// 的属性名
-
+			Collection<String> fieldNameCollection = sd.getFieldNames();
+																		
 			Class<?> cls = object.getClass();
 			Object o = null;
 			for (String fieldName : fieldNameCollection) {
 				try {
-					// 如果对应的属性的值为空或者为0，这不需要更
 					o = cls.getMethod(EntityConvert.getMethodName(fieldName, "get")).invoke(object);
 
 					Class<?> fieldType = cls.getDeclaredField(fieldName).getType();
@@ -224,28 +173,16 @@ public class EntityConvert {
 				} catch (InvocationTargetException e) {
 					e.printStackTrace();
 				} catch (NoSuchMethodException e) {
-					logger.error("请检查PO类中的field对应的各个setter和getter是否存在");
 					e.printStackTrace();
 				} catch (NoSuchFieldException e) {
-					logger.error("请检查schema中的field是否不存在于PO类中");
 					e.printStackTrace();
 				}
 			}
 			return sid;
 		}
-		logger.warn("即将要转换的SolrDocument或 要更新的Object为null");
 		return null;
 	}
 
-	/**
-	 * 批量更新数据时用�?
-	 * 
-	 * @param sdl
-	 *            查询到得SolrDocumentList
-	 * @param idName
-	 * @param objectMap
-	 * @return List<SolrInputDocument>
-	 */
 	public static List<SolrInputDocument> solrDocumentList2SolrInputDocumentList(SolrDocumentList sdl, String idName, Map<Object, Object> objectMap) {
 		List<SolrInputDocument> solrInputDocuemntList = new ArrayList<SolrInputDocument>();
 
@@ -315,10 +252,8 @@ public class EntityConvert {
 					} catch (InvocationTargetException e) {
 						e.printStackTrace();
 					} catch (NoSuchMethodException e) {
-						logger.error("请检查PO类中的field对应的各个setter和getter是否存在");
 						e.printStackTrace();
 					} catch (NoSuchFieldException e) {
-						logger.error("请检查schema中的field是否不存在于PO类中");
 						e.printStackTrace();
 					}
 				}
@@ -327,15 +262,6 @@ public class EntityConvert {
 		return solrInputDocuemntList;
 	}
 
-	/**
-	 * 获得类的方法名，按照JAVABEAN的规
-	 * 
-	 * @param property
-	 *            属名称
-	 * @param prefix
-	 *            前缀，一般为set �?get
-	 * @return String
-	 */
 	public static String getMethodName(String property, String prefix) {
 		String prop = Character.toUpperCase(property.charAt(0)) + property.substring(1);
 		return prefix + prop;

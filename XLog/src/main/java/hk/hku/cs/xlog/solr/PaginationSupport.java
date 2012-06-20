@@ -5,10 +5,7 @@ import java.util.List;
 
 public class PaginationSupport<T> {
 
-	// ---------------------------------------------------------
-	// static variables
-	// ---------------------------------------------------------
-
+	
 	// 默认每页显示条数
 	public static final int DEFAULT_MAX_PAGE_ITEMS = 10;
 
@@ -24,10 +21,7 @@ public class PaginationSupport<T> {
 	// index 为索引页位置, 可以选择 "center", "forward", "half-full"
 	public static final String DEFALUT_INDEX = "center";
 
-	// ---------------------------------------------------------
-	// memeber variables
-	// ---------------------------------------------------------
-
+	
 	// 记录条数
 	private int offset = 0;
 

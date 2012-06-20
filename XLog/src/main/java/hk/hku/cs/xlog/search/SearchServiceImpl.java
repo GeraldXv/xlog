@@ -95,23 +95,6 @@ public class SearchServiceImpl implements SearchService {
 		return status.getItems();
 	}
 
-	public static void main(String args[]) {
-		SearchServiceImpl si = new SearchServiceImpl();
-		// si.createFriendIndex();
-		// List<Friend> mf = si.searchFriends("*");
-		// for (Friend f : mf) {
-		// System.out.println(f.toString());
-		// }
-
-		si.createMessageIndex();
-		// // List<Status> mf = si.searchStatus("*");
-		// // for (Status f : mf) {
-		// // System.out.println(f.toString());
-		// // }
-		// si.updateFriendIndex();
-		// si.updateMessageIndex();
-		// si.updateStatusIndex();
-	}
 
 	@Override
 	public List<Message> searchMessages(String query) {

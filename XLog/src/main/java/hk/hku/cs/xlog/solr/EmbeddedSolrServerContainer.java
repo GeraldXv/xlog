@@ -14,21 +14,9 @@ import org.apache.solr.core.CoreContainer;
 import org.apache.solr.core.CoreDescriptor;
 import org.apache.solr.core.SolrCore;
 import org.apache.solr.core.SolrResourceLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-/**
- * EmbeddedSolrServer容器，主要提供该类型server <br/>
- * 
- */
 public class EmbeddedSolrServerContainer {
-
-	private Logger logger = LoggerFactory.getLogger(EmbeddedSolrServer.class);
-
-	/**
-	 * 默认SOLR_HOME地址
-	 */
 
 	private static CoreContainer container;
 
@@ -48,9 +36,7 @@ public class EmbeddedSolrServerContainer {
 			}
 			container.setPersistent(true);
 
-			logger.info("启动搜索server完成");
 		} else {
-			logger.error("solrServerHome必须给出，不能为空！");
 		}
 	}
 
@@ -61,7 +47,6 @@ public class EmbeddedSolrServerContainer {
 			container.persist();
 		container.shutdown();
 
-		logger.info("搜索server关闭!");
 	}
 
 	public synchronized void persite() {
@@ -69,7 +54,6 @@ public class EmbeddedSolrServerContainer {
 			throw new SolrServerException("持久化错 Server容器不能为空!!!");
 		container.persist();
 
-		logger.info("搜索server持久化完成！");
 	}
 
 	public synchronized void addCore(String solrName, String instanceDir, boolean isPersist) throws ParserConfigurationException, IOException, SAXException {
