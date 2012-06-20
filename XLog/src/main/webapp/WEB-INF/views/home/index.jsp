@@ -127,6 +127,16 @@
 					<li>
 						<!-- use to be the border-->
 					</li>
+			          <span id="nomsg" class="nomsg">
+			          No message currently,
+			          You may try to:
+			          	<button><img src="image/user_search.png" />Search for new friends</button>
+			          	<button><img src="image/comment_edit.png" />Post a new status</button>
+			          	<button><img src="image/mail_edit.png" />Check the private message</button> 
+			          </span>
+			          <span id="noser" class="noser">
+			          The service <label>Google+</label> haven't been connected, click <a href="">here</a> to add the service
+			          </span>
 				</ul>
 			</div> <!--end of contentpreview-->
 		</li>
@@ -196,9 +206,8 @@
 </form>
 
 <div class="suctag">
-	<div>
-		<img />Your tag has been successfully added!
-	</div>
+	<ul><img src="/resources/image/accept.png" />Your tag has been successfully added!</ul>
+	<li></li>
 </div>
 <!-- end of hidden tag div -->
 </div>

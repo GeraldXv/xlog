@@ -688,27 +688,90 @@ img {border:0;}
 	top:200px;
 	width:360px;
 	height:24px;
-	background-color:#CCC;
+}
+
+.suctag li{
+	display:block;
+	position:relative;
+	width:360px;
+	height:40px;
+	background-color:black;
 	opacity:0.3;
 	z-index:1;
 }
 
-.suctag div {
+.suctag ul {
 	display:block;
 	position:relative;
-	width:256px;
-	height:20px;
+	width:356px;
+	height:26px;
 	left:2px;
-	top:2px;
+	top:38px;
 	color:black;
 	background-color:white;
-	font-size:18px;
+	font-size:14px;
 	text-align:center;
 	padding-top:10px;
 	opacity:1;
 	z-index:10;
 }
 
+.suctag ul img {
+	display:block;
+	width:32px;
+	height:32px;
+}
+.nomsg {
+	display:none;
+	width:400px;
+	color:#666;
+	font-size:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding-top:20px;
+	padding-left:20px;
+}
+
+.nomsg button {
+	width:300px;
+	height:50px;
+	position:relative;
+	left:30px;
+	border:1px #CCCCCC solid;
+	border-bottom:2px #CCC solid;
+	border-right:2px #CCC solid;
+	background-color:#FFF;
+	border-radius:5px;
+	margin-top:10px;
+	text-align:left;
+	padding-top:15px;
+	color:#333;
+	font-size:16px;
+	font-family:Arial, Helvetica, sans-serif;
+	cursor:pointer;
+}
+
+.nomsg button img {
+	width:40px;
+	height:40px;
+	position:relative;
+	top:-11px;
+	margin-right:8px;
+	float:left;
+}
+
+.noser {
+	display:none;
+	color:#333;
+	font-size:18px;
+	position:relative;
+	top:15px;
+	left:5px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+.noser label {
+	color:#F30;
+}
 /* legalinfo */
 
 

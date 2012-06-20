@@ -116,7 +116,7 @@ function tagit(ob)
 		}
 	}
 
-	xmlhttp.open("GET","/XLog/status/addTag?statusId="+id+"&tag="+document.getElementById("taginput").text,true);
+	xmlhttp.open("GET","/XLog/status/addTag?statusId="+id+"&tag="+document.getElementById("taginput").value,true);
 	
 	xmlhttp.send(null);
 	
@@ -246,8 +246,9 @@ function filterSpaceNode(nodes)
             if (nodes[i].nodeType ==3 && /^\s/.test(nodes[i].nodeValue)) {  
             	continue;  
             }  
-    	arr.push(nodes[i]);
-    }  
+        if(nodes[i].tagName == "LI")
+        	arr.push(nodes[i]);
+    }  alert(arr.length);
     return arr;  
 } 
 
@@ -306,8 +307,9 @@ function delmsg(ob)
 					}
 					if(nodes.length == 1)
 					{
-						
+						document.getElementById("nomsg").style.display = "block";
 					}
+					else alert(nodes.length);
 				}
 			}
 		}
