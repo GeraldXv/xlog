@@ -83,7 +83,7 @@
 
 					<c:forEach var="status" items="${statusList}" varStatus="s">
 
-						<li id="msg${s.index }" title="${status.id}">
+						<li id="msg${s.index }" title="${status.statusId}">
 							<table width="390px">
 								<tr>
 									<td class="picc" width="50px"><c:if test="${not empty status.userImage}">

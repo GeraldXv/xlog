@@ -1,8 +1,6 @@
 package hk.hku.cs.xlog.bo;
 
-import hk.hku.cs.xlog.entity.Tag;
-
-import java.util.ArrayList;
+import hk.hku.cs.xlog.controller.form.TagContainner;
 
 public interface StatusItemClient {
 
@@ -18,7 +16,7 @@ public interface StatusItemClient {
 
 	void addTags(String statusId, String Tags);
 
-	ArrayList<Tag> showTags(String idAtservice);
+	TagContainner showTags(String idAtservice);
 
 	
 

@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.dao;
 
 import hk.hku.cs.xlog.entity.Status;
+import hk.hku.cs.xlog.entity.Tag;
 
 import java.util.List;
 
@@ -16,7 +17,9 @@ public interface StatusDao {
 
 	void delete(Status status);
 
-	void delete(String idAtService);
+	void delete(String statusId);
+	
+	List<Tag> getTagsbyIdAtservice(String idAtService);
 
 	List<Status> getStatus(String refName);
 

@@ -8,7 +8,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="tagCount" column="tagCount" type="int" />
-		<set name="status" inverse="true" cascade="save-update" table="status_tag" lazy="false">
+		<set name="status" inverse="true" cascade="save-update" fetch="select" table="status_tag" lazy="false">
 			<key column="tagName"></key>
 			<many-to-many class="hk.hku.cs.xlog.entity.Status" column="statusId"></many-to-many>
 		</set>

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Status {
-	private String id;
+	private String statusId;
 	private String idAtService;
 	private String serviceProvider;
 	private String refUser;
@@ -19,13 +19,12 @@ public class Status {
 	private boolean deleted;
 	private Set<Tag> tags = new HashSet<Tag>();
 
-	
-	public String getId() {
-		return id;
+	public String getStatusId() {
+		return statusId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
 	}
 
 	public String getIdAtService() {
@@ -59,9 +58,6 @@ public class Status {
 	public void setFromUser(String fromUser) {
 		this.fromUser = fromUser;
 	}
-
-	
-
 
 	public Date getCreatedTime() {
 		return createdTime;

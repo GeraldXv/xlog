@@ -1,9 +1,5 @@
 package hk.hku.cs.xlog.dao.impl;
 
-import hk.hku.cs.xlog.entity.Tag;
-
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +19,11 @@ public class TagDaoImplTest {
 		//
 		// tagDaoImpl.saveOrUpdate(tag);
 
-		List<Tag> tlist = tagDaoImpl.getMessagesByRank();
-
-		for (Tag t : tlist) {
-			System.out.println(t.getTagName());
-		}
+//		List<Tag> tlist = tagDaoImpl.getMessagesByRank();
+//
+//		for (Tag t : tlist) {
+//			System.out.println(t.getTagName());
+//		}
 	}
 
 }

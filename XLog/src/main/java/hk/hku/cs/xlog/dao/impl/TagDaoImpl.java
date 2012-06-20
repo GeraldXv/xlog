@@ -39,7 +39,7 @@ public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Tag> getMessagesByRank() {
+	public List<Tag> getTagByRank() {
 		getHibernateTemplate().setMaxResults(8);
 		return (List<Tag>) getHibernateTemplate().find("from Tag order by tagCount desc");
 	}

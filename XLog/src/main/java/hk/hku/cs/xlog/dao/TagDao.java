@@ -15,6 +15,6 @@ public interface TagDao {
 
 	void saveOrUpdate(Tag tag);
 
-	List<Tag> getMessagesByRank();
+	List<Tag> getTagByRank();
 
 }

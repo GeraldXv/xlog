@@ -2,9 +2,9 @@ package hk.hku.cs.xlog.dao.impl;
 
 import hk.hku.cs.xlog.dao.StatusDao;
 import hk.hku.cs.xlog.entity.Status;
-
+import hk.hku.cs.xlog.entity.Tag;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
@@ -65,4 +65,17 @@ public class StatusDaoImpl extends HibernateDaoSupport implements StatusDao {
 				new Object[] { refName, service });
 	}
 
+	@Override
+	public List<Tag> getTagsbyIdAtservice(String idAtService) {
+		@SuppressWarnings("unchecked")
+		List<Status> statusList = (List<Status>) getHibernateTemplate().find("from Status where idAtService=?  ", idAtService);
+		System.out.println(statusList.size());
+		List<Tag> tags = new ArrayList<Tag>();
+		for (Status s : statusList) {
+			System.out.println(s.getTags().size());
+				tags.addAll(s.getTags());
+		}
+		System.out.println(tags.size());
+		return tags;
+	}
 }

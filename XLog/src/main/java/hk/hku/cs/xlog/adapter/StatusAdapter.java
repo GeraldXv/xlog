@@ -59,7 +59,7 @@ public class StatusAdapter {
 			Status f = facebookStatusAdapter(fp);
 			if (f != null) {
 				f.setRefUser(userName);
-				f.setId(f.getIdAtService() + userName);
+				f.setStatusId(f.getIdAtService() + userName);
 				statusList.add(f);
 			}
 		}
@@ -73,7 +73,7 @@ public class StatusAdapter {
 		for (Tweet ft : tTweetList) {
 			Status t = twitterStatusAdapter(ft);
 			t.setRefUser(userName);
-			t.setId(t.getIdAtService() + userName);
+			t.setStatusId(t.getIdAtService() + userName);
 			statusList.add(t);
 
 		}

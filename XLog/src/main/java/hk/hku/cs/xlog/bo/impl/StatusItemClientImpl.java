@@ -1,13 +1,14 @@
 package hk.hku.cs.xlog.bo.impl;
 
 import hk.hku.cs.xlog.bo.StatusItemClient;
+import hk.hku.cs.xlog.controller.form.TagContainner;
 import hk.hku.cs.xlog.dao.impl.StatusDaoImpl;
 import hk.hku.cs.xlog.dao.impl.TagDaoImpl;
 import hk.hku.cs.xlog.entity.Status;
 import hk.hku.cs.xlog.entity.Tag;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -81,9 +82,19 @@ public class StatusItemClientImpl implements StatusItemClient {
 	}
 
 	@Override
-	public ArrayList<Tag> showTags(String idAtService) {
-		return null;
-
+	public TagContainner showTags(String idAtService) {
+		List<Tag> tags = statusDaoImpl.getTagsbyIdAtservice(idAtService);
+		List<Tag> tagsFromDB = tagDaoImpl.getTagByRank();
+		if (tags.size() == 0) {
+			tags.add(tagsFromDB.get(0));
+			tags.add(tagsFromDB.get(1));
+		} else if (tags.size() == 1) {
+			tags.add(tagsFromDB.get(0));
+		}
+		TagContainner tagc=new TagContainner();
+		tagc.setTag1(tags.get(0).getTagName());
+		tagc.setTag2(tags.get(1).getTagName());
+		return tagc;
 	}
 
 }

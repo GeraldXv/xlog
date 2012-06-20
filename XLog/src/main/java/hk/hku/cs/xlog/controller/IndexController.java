@@ -6,6 +6,7 @@ import hk.hku.cs.xlog.bo.StatusClient;
 import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.bo.impl.StatusItemClientImpl;
 import hk.hku.cs.xlog.controller.form.StatusForm;
+import hk.hku.cs.xlog.controller.form.TagContainner;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
 import hk.hku.cs.xlog.dao.StatusDao;
@@ -75,9 +76,7 @@ public class IndexController {
 	NotificationClientImpl notificationClientImpl;
 	@Inject
 	StatusItemClientImpl statusItemClientImpl;
-
 	Google googleApi;
-
 	long updateGap = 3600000;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -89,7 +88,7 @@ public class IndexController {
 			sycInfromation(currentUser.getName());
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
-		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
+		model.addAttribute("tags", tagDaoImpl.getTagByRank());
 		model.addAttribute("providerId", "all");
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("statusForm", new StatusForm());
@@ -107,7 +106,7 @@ public class IndexController {
 					userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
 			model.addAttribute("messageList", mList);
 		}
-		model.addAttribute("tags", tagDaoImpl.getMessagesByRank());
+		model.addAttribute("tags", tagDaoImpl.getTagByRank());
 		model.addAttribute("statusForm", new StatusForm());
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "index";
@@ -129,14 +128,14 @@ public class IndexController {
 
 	@RequestMapping(value = "/status/delete")
 	public @ResponseBody
-	String delete(Principal currentUser, @RequestParam("statusId") String statusId) {
+	String delete(@RequestParam("statusId") String statusId) {
 		statusItemClientImpl.delete(statusId);
 		return "true";
 	}
 
 	@RequestMapping(value = "/status/mark")
 	public @ResponseBody
-	String mark(Principal currentUser, @RequestParam("statusId") String statusId, @RequestParam("isMarked") String isMarked) {
+	String mark(@RequestParam("statusId") String statusId, @RequestParam("isMarked") String isMarked) {
 		if (isMarked.equals("true")) {
 			statusItemClientImpl.removeFav(statusId);
 			return "true";
@@ -144,6 +143,20 @@ public class IndexController {
 			statusItemClientImpl.markFav(statusId);
 			return "true";
 		}
+
+	}
+
+	@RequestMapping(value = "/status/addTag")
+	public @ResponseBody
+	String addTag(@RequestParam("statusId") String statusId, @RequestParam("tag") String tag) {
+		statusItemClientImpl.addTags(statusId, tag);
+		return "true";
+	}
+
+	@RequestMapping(value = "/status/showTag")
+	public @ResponseBody
+	TagContainner showTag(@RequestParam("idAtService") String idAtService) {
+		return statusItemClientImpl.showTags(idAtService);
 
 	}
 
