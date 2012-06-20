@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.controller;
 
 import hk.hku.cs.xlog.bo.CheckSourceClient;
+import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 
 import java.security.Principal;
@@ -42,6 +43,7 @@ public class SourceController {
 		model.addAttribute("connectionMap", connections);
 		model.addAttribute("isGmailconnected", checkSourceClient.isGmailConnected(currentUser.getName()));
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("searchForm", new SearchForm());
 		return "source";
 	}
 

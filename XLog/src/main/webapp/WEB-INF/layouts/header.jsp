@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ page session="false"%>
 <div class="header">
 	<table width="950px">
@@ -12,13 +13,14 @@
 			<td width="40px"><img id="unrpic" src="<c:url value="/resources/image/bubble.png" />"><b id="unrno">${messageNotification.allMessage}</b>
 				</img></td>
 			<td width="80px"></td>
-			<td width="430px"><c:url var="searchUrl" value="/search/" />
-				<form action="${searchUrl}" method="post" accept-charset="utf-8">
-					<input type="hidden" name="type" value="${type}"></input> <input type="text" name="query" value="${query}"></input>
+			<td width="430px"><c:url var="searchUrl" value="/search/" /> <sf:form action="${searchUrl}" method="post"
+					modelAttribute="searchForm">
+					<input type="hidden" name="type" value="${type}"></input>
+					<sf:input type="text" path="query" value="${query}"></sf:input>
 					<button type="submit" name="search">
 						<img src="<c:url value="/resources/image/search.png" />" />
 					</button>
-				</form></td>
+				</sf:form></td>
 
 
 			<td width="50px"></td>

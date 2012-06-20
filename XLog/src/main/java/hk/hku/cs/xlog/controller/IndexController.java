@@ -5,6 +5,7 @@ import hk.hku.cs.xlog.bo.MessageClient;
 import hk.hku.cs.xlog.bo.StatusClient;
 import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.bo.impl.StatusItemClientImpl;
+import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.controller.form.StatusForm;
 import hk.hku.cs.xlog.controller.form.TagContainner;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
@@ -92,6 +93,7 @@ public class IndexController {
 		model.addAttribute("providerId", "all");
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("statusForm", new StatusForm());
+		model.addAttribute("searchForm", new SearchForm());
 		return "index";
 	}
 
@@ -108,6 +110,7 @@ public class IndexController {
 		}
 		model.addAttribute("tags", tagDaoImpl.getTagByRank());
 		model.addAttribute("statusForm", new StatusForm());
+		model.addAttribute("searchForm", new SearchForm());
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "index";
 	}
