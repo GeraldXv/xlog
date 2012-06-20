@@ -2,7 +2,7 @@ package hk.hku.cs.xlog.entity;
 
 public class Friend {
 
-	private String id;
+	private String friendId;
 
 	private String refUser;
 
@@ -24,12 +24,14 @@ public class Friend {
 
 	private String imageUrl;
 
-	public String getId() {
-		return id;
+	
+
+	public String getFriendId() {
+		return friendId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setFriendId(String friendId) {
+		this.friendId = friendId;
 	}
 
 	public String getIdAtService() {

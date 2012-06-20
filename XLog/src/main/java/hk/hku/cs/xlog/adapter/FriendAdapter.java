@@ -59,7 +59,7 @@ public class FriendAdapter {
 
 		for (TwitterProfile friend : tProfileList) {
 			Friend pr = twitterProfileAdapter(friend);
-			pr.setId(pr.getIdAtService() + userName);
+			pr.setFriendId(pr.getIdAtService() + userName);
 			pr.setRefUser(userName);
 			profileList.add(pr);
 		}
@@ -72,7 +72,7 @@ public class FriendAdapter {
 
 		for (FacebookProfile fr : fProfileList) {
 			Friend f = facebookProfileAdapter(fr);
-			f.setId(f.getIdAtService() + userName);
+			f.setFriendId(f.getIdAtService() + userName);
 			f.setRefUser(userName);
 			profileList.add(f);
 		}
@@ -85,7 +85,7 @@ public class FriendAdapter {
 
 		for (Person friend : gProfileList) {
 			Friend pr = googleProfileAdapter(friend);
-			pr.setId(pr.getIdAtService() + userName);
+			pr.setFriendId(pr.getIdAtService() + userName);
 			pr.setRefUser(userName);
 			profileList.add(pr);
 		}

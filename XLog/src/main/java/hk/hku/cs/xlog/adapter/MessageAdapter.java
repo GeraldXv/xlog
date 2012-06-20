@@ -68,7 +68,7 @@ public class MessageAdapter {
 				m = null;
 			}
 			if (m != null) {
-				m.setId(m.getIdAtService() + userName);
+				m.setMessageId(m.getIdAtService() + userName);
 				m.setRefUser(userName);
 				messageList.add(m);
 			}
@@ -84,7 +84,7 @@ public class MessageAdapter {
 		for (DirectMessage dm : tMessageList) {
 			Message tm = twitterMessageAdapter(dm);
 			tm.setRefUser(userName);
-			tm.setId(tm.getIdAtService() + userName);
+			tm.setMessageId(tm.getIdAtService() + userName);
 			messageList.add(tm);
 		}
 		return messageList;

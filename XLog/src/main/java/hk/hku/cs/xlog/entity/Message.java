@@ -3,7 +3,7 @@ package hk.hku.cs.xlog.entity;
 import java.util.Date;
 
 public class Message {
-	private String id;
+	private String messageId;
 	private String idAtService;
 	private String serviceProvider;
 	private String refUser;
@@ -21,12 +21,12 @@ public class Message {
 	private String attachedFile;
 	private boolean xread;
 
-	public String getId() {
-		return id;
+	public String getMessageId() {
+		return messageId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
 	}
 
 	public String getIdAtService() {

@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="hk.hku.cs.xlog.entity.Friend" table="friend">
-		<id name="id" column="id" type="string">
+		<id name="friendId" column="friendId" type="string">
 			<generator class="assigned" />
 		</id>
 		<property name="idAtService" column="idAtService" type="string" />
