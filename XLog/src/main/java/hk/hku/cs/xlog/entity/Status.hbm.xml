@@ -18,7 +18,7 @@
 		<property name="stared" column="stared" type="boolean" />
 		<property name="deleted" column="deleted" type="boolean" />
 		<property name="createdTime" column="createdTime" type="timestamp" />
-		<set name="tags" inverse="true" cascade="save-update" fetch="select" table="status_tag" lazy="false">
+		<set name="tags" inverse="false" cascade="save-update" fetch="select" table="status_tag" lazy="false">
 			<key column="statusId"></key>
 			<many-to-many class="hk.hku.cs.xlog.entity.Tag" column="tagName"></many-to-many>
 		</set>

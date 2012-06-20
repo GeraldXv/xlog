@@ -160,7 +160,6 @@ public class IndexController {
 	public @ResponseBody
 	TagContainner showTag(@RequestParam("idAtService") String idAtService,@RequestParam("fromUser") String fromUser) {
 		return statusItemClientImpl.showTags(idAtService, fromUser);
-
 	}
 
 	// internal helper
