@@ -3,10 +3,17 @@
 
 <tiles-definitions>
 
-	
+
 	<definition name="account" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/setting/account.jsp" />
 	</definition>
-	
+
+	<definition name="source" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/setting/source.jsp" />
+	</definition>
+
+	<definition name="profile" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/setting/profile.jsp" />
+	</definition>
 
 </tiles-definitions>

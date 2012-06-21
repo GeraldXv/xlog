@@ -165,14 +165,14 @@ public class IndexController {
 	// internal helper
 	public void sycInfromation(String userName) {
 		if (twitter != null) {
-			List<TwitterProfile> tfriends = twitter.friendOperations().getFriends();
-			List<DirectMessage> tRList = twitter.directMessageOperations().getDirectMessagesReceived();
-			List<DirectMessage> tSList = twitter.directMessageOperations().getDirectMessagesSent();
-			List<Tweet> tweets = twitter.timelineOperations().getHomeTimeline(0, 200);
-			messageClient.saveOrUpdateTwitterMessages(userName, tRList);
-			messageClient.saveOrUpdateTwitterMessages(userName, tSList);
-			friendClient.saveOrUpdateTwitterFriends(userName, tfriends);
-			statusClient.saveOrUpdateTwitterStatus(userName, tweets);
+//			List<TwitterProfile> tfriends = twitter.friendOperations().getFriends();
+//			List<DirectMessage> tRList = twitter.directMessageOperations().getDirectMessagesReceived();
+//			List<DirectMessage> tSList = twitter.directMessageOperations().getDirectMessagesSent();
+//			List<Tweet> tweets = twitter.timelineOperations().getHomeTimeline(0, 200);
+//			messageClient.saveOrUpdateTwitterMessages(userName, tRList);
+//			messageClient.saveOrUpdateTwitterMessages(userName, tSList);
+//			friendClient.saveOrUpdateTwitterFriends(userName, tfriends);
+//			statusClient.saveOrUpdateTwitterStatus(userName, tweets);
 		}
 
 		if (facebook != null) {
