@@ -248,7 +248,7 @@ function filterSpaceNode(nodes)
             }  
         if(nodes[i].tagName == "LI")
         	arr.push(nodes[i]);
-    }  alert(arr.length);
+    }
     return arr;  
 } 
 
@@ -297,6 +297,14 @@ function delmsg(ob)
 				if(resbonseText == "true") {
 					mainbody.removeChild(obj);
 					nodes = filterSpaceNode(mainbody.childNodes);
+
+					if(nodes.length == 1)
+					{
+						document.getElementById("nomsg").style.display = "block";
+						document.getElementById("detailp").style.display = "none";
+						document.getElementById("dcont").style.display = "none";
+					}
+					
 					if(oid == document.getElementById("currentexp").name)
 					{
 						id = nodes[0].id.substring(3);
@@ -305,11 +313,6 @@ function delmsg(ob)
 						document.getElementById("detailp").innerHTML = document.getElementById("msg"+id).innerHTML;
 						document.getElementById("dcont").innerHTML = document.getElementById("shortc"+id).innerHTML;
 					}
-					if(nodes.length == 1)
-					{
-						document.getElementById("nomsg").style.display = "block";
-					}
-					else alert(nodes.length);
 				}
 			}
 		}

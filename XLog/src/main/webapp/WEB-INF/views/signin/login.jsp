@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Login</title>
-<link rel="stylesheet" href="<c:url value="/resources/css/register.css" />s" type="text/css" media="screen" />
+<link rel="stylesheet" href="<c:url value="/resources/css/register.css" />" type="text/css" media="screen" />
 <link rel="stylesheet" href="<c:url value="/resources/css/footer.css" />" type="text/css" media="screen" />
 <script type="text/javascript" src="<c:url value="/resources/js/headerC.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/register.js" />"></script>
@@ -26,7 +26,7 @@
 				<tr>
 					<td rowspan="3"></td>
 					<td rowspan="3"><a href="#">
-							<h2>X-log</h2>
+							<img id="title" src="<c:url value="/resources/image/title.png" />">
 					</a></td>
 					<td rowspan="3"></td>
 					<td colspan="2">UserName</td>
@@ -82,19 +82,19 @@
 							</tr>
 							<tr>
 								<td><label>Username:</label></td>
-								<td><input name="username" type="text" /></td>
+								<td><input id="username" type="text" /></td>
 								<td></td>
 							</tr>
 
 							<tr>
 								<td><label>Password:</label></td>
-								<td><input id="psw1" name="password" type="password" onkeyup="vpsw1()" /></td>
-								<td><img id="pswp1" /></td>
+								<td><input id="psw1" type="password" onkeyup="vpsw1()" /></td>
+								<td><img id="pswp1T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp1X" src="<c:url value="/resources/image/X.png" />" /></td>
 							</tr>
 							<tr>
 								<td><label>Re-enter Password:</label></td>
 								<td><input id="psw2" type="password" onkeyup="vpsw2()" /></td>
-								<td><img id="pswp2" /></td>
+								<td><img id="pswp2T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp2X" src="<c:url value="/resources/image/X.png" />" /></td>
 							</tr>
 
 

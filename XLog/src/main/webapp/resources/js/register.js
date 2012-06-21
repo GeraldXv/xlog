@@ -14,16 +14,16 @@ function vpsw1()
 		}
 		else if(t >= 7)
 		{
-			document.getElementById("pswp1").src = "icons/T.png";
-		 	document.getElementById("pswp1").style.display = "block";	
+		 	document.getElementById("pswp1T").style.display = "block";
+		 	document.getElementById("pswp1X").style.display = "none";	
 			chkPass(document.getElementById("psw1").value);
 			vpsw2();
 		}
 		else if(t < 7)
 		{
-			document.getElementById("pswp1").src = "icons/X.png";
-		 	document.getElementById("pswp1").style.display = "block";
-		 	document.getElementById("pswp2").style.display = "none";	chkPass('');
+		 	document.getElementById("pswp1T").style.display = "none";
+		 	document.getElementById("pswp1X").style.display = "block";
+		 	chkPass('');
 		}
 }
 
@@ -32,17 +32,18 @@ function vpsw2()
 	t =  document.getElementById("psw2").value;
 	if(document.getElementById("psw1").value == 0)
 	{
-		document.getElementById("pswp1").style.display = "none";	
+		document.getElementById("pswp1T").style.display = "none";
+		document.getElementById("pswp1X").style.display = "none";	
 	}
 	else if(document.getElementById("psw1").value == t)
 	{
-		 document.getElementById("pswp2").src = "icons/T.png";
-		 document.getElementById("pswp2").style.display = "block";
+		 document.getElementById("pswp2T").style.display = "block";
+		 document.getElementById("pswp2X").style.display = "none";
 	}	
 	else
 	{
-		document.getElementById("pswp2").src = "icons/X.png";	
-		 document.getElementById("pswp2").style.display = "block";
+		document.getElementById("pswp2T").style.display = "none";
+		document.getElementById("pswp2X").style.display = "block";
 	} 
 } 
 

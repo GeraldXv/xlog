@@ -178,6 +178,8 @@ img {border:none;}
 .register table tr td img {
 	width:20px;
 	height:20px;
+	position:relative;
+	left:-16px;
 	display:none;
 }
 
