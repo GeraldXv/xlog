@@ -63,6 +63,7 @@ public class SearchController {
 		model.addAttribute("totalPage", status.getTotalPage());
 		model.addAttribute("currentPage", status.getCurrentPage());
 		model.addAttribute("query", query);
+		model.addAttribute("range", range);
 		model.addAttribute("type", "status");
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchStauts";
@@ -79,6 +80,7 @@ public class SearchController {
 		model.addAttribute("totalPage", messages.getTotalPage());
 		model.addAttribute("currentPage", messages.getCurrentPage());
 		model.addAttribute("query", query);
+		model.addAttribute("range", range);
 		model.addAttribute("type", "message");
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchMessage";
