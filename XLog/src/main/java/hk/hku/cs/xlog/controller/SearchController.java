@@ -46,11 +46,11 @@ public class SearchController {
 			e.printStackTrace();
 		}
 		if (type.equals("friend"))
-			return "redirect:/search/friend?query=" + query + "&page=0&range=none";
+			return "redirect:/search/friend?query=" + query + "&page=1&range=none";
 		else if (type.equals("message"))
-			return "redirect:/search/message?query=" + query + "&page=0&range=none";
+			return "redirect:/search/message?query=" + query + "&page=1&range=none";
 		else
-			return "redirect:/search/status?query=" + query + "&page=0&range=none";
+			return "redirect:/search/status?query=" + query + "&page=1&range=none";
 	}
 
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
@@ -93,6 +93,7 @@ public class SearchController {
 		model.addAttribute("totalNum", friends.getTotalCount());
 		model.addAttribute("totalPage", friends.getTotalPage());
 		model.addAttribute("currentPage", friends.getCurrentPage());
+		model.addAttribute("query", query);
 		model.addAttribute("type", "friend");
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchFriend";
