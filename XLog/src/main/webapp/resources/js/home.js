@@ -205,7 +205,7 @@ function showdetail(id)
 	}
 } 
 
-function chgmark(ob)
+function chgmark(ob,sid)
 {
 	var xmlhttp = xmlhttpgenerator();
 	
@@ -219,7 +219,6 @@ function chgmark(ob)
 		wname = "marked";
 		ismarked = "false";
 	}
-	sid = ob.parentNode.parentNode.parentNode.parentNode.parentNode.title;
 	
 	xmlhttp.onreadystatechange = function () {
 		if(xmlhttp.readyState == 4){
@@ -280,12 +279,11 @@ function xmlhttpgenerator()
 	return xmlhttp;
 }
 
-function delmsg(ob)
+function delmsg(ob,oname)
 {
 	obj = ob.parentNode.parentNode.parentNode.parentNode.parentNode;
 	mainbody = obj.parentNode;
 	oid = obj.id.substring(3);
-	oname = obj.title;
 	
 	var xmlhttp = xmlhttpgenerator(); 
 	

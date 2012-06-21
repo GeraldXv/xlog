@@ -1,5 +1,17 @@
 //setingc// JavaScript Document
 
+function chgrange()
+{	
+	value = document.getElementById("range").value;
+	document.getElementById("ragval").innerHTML = value;	
+}
+
+function selpic(ob)
+{
+	document.getElementsByClassName("seled").item(0).className = "";
+	ob.className = "seled";	
+}
+
 function tagchg(id)
 {
 	var t = document.getElementById("tagg").value;

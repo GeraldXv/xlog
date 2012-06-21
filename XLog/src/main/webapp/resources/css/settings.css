@@ -179,6 +179,7 @@ a {text-decoration:none;}
 .saccount table tr td {
 	text-align:left;
 	vertical-align:top;
+	font-size:0px;
 }
 
 .saccount table tr td b {
@@ -188,6 +189,44 @@ a {text-decoration:none;}
 	font-family:Arial,serif,sans-serif;
 	font-size:20px;
 	margin-top:10px;
+}
+
+.saccount table tr td ul {
+	display:inline-block;
+	cursor:pointer;
+	margin-right:5px;
+	opacity:0.3;
+	margin-left:2px;
+	margin-right:2px;
+}
+
+.saccount table tr td li {
+	font-size:16px;
+}
+
+.saccount table tr td label {
+	font-size:16px;
+}
+
+.saccount table tr td ul.seled {
+	border:2px #CCCCCC solid;
+	opacity:1;
+	z-index:9;
+	margin:0px;
+}
+
+.saccount table tr td ul li {
+	z-index:10;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:900;
+	color:#333;
+	text-align:center;
+}
+
+.saccount table tr td ul li img {
+	width:100px;
+	height:100px;
 }
 
 #uldpic {
@@ -204,6 +243,12 @@ a {text-decoration:none;}
 
 .saccount table tr td li input {
 	display:none;
+}
+
+#range {
+	display:inline-block;
+	position:relative;
+	top:9px;
 }
 
 .radioOff {

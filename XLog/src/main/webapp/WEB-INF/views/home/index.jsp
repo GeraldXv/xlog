@@ -83,7 +83,7 @@
 
 					<c:forEach var="status" items="${statusList}" varStatus="s">
 
-						<li id="msg${s.index }" title="${status.statusId}">
+						<li id="msg${s.index }">
 							<table width="390px">
 								<tr>
 									<td class="picc" width="50px"><c:if test="${not empty status.userImage}">
@@ -99,7 +99,7 @@
 										<td width="25px"><a class="marked" onclick="chgmark(this)"></a></td>
 									</c:if>
 									<c:if test="${status.stared==false }">
-										<td width="25px"><a class="mark" onclick="chgmark(this)"></a></td>
+										<td width="25px"><a class="mark" onclick="chgmark(this,'${status.statusId}')"></a></td>
 									</c:if>
 									<c:if test="${s.index==0}">
 										<td id="arro${s.index}" class="arrowed" width="15px" rowspan="2">
@@ -113,7 +113,7 @@
 								<tr>
 									<td class="state" colspan="2"><span id="name${s.index}">${status.fromUser}</span>. <span id="time${s.index}"><fmt:formatDate value="${status.createdTime}" type="both"
 											pattern="MM-dd HH:mm" /></span> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}" name="${status.idAtService}"
-										onclick="showtagf('m${s.index}','${status.idAtService}','${status.statusId}','${status.fromUser}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this)">delete</a>.
+										onclick="showtagf('m${s.index}','${status.idAtService}','${status.statusId}','${status.fromUser}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this,'${status.statusId}')">delete</a>.
 									</td>
 									<td class="source"><a href="#"> <s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img
 											src="<c:url value="${iconUrl}" />" />
