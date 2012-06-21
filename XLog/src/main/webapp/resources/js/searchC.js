@@ -1,5 +1,18 @@
 // JavaScript Document
 
+function expcont(ob)
+{
+	if(ob.className == "exp")
+			ob.className = "";
+	else
+		ob.className = "exp";
+}
+
+function focustr()
+{
+	ob.style.border = "1px #CCCCCC solid;";
+}
+
 function categchg(id)
 {
 	var t = document.getElementById("catg").value;

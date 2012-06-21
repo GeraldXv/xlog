@@ -42,8 +42,8 @@
 		<li>
 			<ul>
 				<li class="reslt">
-					<table>
 						<c:forEach var="message" items="${messageList}">
+					<table>
 							<tr class="person">
 								<td rowspan="2" width="50"><span><c:if test="${not empty message.fromProfileImage}">
 											<img src="<c:url value="${message.fromProfileImage}" />" />
@@ -55,12 +55,12 @@
 								<td><a><s:message code="${message.serviceProvider}.png" var="iconUrl" /> <img src="<c:url value="${iconUrl}" />" /></a></td>
 							</tr>
 							<tr class="person">
-								<td colspan="4"><label>${message.content} </label></td>
+								<td colspan="4"><label onclick="expcont(this)">${message.content} </label></td>
 							</tr>
-							<tr height="20px"></tr>
+							<tr height="1px"></tr>
 							<!-- end of a item -->
-						</c:forEach>
 					</table>
+						</c:forEach>
 				</li>
 			</ul>
 		</li>

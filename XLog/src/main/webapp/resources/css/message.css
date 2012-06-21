@@ -123,11 +123,14 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	height:16px;
 	overflow:hidden;
 	text-overflow:ellipsis;
+	white-space:nowrap;
+	word-wrap:break-word;
 }
 
 
 .mess ul.meslist li ul li.exp {
 	overflow:visible;
+	white-space:pre;
 }
 
 .mess ul.meslist li ul li.name {

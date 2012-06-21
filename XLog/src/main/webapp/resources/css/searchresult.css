@@ -6,6 +6,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .SRcontent {
 	display:block;
 	width:900px;
+	min-height:550px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:30px;
@@ -47,7 +48,12 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .SRcontent ul li {
 	display:inline-block;
 	width:500px;
+	height:inherit;
 	vertical-align:text-top;
+}
+
+.SRcontent ul li table {
+	display:block;
 }
 
 .SRcontent ul li table tr {
@@ -111,7 +117,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .SRcontent li.reslt {
 	margin-top:20px;
 	width:500px;
-	height:480px;
+	display:block;
 }
 
 .SRcontent li.reslt table {
@@ -182,6 +188,15 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:400;
 	font-size:13px;
+	
+	white-space:nowrap;
+	word-warp:break-word;
+	word-break:break-all;
+}
+
+.SRcontent li.reslt tr.person td label.exp {
+	height:auto;
+	white-space:pre;
 }
 
 .SRcontent li.reslt tr.person span img {

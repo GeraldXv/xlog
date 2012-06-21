@@ -6,6 +6,7 @@ img {border:0;}
 
 /* bottom */
 .bottom {
+	display:block;
 	position:relative;
 	width:1000px;
 	left:50%;
