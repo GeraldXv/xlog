@@ -1,21 +1,20 @@
 package hk.hku.cs.xlog.bo;
 
-import java.util.List;
-
-import org.springframework.social.twitter.api.TwitterProfile;
+import hk.hku.cs.xlog.entity.Friend;
+import hk.hku.cs.xlog.entity.Message;
+import hk.hku.cs.xlog.entity.Status;
+import hk.hku.cs.xlog.solr.PaginationSupport;
 
 public interface SearchClient {
 
-	void searchFriends();
+	PaginationSupport<Friend> searchFriend(String userName, String query, int page);
 
-	void searchMessage();
+	PaginationSupport<Status> searchStatus(String userName, String query, int page, String range);
 
-	void searchStatus();
+	PaginationSupport<Message> searchMessage(String userName, String query, int page, String range);
 
-	void searchTag();
+	void createIndex();
 
-	void updateFriendsIndex();
-
-	void createTwitterFriendsIndex(String userName, List<TwitterProfile> tProfileList);
+	void updateIndex();
 
 }
