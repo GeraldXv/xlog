@@ -27,23 +27,44 @@
 				</tr>
 				<tr>
 					<td>
-						<li class="spl"></li>
-						<li><a id="t1" href="<c:url value="/search/message?query=${query }&page=1&range=none" />" class="seled" onclick="timchg('t1')">Anytime</a></li>
-						<li><a id="t2" href="<c:url value="/search/message?query=${query }&page=1&range=hour" />" onclick="timchg('t2')">Past hour</a></li>
-						<li><a id="t3" href="<c:url value="/search/message?query=${query }&page=1&range=day" />" onclick="timchg('t3')">Past 24 hour</a></li>
-						<li><a id="t4" href="<c:url value="/search/message?query=${query }&page=1&range=week" />" onclick="timchg('t4')">Past week</a></li>
-						<li><a id="t5" href="<c:url value="/search/message?query=${query }&page=1&range=month" />" onclick="timchg('t5')">Past month</a></li>
-						<li><a id="t6" href="<c:url value="/search/message?query=${query }&page=1&range=year" />" onclick="timchg('t6')">Past year</a></li> <input
-						type="hidden" id="tims" value="t1">
+						<li class="spl"></li> <c:if test="${range=='none' }">
+							<li><a id="t1" href="<c:url value="/search/message?query=${query }&page=1&range=none" />" class="seled" onclick="timchg('t1')">Anytime</a></li>
+						</c:if> <c:if test="${range!='none' }">
+							<li><a id="t1" href="<c:url value="/search/message?query=${query }&page=1&range=none" />" onclick="timchg('t1')">Anytime</a></li>
+						</c:if> <c:if test="${range=='hour' }">
+							<li><a id="t2" href="<c:url value="/search/message?query=${query }&page=1&range=hour" />" class="seled" onclick="timchg('t2')">Past
+									hour</a></li>
+						</c:if> <c:if test="${range!='hour' }">
+							<li><a id="t2" href="<c:url value="/search/message?query=${query }&page=1&range=hour" />" onclick="timchg('t2')">Past hour</a></li>
+						</c:if> <c:if test="${range=='day' }">
+							<li><a id="t3" href="<c:url value="/search/message?query=${query }&page=1&range=day" />" class="seled" onclick="timchg('t3')">Past
+									24 hour</a></li>
+						</c:if> <c:if test="${range!='day' }">
+							<li><a id="t3" href="<c:url value="/search/message?query=${query }&page=1&range=day" />" onclick="timchg('t3')">Past 24 hour</a></li>
+						</c:if> <c:if test="${range=='week' }">
+							<li><a id="t4" href="<c:url value="/search/message?query=${query }&page=1&range=week" />" class="seled" onclick="timchg('t4')">Past
+									week</a></li>
+						</c:if> <c:if test="${range!='week' }">
+							<li><a id="t4" href="<c:url value="/search/message?query=${query }&page=1&range=week" />" onclick="timchg('t4')">Past week</a></li>
+						</c:if> <c:if test="${range=='month' }">
+							<li><a id="t5" href="<c:url value="/search/message?query=${query }&page=1&range=month" />" class="seled" onclick="timchg('t5')">Past
+									month</a></li>
+						</c:if> <c:if test="${range!='month' }">
+							<li><a id="t5" href="<c:url value="/search/message?query=${query }&page=1&range=month" />" onclick="timchg('t5')">Past month</a></li>
+						</c:if> <c:if test="${range=='year' }">
+							<li><a id="t6" href="<c:url value="/search/message?query=${query }&page=1&range=year" />" class="seled" onclick="timchg('t6')">Past
+									year</a></li>
+						</c:if> <c:if test="${range!='year' }">
+							<li><a id="t6" href="<c:url value="/search/message?query=${query }&page=1&range=year" />" onclick="timchg('t6')">Past year</a></li>
+						</c:if> <input type="hidden" id="tims" value="t1">
 					</td>
 				</tr>
 			</table>
 		</li>
 		<li>
 			<ul>
-				<li class="reslt">
-						<c:forEach var="message" items="${messageList}">
-					<table>
+				<li class="reslt"><c:forEach var="message" items="${messageList}">
+						<table>
 							<tr class="person">
 								<td rowspan="2" width="50"><span><c:if test="${not empty message.fromProfileImage}">
 											<img src="<c:url value="${message.fromProfileImage}" />" />
@@ -59,9 +80,8 @@
 							</tr>
 							<tr height="1px"></tr>
 							<!-- end of a item -->
-					</table>
-						</c:forEach>
-				</li>
+						</table>
+					</c:forEach></li>
 			</ul>
 		</li>
 	</ul>
