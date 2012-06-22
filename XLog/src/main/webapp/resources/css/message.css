@@ -6,8 +6,10 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 
 .mess {
+	display:block;
 	font-size:0px;
 	width:930px;
+	height:inherit;
 	padding-top:40px;
 	margin-left:auto;
 	margin-right:auto;
@@ -42,13 +44,20 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	padding:0;
 }
 
+.mess ul.frielist li ul li.name {
+	font-weight:bold;
+	height:16px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
 .spl {
 	display:inline-block;
 	width:1px;
 	max-width:1px !important;
 	border:2px #FFFFFF solid;
-	height:100%;
 	min-height:600px;
+	height:inherit;
 	background-color:#000000;
 }
 
@@ -79,7 +88,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 .mess ul.meslist li.send input {
 	width:380px;
-	height:20px;
+	height:26px;
 	position:relative;
 }
 
@@ -229,7 +238,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	background-color:#D9D9D9;
 	color:#000000;
 	width:380px;
-	height:205px;
+	height:200px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:16px;
 	font-weight:bold;
@@ -250,17 +259,17 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 .msgb ul li input {
 	width:320px;
-	height:18px;
+	height:20px;
 	margin-left:5px;
 }
 
 #gmsubject {
-	display:none;
+	display:block;
 }
 
 #gmsubject input {
 	width:281px;
-	height:18px;
+	height:20px;
 	margin-left:6px;
 }
 
@@ -324,7 +333,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 
 #pgm {
 	display:inline-block;
-	background: url(../image/Gmail.png) no-repeat left;
+	background: url(../image/gmail.png) no-repeat left;
 	background-size:24px 24px;
 	width:24px;
 	height:24px;

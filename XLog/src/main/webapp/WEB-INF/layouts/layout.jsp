@@ -22,6 +22,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/settingc.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/header.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/home.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/register.js" />"></script>
 
 
 </head>

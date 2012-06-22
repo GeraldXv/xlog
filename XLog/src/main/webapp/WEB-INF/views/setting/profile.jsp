@@ -47,13 +47,13 @@
 		<tr>
 			<td><b>New Password:</b></td>
 			<td><input id="psw1" type="password" onkeyup="vpsw1()" /></td>
-			<td width="20px"><img id="pswp1" /></td>
+			<td width="20px"><img id="pswp1T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp1X" src="<c:url value="/resources/image/X.png" />" /></td>
 			<td width="540px"><label>If you would like to change the password, type a new one. Otherwise, leave this blank.</label></td>
 		</tr>
 		<tr>
 			<td></td>
 			<td><input id="psw2" type="password" onkeyup="vpsw2()" /></td>
-			<td><img id="pswp2" /></td>
+			<td><img id="pswp2T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp2X" src="<c:url value="/resources/image/X.png" />" /></td>
 			<td><label>Type your new password again.</label></td>
 		</tr>
 		<tr>

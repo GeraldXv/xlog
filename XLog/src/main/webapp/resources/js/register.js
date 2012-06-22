@@ -6,8 +6,9 @@ function vpsw1()
 		
 		if(t == 0)
 		{
-		 	document.getElementById("pswp1").style.display = "none";
-			vpsw2();	
+	 		document.getElementById("pswp1T").style.display = "none";
+	 		document.getElementById("pswp1X").style.display = "none";
+			vpsw2();
 			document.getElementById("sind").innerHTML = "0%";
 			document.getElementById("sind").style.backgroundPosition = "0 0";
 				
@@ -34,6 +35,8 @@ function vpsw2()
 	{
 		document.getElementById("pswp1T").style.display = "none";
 		document.getElementById("pswp1X").style.display = "none";	
+		document.getElementById("pswp2T").style.display = "none";
+		document.getElementById("pswp2X").style.display = "none";	
 	}
 	else if(document.getElementById("psw1").value == t)
 	{

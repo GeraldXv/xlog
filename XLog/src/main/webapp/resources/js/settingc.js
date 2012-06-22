@@ -3,7 +3,10 @@
 function chgrange()
 {	
 	value = document.getElementById("range").value;
-	document.getElementById("ragval").innerHTML = value;	
+	if(value >= 10)
+		document.getElementById("ragval").innerHTML = value;	
+	else 
+		document.getElementById("ragval").innerHTML = "&nbsp"+value;	
 }
 
 function selpic(ob)

@@ -47,11 +47,11 @@
 		<tr>
 			<td><b>Page Form</b></td>
 			<td>
-				<li>A page show at most <input id="range" type="range" min="5" max="25" value="5" onchange="chgrange()"> <span id="ragval">5</span>
+				<li>A page show at most <input id="range" type="range" min="5" max="25" value="5" onchange="chgrange()"> <span id="ragval">&nbsp5</span>
 					posts.
 			</li>
 				<li>
-					<button type="button" onclick="test()">Save Changes</button>
+					<button type="button">Save Changes</button>
 			</li>
 			</td>
 		</tr>

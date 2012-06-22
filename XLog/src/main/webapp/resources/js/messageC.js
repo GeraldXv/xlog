@@ -20,6 +20,7 @@ function cancelmsg()
 {
 	document.getElementById("msgb1").style.display = "none";
 	document.getElementById("msgb2").style.display = "none";
+	return false;
 }
 
 function chgps(id)
@@ -37,14 +38,14 @@ function selsrv1()
 {
 	document.getElementById("msgb2").style.display = "none";
 	document.getElementById("msgb1").style.display = "block";
-	document.getElementById("msgb1").style.height = "205px";
+	document.getElementById("msgb1").style.height = "200px";
 }
 
 function selsrv2()
 {
 	document.getElementById("msgb1").style.display = "none";
 	document.getElementById("msgb2").style.display = "block";
-	document.getElementById("msgb2").style.height = "235px";	
+	document.getElementById("msgb2").style.height = "225px";	
 }
 
 function expmsg(ob)
@@ -54,4 +55,6 @@ function expmsg(ob)
 	obj.className = "exp";
 	else 
 	obj.className = "clo";
+
+	document.getElementsByClassName("spl").item(0).style.height = ob.parentNode.parentNode.clientHeight;
 }

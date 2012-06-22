@@ -81,7 +81,7 @@
 			<li><sf:textarea path="text"></sf:textarea></li>
 			<li>
 				<button type="submit" onclick="sendmsg()">Send</button>
-				<button onclick="cancelmsg()">Cancel</button>
+				<button type="button" onclick="cancelmsg()">Cancel</button>
 			</li>
 		</ul>
 	</div>
