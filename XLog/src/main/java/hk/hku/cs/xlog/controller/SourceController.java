@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.controller;
 
 import hk.hku.cs.xlog.bo.CheckSourceClient;
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 
@@ -27,6 +28,8 @@ public class SourceController {
 	private CheckSourceClient checkSourceClient;
 	@Inject
 	private UserDao userDaoImpl;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 
 	@Inject
 	public SourceController(Provider<ConnectionRepository> connectionRepositoryProvider, ConnectionFactoryLocator connectionFactoryLocator,
@@ -43,6 +46,7 @@ public class SourceController {
 		model.addAttribute("connectionMap", connections);
 		model.addAttribute("isGmailconnected", checkSourceClient.isGmailConnected(currentUser.getName()));
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "source";
 	}

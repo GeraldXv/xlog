@@ -1,5 +1,6 @@
 package hk.hku.cs.xlog.controller;
 
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 
@@ -18,8 +19,11 @@ public class ProfileController {
 	
 	@Inject
 	private UserDao userDaoImpl;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("searchForm", new SearchForm());
 		return "profile";

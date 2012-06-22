@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.controller;
 
 import hk.hku.cs.xlog.bo.AccountClient;
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 
 import java.security.Principal;
@@ -18,11 +19,14 @@ public class AccountController {
 
 	@Inject
 	AccountClient accountClientImpl;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getProfile(Principal currentUser, Model model) {
 		model.addAttribute("profileImage",accountClientImpl.getProfile(currentUser.getName()));
 		model.addAttribute("profiles",accountClientImpl.getProfiles(currentUser.getName()));
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "account";
 	}

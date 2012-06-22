@@ -63,10 +63,7 @@ public class StatusItemClientImpl implements StatusItemClient {
 	// TODO More than one Tag
 	@Override
 	public void addTags(String statusId, String tagName) {
-		System.out.println(tagName);
 		Status s = statusDaoImpl.get(statusId);
-		System.out.println(statusId);
-		System.out.println(s.getFromUser());
 		Set<Tag> tlist = new HashSet<Tag>();
 		Tag tag = null;
 		if (tagDaoImpl.get(tagName) != null) {
@@ -80,7 +77,6 @@ public class StatusItemClientImpl implements StatusItemClient {
 			tagDaoImpl.save(tag);
 		}
 		tlist.add(tag);
-		System.out.println(tlist.size());
 		s.getTags().addAll(tlist);
 		statusDaoImpl.update(s);
 	}
@@ -95,6 +91,9 @@ public class StatusItemClientImpl implements StatusItemClient {
 		TagContainner tagc = new TagContainner();
 		tagc.setTag1(tags.get(0).getTagName());
 		tagc.setTag2(tags.get(1).getTagName());
+		for(Tag tag:tags){
+			System.out.println(tag.getTagName());
+		}
 		int i = 1;
 		while (tagc.getTag1().equals(tagc.getTag2())) {
 			i++;

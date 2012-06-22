@@ -84,7 +84,7 @@ function showtagf(id,idas,statusid,fromuser)
 					var json = eval('(' + xmlhttp.responseText + ')');
 					document.getElementById("sug1").innerHTML = json.tag1;
 					document.getElementById("sug2").innerHTML = json.tag2;
-					document.getElementById("tagbutton").id = statusid;
+					document.getElementById("tagbutton").value = statusid;
 				}
 			}
 		}
@@ -94,13 +94,13 @@ function showtagf(id,idas,statusid,fromuser)
 		xmlhttp.send(null);
 		
 		document.all.tagdiv.style.display="block";
+		document.getElementById("lastid").value = id;
 	}
-	document.getElementById("lastid").value = id;
 }
 
 function tagit(ob)
 {
-	id = ob.id;
+	id = document.getElementById("tagbutton").value;
 
 	var xmlhttp = xmlhttpgenerator();
 	
@@ -109,7 +109,6 @@ function tagit(ob)
 			if(xmlhttp.status == 200){
 				if(xmlhttp.responseText == "true")
 				{
-					document.getElementById(id).id = "tagbutton";
 					document.all.tagdiv.style.display="none";
 					document.all.suctag.style.display="block";
 					window.setTimeout( "document.getElementById('suctag').style.display= 'none'",100);
