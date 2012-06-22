@@ -1,5 +1,6 @@
 package hk.hku.cs.xlog.controller;
 
+import hk.hku.cs.xlog.bo.AccountClient;
 import hk.hku.cs.xlog.bo.FriendClient;
 import hk.hku.cs.xlog.bo.MessageClient;
 import hk.hku.cs.xlog.bo.StatusClient;
@@ -77,6 +78,8 @@ public class IndexController {
 	NotificationClientImpl notificationClientImpl;
 	@Inject
 	StatusItemClientImpl statusItemClientImpl;
+	@Inject
+	AccountClient accountClientImpl;
 	Google googleApi;
 	long updateGap = 3600000;
 
@@ -87,7 +90,7 @@ public class IndexController {
 			sycInfromation(currentUser.getName());
 		else if (date.getTime() - userDaoImpl.getUpdateTime(currentUser.getName()) > updateGap)
 			sycInfromation(currentUser.getName());
-		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("profileImage", accountClientImpl.getProfile(currentUser.getName()));
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getTagByRank());
 		model.addAttribute("providerId", "all");
@@ -99,7 +102,7 @@ public class IndexController {
 
 	@RequestMapping(value = "/status/{providerId}", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model, @PathVariable String providerId) {
-		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("profileImage", accountClientImpl.getProfile(currentUser.getName()));
 		if (!providerId.equals("gmail"))
 			model.addAttribute("statusList", statusDaoImpl.getStatusAllByTimeAndService(currentUser.getName(), providerId));
 		else {

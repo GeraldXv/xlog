@@ -1,9 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ page session="false"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Login</title>
+<title>X-LOG Login</title>
+<s:message code="favicon.ico" var="icoUrl" />
+<link rel="shortcut icon" href="<c:url value="${icoUrl}" />" type="image/x-icon">
 <link rel="stylesheet" href="<c:url value="/resources/css/register.css" />" type="text/css" media="screen" />
 <link rel="stylesheet" href="<c:url value="/resources/css/footer.css" />" type="text/css" media="screen" />
 <script type="text/javascript" src="<c:url value="/resources/js/headerC.js" />"></script>
@@ -25,8 +29,7 @@
 				</tr>
 				<tr>
 					<td rowspan="3"></td>
-					<td rowspan="3"><a href="#">
-							<img id="title" src="<c:url value="/resources/image/title.png" />">
+					<td rowspan="3"><a href="#"> <img id="title" src="<c:url value="/resources/image/title.png" />">
 					</a></td>
 					<td rowspan="3"></td>
 					<td colspan="2">UserName</td>
@@ -63,7 +66,8 @@
 			</li>
 			<li>
 				<div class="register">
-					<form action="<c:url value="/signup" />" method="post">
+				<c:url var="singupUrl" value="/signup" />
+					<sf:form action="${singupUrl}" method="post" modelAttribute="signupForm">
 						<table>
 							<tr>
 								<td width="130px"><b>Sign Up</b></td>
@@ -77,24 +81,26 @@
 							</tr>
 							<tr>
 								<td><label>E-mail:</label></td>
-								<td><input name="email" type="text" onblur="vemail()" /></td>
+								<td><sf:input path="email" name="email" type="text" onblur="vemail()" /></td>
 								<td></td>
 							</tr>
 							<tr>
 								<td><label>Username:</label></td>
-								<td><input id="username" type="text" /></td>
+								<td><sf:input path="username" id="username" type="text" /></td>
 								<td></td>
 							</tr>
 
 							<tr>
 								<td><label>Password:</label></td>
-								<td><input id="psw1" type="password" onkeyup="vpsw1()" /></td>
-								<td><img id="pswp1T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp1X" src="<c:url value="/resources/image/X.png" />" /></td>
+								<td><sf:input path="password" id="psw1" type="password" onkeyup="vpsw1()" /></td>
+								<td><img id="pswp1T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp1X"
+									src="<c:url value="/resources/image/X.png" />" /></td>
 							</tr>
 							<tr>
 								<td><label>Re-enter Password:</label></td>
 								<td><input id="psw2" type="password" onkeyup="vpsw2()" /></td>
-								<td><img id="pswp2T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp2X" src="<c:url value="/resources/image/X.png" />" /></td>
+								<td><img id="pswp2T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp2X"
+									src="<c:url value="/resources/image/X.png" />" /></td>
 							</tr>
 
 
@@ -116,7 +122,7 @@
 								<td></td>
 							</tr>
 						</table>
-					</form>
+					</sf:form>
 				</div>
 			</li>
 		</ul>

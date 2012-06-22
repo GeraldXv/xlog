@@ -1,7 +1,7 @@
 package hk.hku.cs.xlog.controller;
 
+import hk.hku.cs.xlog.bo.AccountClient;
 import hk.hku.cs.xlog.controller.form.SearchForm;
-import hk.hku.cs.xlog.dao.UserDao;
 
 import java.security.Principal;
 
@@ -15,15 +15,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
+
 	@Inject
-	private UserDao userDaoImpl;
+	AccountClient accountClientImpl;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String services(Principal currentUser, Model model) {
-		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+	public String getProfile(Principal currentUser, Model model) {
+		model.addAttribute("profileImage",accountClientImpl.getProfile(currentUser.getName()));
+		model.addAttribute("profiles",accountClientImpl.getProfiles(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "account";
 	}
 
-	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String setProfile(Principal currentUser, Model model) {
+		
+		model.addAttribute("profileImage",accountClientImpl.getProfile(currentUser.getName()));
+		return "redirect:/account/";
+	}
 }
