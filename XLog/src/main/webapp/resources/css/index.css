@@ -453,6 +453,7 @@ img {border:0;}
 	display:block;
 	max-width:inherit;
 	max-height:inherit;
+	cursor:url(../image/zoom_out.png);
 }
 
 .words img.max {
@@ -461,6 +462,7 @@ img {border:0;}
 	max-width:270px;
 	margin-left:auto;
 	margin-right:auto;
+	cursor:url(../image/zoom_out.png);
 }
 
 .words img {
@@ -470,6 +472,7 @@ img {border:0;}
 	max-height:100px;
 	margin-top:5px;
 	margin-bottom:5px;
+	cursor:url(../image/zoom_in.png);
 }
 
 .source img {
@@ -524,6 +527,10 @@ img {border:0;}
 .state {
 	font-size:12px;
 	padding-left:20px;
+}
+
+.state label {
+	color:#0078B6;
 }
 
 /* Detailed */
@@ -690,11 +697,13 @@ img {border:0;}
 	height:24px;
 }
 
-.suctag li{
+.suctag ul.bg{
 	display:block;
 	position:relative;
-	width:360px;
-	height:40px;
+	top:-40px;
+	left:-4px;
+	width:314px;
+	height:44px;
 	background-color:black;
 	opacity:0.3;
 	z-index:1;
@@ -703,23 +712,32 @@ img {border:0;}
 .suctag ul {
 	display:block;
 	position:relative;
-	width:356px;
-	height:26px;
-	left:2px;
-	top:38px;
-	color:black;
+	width:306px;
+	height:36px;
 	background-color:white;
-	font-size:14px;
-	text-align:center;
-	padding-top:10px;
 	opacity:1;
 	z-index:10;
 }
 
-.suctag ul img {
-	display:block;
-	width:32px;
-	height:32px;
+.suctag ul li {
+	display:inline-block;
+	position:relative;
+	color:black;
+	font-family:arial;
+	font-size:14px;
+	text-align:center;
+	margin-left:10px;
+	top:7px;
+	vertical-align:middle;
+}
+
+.suctag ul li img {
+	display:inline-block;
+	position:relative;
+	top:-2px;
+	vertical-align:middle;
+	width:25px;
+	height:25px;
 }
 
 .nomsg {

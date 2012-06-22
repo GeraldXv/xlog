@@ -10,8 +10,8 @@
 			<td width="160px"><a href="<c:url value="/" />"> <img id="title" src="<c:url value="/resources/image/title.png" />"></a></td>
 			<td width="15px"><a href="#" onclick="popunr()"> <img src="<c:url value="/resources/image/down.png" />" />
 			</a></td>
-			<td width="40px"><img id="unrpic" src="<c:url value="/resources/image/bubble.png" />"><b id="unrno">${messageNotification.allMessage}</b>
-				</img></td>
+			<td width="40px"><img id="unrpic" src="<c:url value="/resources/image/bubble.png" />" /><b id="unrno">${messageNotification.allMessage}</b>
+				</td>
 			<td width="80px"></td>
 			<td width="430px"><c:url var="searchUrl" value="/search/" /> <sf:form action="${searchUrl}" method="post"
 					modelAttribute="searchForm">

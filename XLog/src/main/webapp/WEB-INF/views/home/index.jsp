@@ -111,7 +111,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td class="state" colspan="2"><span id="name${s.index}">${status.fromUser}</span>. <span id="time${s.index}"><fmt:formatDate value="${status.createdTime}" type="both"
+									<td class="state" colspan="2"><label id="name${s.index}">${status.fromUser}</label>. <span id="time${s.index}"><fmt:formatDate value="${status.createdTime}" type="both"
 											pattern="MM-dd HH:mm" /></span> <a href="">share</a>.<a href="">reply</a>.<a href="javascript:void(0)" id="m${s.index}" name="${status.idAtService}"
 										onclick="showtagf('m${s.index}','${status.idAtService}','${status.statusId}','${status.fromUser}')">tag</a>.<a href="javascript:void(0)" onclick="delmsg(this,'${status.statusId}')">delete</a>.
 									</td>
@@ -205,9 +205,9 @@
 </div>
 </form>
 
-<div class="suctag">
-	<ul><img src="/resources/image/accept.png" />Your tag has been successfully added!</ul>
-	<li></li>
+<div id="suctag" class="suctag">
+	<ul><li><img src="<c:url value="/resources/image/accept.png" />" /></li><li>Your tag has been successfully added!</li></ul>
+	<ul class="bg"></ul>
 </div>
 <!-- end of hidden tag div -->
 </div>

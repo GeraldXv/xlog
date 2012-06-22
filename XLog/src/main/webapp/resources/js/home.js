@@ -111,6 +111,8 @@ function tagit(ob)
 				{
 					document.getElementById(id).id = "tagbutton";
 					document.all.tagdiv.style.display="none";
+					document.all.suctag.style.display="block";
+					window.setTimeout( "document.getElementById('suctag').style.display= 'none'",100);
 				}
 			}
 		}
