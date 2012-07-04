@@ -37,8 +37,10 @@ public class AccountClientImpl implements AccountClient {
 	@Override
 	public List<String> getProfiles(String userName) {
 		List<String> profileList = new ArrayList<String>();
-		profileList.add(twitter.userOperations().getUserProfile().getProfileImageUrl());
-		profileList.add("https://graph.facebook.com/" + facebook.userOperations().getUserProfile().getId() + "/" + "picture" + "?type=normal");
+		if (twitter.isAuthorized())
+			profileList.add(twitter.userOperations().getUserProfile().getProfileImageUrl());
+		if (facebook.isAuthorized())
+			profileList.add("https://graph.facebook.com/" + facebook.userOperations().getUserProfile().getId() + "/" + "picture" + "?type=normal");
 		return profileList;
 	}
 

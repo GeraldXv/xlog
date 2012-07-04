@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.controller;
 
 import hk.hku.cs.xlog.bo.SearchClient;
+import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.Friend;
@@ -30,6 +31,8 @@ public class SearchController {
 	private UserDao userDaoImpl;
 	@Inject
 	private SearchClient searchClientImpl;
+	@Inject
+	NotificationClientImpl notificationClientImpl;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String searchGet(Principal currentUser, Model model, @RequestParam("query") String query) {
@@ -65,6 +68,7 @@ public class SearchController {
 		model.addAttribute("query", query);
 		model.addAttribute("range", range);
 		model.addAttribute("type", "status");
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchStauts";
 
@@ -82,6 +86,7 @@ public class SearchController {
 		model.addAttribute("query", query);
 		model.addAttribute("range", range);
 		model.addAttribute("type", "message");
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchMessage";
 
@@ -97,6 +102,7 @@ public class SearchController {
 		model.addAttribute("currentPage", friends.getCurrentPage());
 		model.addAttribute("query", query);
 		model.addAttribute("type", "friend");
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchFriend";
 

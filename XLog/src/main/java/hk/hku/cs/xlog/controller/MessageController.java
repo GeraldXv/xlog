@@ -5,11 +5,11 @@ import hk.hku.cs.xlog.controller.form.MessageForm;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
-import hk.hku.cs.xlog.dao.UserConnectionDao;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.GmailAccount;
 import hk.hku.cs.xlog.entity.Message;
 import hk.hku.cs.xlog.gmail.GmailClientX;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,25 +34,25 @@ public class MessageController {
 	private MessageDao messageDaoImpl;
 	private GmailAccountDao gmailAccountDaoImpl;
 	private UserDao userDaoImpl;
-	private UserConnectionDao userConnectionDaoImpl;
-	@Inject
-	Twitter twitter;
-	@Inject
-	NotificationClientImpl notificationClientImpl;
+	private Twitter twitter;
+	private NotificationClientImpl notificationClientImpl;
 
 	@Inject
-	public MessageController(MessageDao messageDaoImpl, GmailAccountDao gmailAccountDaoImpl, UserDao userDaoImpl, UserConnectionDao userConnectionDaoImpl) {
+	public MessageController(MessageDao messageDaoImpl, GmailAccountDao gmailAccountDaoImpl, UserDao userDaoImpl, Twitter twitter,
+			NotificationClientImpl notificationClientImpl) {
 		this.messageDaoImpl = messageDaoImpl;
 		this.gmailAccountDaoImpl = gmailAccountDaoImpl;
 		this.userDaoImpl = userDaoImpl;
-		this.userConnectionDaoImpl = userConnectionDaoImpl;
-
+		this.twitter = twitter;
+		this.notificationClientImpl = notificationClientImpl;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
-		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(), gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
-				userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
+		List<Message> mList = messageDaoImpl
+				.getMessagesByTime(currentUser.getName(),
+						gmailAccountDaoImpl.getByUserName(currentUser.getName()) != null ? gmailAccountDaoImpl.getByUserName(currentUser.getName())
+								.getAccount() : null, twitter.isAuthorized() ? twitter.userOperations().getUserProfile().getId() + "" : null);
 		List<Message> newList = new ArrayList<Message>();
 		for (int i = 0; i < mList.size(); i++) {
 			boolean flag = false;
@@ -65,8 +65,8 @@ public class MessageController {
 			}
 		}
 		model.addAttribute("friendList", newList);
-		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(currentUser.getName(), mList.get(0).getFromName()));
-		model.addAttribute("fromUser", mList.get(0).getFromName());
+		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(currentUser.getName(), mList.size() != 0 ? mList.get(0).getFromName() : null));
+		model.addAttribute("fromUser", mList.size() != 0 ? mList.get(0).getFromName() : null);
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("messageForm", new MessageForm());
 		model.addAttribute("searchForm", new SearchForm());
@@ -79,7 +79,7 @@ public class MessageController {
 	@RequestMapping(value = "/{fromUser}", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model, @PathVariable String fromUser) {
 		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(), gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
-				userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
+				twitter.isAuthorized() ? twitter.userOperations().getUserProfile().getId() + "" : null);
 		List<Message> newList = new ArrayList<Message>();
 		for (int i = 0; i < mList.size(); i++) {
 			boolean flag = false;

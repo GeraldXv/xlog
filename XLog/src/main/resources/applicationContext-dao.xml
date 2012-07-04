@@ -10,5 +10,4 @@
 	<bean id="tagDaoImpl" class="hk.hku.cs.xlog.dao.impl.TagDaoImpl" parent="daoTemplate" />
 	<bean id="gmailAccountDaoImpl" class="hk.hku.cs.xlog.dao.impl.GmailAccountDaoImpl" parent="daoTemplate" />
 	<bean id="messageDaoImpl" class="hk.hku.cs.xlog.dao.impl.MessageDaoImpl" parent="daoTemplate" />
-	<bean id="userConnectionDaoImpl" class="hk.hku.cs.xlog.dao.impl.UserConnectionDaoImpl" parent="daoTemplate" />
 </beans>

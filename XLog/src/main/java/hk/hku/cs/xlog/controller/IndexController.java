@@ -13,7 +13,6 @@ import hk.hku.cs.xlog.dao.GmailAccountDao;
 import hk.hku.cs.xlog.dao.MessageDao;
 import hk.hku.cs.xlog.dao.StatusDao;
 import hk.hku.cs.xlog.dao.TagDao;
-import hk.hku.cs.xlog.dao.UserConnectionDao;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.GmailAccount;
 import hk.hku.cs.xlog.entity.Message;
@@ -25,11 +24,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Post;
-import org.springframework.social.google.api.Google;
 import org.springframework.social.twitter.api.DirectMessage;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
@@ -48,40 +45,43 @@ import com.googlecode.gmail4j.javamail.JavaMailGmailMessage;
 @Controller
 @RequestMapping("/")
 public class IndexController {
-	@Inject
 	private MessageDao messageDaoImpl;
-	@Inject
 	private StatusDao statusDaoImpl;
-	@Inject
 	private UserDao userDaoImpl;
-	@Inject
 	private TagDao tagDaoImpl;
-	@Inject
 	private GmailAccountDao gmailAccountDaoImpl;
+	private FriendClient friendClient;
+	private StatusClient statusClient;
+	private MessageClient messageClient;
+	private Twitter twitter;
+	private Facebook facebook;
+	private GmailClientX gmailClientX;
+	private NotificationClientImpl notificationClientImpl;
+	private StatusItemClientImpl statusItemClientImpl;
+	private AccountClient accountClientImpl;
+
+	private long updateGap = 3600000;
+
 	@Inject
-	private UserConnectionDao userConnectionDaoImpl;
-	@Inject
-	UsersConnectionRepository usersConnectionRepository;
-	@Inject
-	FriendClient friendClient;
-	@Inject
-	StatusClient statusClient;
-	@Inject
-	MessageClient messageClient;
-	@Inject
-	Twitter twitter;
-	@Inject
-	Facebook facebook;
-	@Inject
-	GmailClientX gmailClientX;
-	@Inject
-	NotificationClientImpl notificationClientImpl;
-	@Inject
-	StatusItemClientImpl statusItemClientImpl;
-	@Inject
-	AccountClient accountClientImpl;
-	Google googleApi;
-	long updateGap = 3600000;
+	public IndexController(MessageDao messageDaoImpl, StatusDao statusDaoImpl, UserDao userDaoImpl, TagDao tagDaoImpl, GmailAccountDao gmailAccountDaoImpl,
+			FriendClient friendClient, StatusClient statusClient, MessageClient messageClient, Twitter twitter, Facebook facebook, GmailClientX gmailClientX,
+			NotificationClientImpl notificationClientImpl, StatusItemClientImpl statusItemClientImpl, AccountClient accountClientImpl) {
+		super();
+		this.messageDaoImpl = messageDaoImpl;
+		this.statusDaoImpl = statusDaoImpl;
+		this.userDaoImpl = userDaoImpl;
+		this.tagDaoImpl = tagDaoImpl;
+		this.gmailAccountDaoImpl = gmailAccountDaoImpl;
+		this.friendClient = friendClient;
+		this.statusClient = statusClient;
+		this.messageClient = messageClient;
+		this.twitter = twitter;
+		this.facebook = facebook;
+		this.gmailClientX = gmailClientX;
+		this.notificationClientImpl = notificationClientImpl;
+		this.statusItemClientImpl = statusItemClientImpl;
+		this.accountClientImpl = accountClientImpl;
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model) {
@@ -93,11 +93,11 @@ public class IndexController {
 		model.addAttribute("profileImage", accountClientImpl.getProfile(currentUser.getName()));
 		model.addAttribute("statusList", statusDaoImpl.getStatusAllByTime(currentUser.getName()));
 		model.addAttribute("tags", tagDaoImpl.getTagByRank());
-		model.addAttribute("providerId", "all");
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("statusForm", new StatusForm());
 		model.addAttribute("searchForm", new SearchForm());
 		return "index";
+
 	}
 
 	@RequestMapping(value = "/status/{providerId}", method = RequestMethod.GET)
@@ -107,8 +107,9 @@ public class IndexController {
 			model.addAttribute("statusList", statusDaoImpl.getStatusAllByTimeAndService(currentUser.getName(), providerId));
 		else {
 			List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(),
-					gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
-					userConnectionDaoImpl.getByNameAndProvider(currentUser.getName(), "twitter").getUserConPK().getProviderUserId());
+					gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(), twitter.isAuthorized() ? twitter.userOperations().getUserProfile()
+							.getId()
+							+ "" : null);
 			model.addAttribute("messageList", mList);
 		}
 		model.addAttribute("tags", tagDaoImpl.getTagByRank());
@@ -161,13 +162,13 @@ public class IndexController {
 
 	@RequestMapping(value = "/status/showTag")
 	public @ResponseBody
-	TagContainner showTag(@RequestParam("idAtService") String idAtService,@RequestParam("fromUser") String fromUser) {
+	TagContainner showTag(@RequestParam("idAtService") String idAtService, @RequestParam("fromUser") String fromUser) {
 		return statusItemClientImpl.showTags(idAtService, fromUser);
 	}
 
 	// internal helper
 	public void sycInfromation(String userName) {
-		if (twitter != null) {
+		if (twitter.isAuthorized()) {
 			List<TwitterProfile> tfriends = twitter.friendOperations().getFriends();
 			List<DirectMessage> tRList = twitter.directMessageOperations().getDirectMessagesReceived();
 			List<DirectMessage> tSList = twitter.directMessageOperations().getDirectMessagesSent();
@@ -178,7 +179,7 @@ public class IndexController {
 			statusClient.saveOrUpdateTwitterStatus(userName, tweets);
 		}
 
-		if (facebook != null) {
+		if (facebook.isAuthorized()) {
 			List<FacebookProfile> ffriends = facebook.friendOperations().getFriendProfiles(0, 500);
 			List<Post> posts = facebook.feedOperations().getHomeFeed(0, 50);
 			friendClient.saveOrUpdateFacebookFriends(userName, ffriends);

@@ -1,12 +1,13 @@
 package hk.hku.cs.xlog.adapter;
 
+import javax.inject.Inject;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
@@ -20,9 +21,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 		"classpath:applicationContext-hibernate.xml", })
 public class ProfileAdapterTest {
 	private static final Logger logger = LoggerFactory.getLogger(ProfileAdapterTest.class);
-	@Autowired
+	@Inject
 	FriendAdapter friendAdapter;
-	@Autowired
+	@Inject
 	UsersConnectionRepository usersConnectionRepository;
 
 	ConnectionRepository con;

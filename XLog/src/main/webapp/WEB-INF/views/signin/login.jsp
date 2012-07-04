@@ -61,12 +61,13 @@
 			<li>
 				<div class="reser">
 					<ul>
+						<img src="<c:url value="/resources/image/coverpicture.png"/>" />
 					</ul>
 				</div>
 			</li>
 			<li>
 				<div class="register">
-				<c:url var="singupUrl" value="/signup" />
+					<c:url var="singupUrl" value="/signup" />
 					<sf:form action="${singupUrl}" method="post" modelAttribute="signupForm">
 						<table>
 							<tr>

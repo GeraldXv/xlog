@@ -14,7 +14,6 @@ import org.apache.solr.common.SolrInputDocument;
 
 public class EntityConvert {
 
-
 	public static SolrInputDocument entity2SolrInputDocument(Object obj) {
 		if (obj != null) {
 			Class<?> cls = obj.getClass();
@@ -67,7 +66,6 @@ public class EntityConvert {
 					} else if (fieldType.equals(Long.TYPE)) {
 						fieldType = Long.class;
 					}
-					System.out.println(fieldName);
 					m.invoke(obj, fieldType.cast(sd.getFieldValue(fieldName)));
 				}
 				return cls.cast(obj);
@@ -125,7 +123,7 @@ public class EntityConvert {
 		if (object != null && sd != null) {
 			SolrInputDocument sid = new SolrInputDocument();
 			Collection<String> fieldNameCollection = sd.getFieldNames();
-																		
+
 			Class<?> cls = object.getClass();
 			Object o = null;
 			for (String fieldName : fieldNameCollection) {
@@ -186,7 +184,6 @@ public class EntityConvert {
 	public static List<SolrInputDocument> solrDocumentList2SolrInputDocumentList(SolrDocumentList sdl, String idName, Map<Object, Object> objectMap) {
 		List<SolrInputDocument> solrInputDocuemntList = new ArrayList<SolrInputDocument>();
 
-		// 获得元素的主键的类型，即Map的key类型
 		Class<?> cls = null;
 		try {
 			cls = objectMap.get(0).getClass().getDeclaredField(idName).getType();
@@ -208,7 +205,6 @@ public class EntityConvert {
 				sid = new SolrInputDocument();
 				for (String fieldName : fieldNameCollection) {
 					try {
-						// 如果对应的属性的值为空或者为0，这不需要更
 						o = cls.getMethod(EntityConvert.getMethodName(fieldName, "get")).invoke(object);
 
 						Class<?> fieldType = cls.getDeclaredField(fieldName).getType();
