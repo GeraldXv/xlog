@@ -174,7 +174,9 @@
 						</li>
 						<li id="dcont" class="contents">
 							<h5>Sent</h5>:${status.createdTime}<br />
-							<h5>To</h5>: ${status.fromUser} <br /> ${status.content}
+							<h5>To</h5>: ${status.fromUser} <br /> ${status.content}  <c:if test="${not empty status.picture}">
+											<img src="<c:url value="${status.picture}" />" onclick="chgsize(this)" />
+										</c:if>
 						</li>
 						<li></li>
 					</ul>

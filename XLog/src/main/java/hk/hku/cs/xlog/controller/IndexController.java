@@ -123,12 +123,16 @@ public class IndexController {
 	public String send(Principal currentUser, Model model, @ModelAttribute("statusForm") StatusForm statusForm) {
 		String[] f = statusForm.getProvider();
 		if (f.length == 2) {
-			facebook.feedOperations().updateStatus(statusForm.getText());
-			twitter.timelineOperations().updateStatus(statusForm.getText());
+			if (facebook.isAuthorized())
+				facebook.feedOperations().updateStatus(statusForm.getText());
+			if (twitter.isAuthorized())
+				twitter.timelineOperations().updateStatus(statusForm.getText());
 		} else if (f.length != 0 && f[0].equals("facebook")) {
-			facebook.feedOperations().updateStatus(statusForm.getText());
+			if (facebook.isAuthorized())
+				facebook.feedOperations().updateStatus(statusForm.getText());
 		} else if (f.length != 0 && f[0].equals("twitter")) {
-			twitter.timelineOperations().updateStatus(statusForm.getText());
+			if (twitter.isAuthorized())
+				twitter.timelineOperations().updateStatus(statusForm.getText());
 		}
 		return "redirect:/";
 	}

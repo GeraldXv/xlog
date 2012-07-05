@@ -95,6 +95,7 @@ public class MessageController {
 		model.addAttribute("messages", messageDaoImpl.getMessagesByUserName(currentUser.getName(), fromUser));
 		model.addAttribute("fromUser", fromUser);
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		model.addAttribute("messageForm", new MessageForm());
 		return "message";
