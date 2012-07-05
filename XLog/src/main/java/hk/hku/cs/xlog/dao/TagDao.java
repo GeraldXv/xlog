@@ -1,6 +1,8 @@
 package hk.hku.cs.xlog.dao;
 
+import hk.hku.cs.xlog.entity.Status;
 import hk.hku.cs.xlog.entity.Tag;
+import hk.hku.cs.xlog.util.Pagination;
 
 import java.util.List;
 
@@ -16,5 +18,7 @@ public interface TagDao {
 	void saveOrUpdate(Tag tag);
 
 	List<Tag> getTagByRank();
+
+	Pagination<Status> getStatusByTag(String tag,int currentPage,String fromUser);
 
 }

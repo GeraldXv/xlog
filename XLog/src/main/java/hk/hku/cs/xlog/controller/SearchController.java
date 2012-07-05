@@ -8,6 +8,7 @@ import hk.hku.cs.xlog.entity.Friend;
 import hk.hku.cs.xlog.entity.Message;
 import hk.hku.cs.xlog.entity.Status;
 import hk.hku.cs.xlog.solr.PaginationSupport;
+import hk.hku.cs.xlog.util.Pagination;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -52,6 +53,8 @@ public class SearchController {
 			return "redirect:/search/friend?query=" + query + "&page=1&range=none";
 		else if (type.equals("message"))
 			return "redirect:/search/message?query=" + query + "&page=1&range=none";
+		else if (type.equals("tag"))
+			return "redirect:/search/tag?query=" + query + "&page=1&range=none";
 		else
 			return "redirect:/search/status?query=" + query + "&page=1&range=none";
 	}
@@ -105,6 +108,22 @@ public class SearchController {
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
 		return "searchFriend";
+
+	}
+
+	@RequestMapping(value = "/tag", method = RequestMethod.GET)
+	public String tagSearch(Principal currentUser, Model model, @RequestParam("query") String query, @RequestParam("page") int page) {
+		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
+		Pagination<Status> status = searchClientImpl.searchTag(currentUser.getName(), query, page);
+		model.addAttribute("statusList", status.getItems());
+		model.addAttribute("totalNum", status.getTotalNum());
+		model.addAttribute("totalPage", status.getTotalPage());
+		model.addAttribute("currentPage", status.getCurrentPage());
+		model.addAttribute("query", query);
+		model.addAttribute("type", "tag");
+		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
+		model.addAttribute("searchForm", new SearchForm());
+		return "searchTag";
 
 	}
 

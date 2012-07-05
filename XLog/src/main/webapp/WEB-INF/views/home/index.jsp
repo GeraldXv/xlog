@@ -56,21 +56,21 @@
 				<ul id="topcloud"></ul>
 				<ul>
 					<li><c:forEach var="tag" items="${tags}" begin="6" end="6">
-							<a class="style4">${tag.tagName}</a>
+							<a class="style4" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="0" end="0">
-							<a class="style1">${tag.tagName}</a>
+							<a class="style1" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="4" end="4">
-							<a class="style3">${tag.tagName}</a>
+							<a class="style3" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="2" end="2">
-							<a class="style2">${tag.tagName}</a>
+							<a class="style2" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="7" end="7">
-							<a class="style4">${tag.tagName}</a>
+							<a class="style4" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="1" end="1">
-							<a class="style1">${tag.tagName}</a>
+							<a class="style1" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="5" end="5">
-							<a class="style3">${tag.tagName}</a>
+							<a class="style3" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach> <c:forEach var="tag" items="${tags}" begin="3" end="3">
-							<a class="style2">${tag.tagName}</a>
+							<a class="style2" href="<c:url value="/search/tag?query=${tag.tagName }&page=1&range=none" />">${tag.tagName}</a>
 						</c:forEach></li>
 				</ul>
 				<ul id="bottomcloud"></ul>

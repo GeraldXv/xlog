@@ -1,11 +1,13 @@
 package hk.hku.cs.xlog.bo.impl;
 
 import hk.hku.cs.xlog.bo.SearchClient;
+import hk.hku.cs.xlog.dao.TagDao;
 import hk.hku.cs.xlog.entity.Friend;
 import hk.hku.cs.xlog.entity.Message;
 import hk.hku.cs.xlog.entity.Status;
 import hk.hku.cs.xlog.search.SearchService;
 import hk.hku.cs.xlog.solr.PaginationSupport;
+import hk.hku.cs.xlog.util.Pagination;
 
 import javax.inject.Inject;
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class SearchClientImpl implements SearchClient {
 	@Inject
 	SearchService searchServiceImpl;
+	@Inject
+	TagDao tagDaoImpl;
 	private final int size = 7;
 	private String startTime = null;
 	private String endTime = "NOW/DAY";
@@ -40,7 +44,7 @@ public class SearchClientImpl implements SearchClient {
 		} else if (range.equals("year")) {
 			startTime = "NOW-1YEAR";
 		}
-		return searchServiceImpl.searchStatus(userName, query, (page-1) * size, size, startTime, endTime);
+		return searchServiceImpl.searchStatus(userName, query, (page - 1) * size, size, startTime, endTime);
 	}
 
 	@Override
@@ -58,7 +62,12 @@ public class SearchClientImpl implements SearchClient {
 		} else if (range.equals("year")) {
 			startTime = "NOW-1YEAR";
 		}
-		return searchServiceImpl.searchMessages(userName, query, (page-1) * size, size, startTime, endTime);
+		return searchServiceImpl.searchMessages(userName, query, (page - 1) * size, size, startTime, endTime);
+	}
+
+	@Override
+	public Pagination<Status> searchTag(String userName, String query, int page) {
+		return tagDaoImpl.getStatusByTag(query, page, userName);
 	}
 
 	@Override

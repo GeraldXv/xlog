@@ -80,7 +80,11 @@
 								<td><a><s:message code="${status.serviceProvider}.png" var="iconUrl" /> <img src="<c:url value="${iconUrl}" />" /></a></td>
 							</tr>
 							<tr class="person">
-								<td colspan="4"><label>${status.content} </label></td>
+								<td colspan="4"><label>${status.content} </label> Tag:<c:forEach var="tag" items="${status.tags }">
+									${tag.tagName }
+								</c:forEach></td>
+
+
 							</tr>
 							<tr height="20px"></tr>
 							<!-- end of a item -->

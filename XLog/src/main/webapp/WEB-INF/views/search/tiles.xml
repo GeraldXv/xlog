@@ -14,5 +14,8 @@
 	<definition name="searchFriend" extends="layout">
 		<put-attribute name="content" value="/WEB-INF/views/search/friend.jsp" />
 	</definition>
-	
+	<definition name="searchTag" extends="layout">
+		<put-attribute name="content" value="/WEB-INF/views/search/tag.jsp" />
+	</definition>
+
 </tiles-definitions>

@@ -22,8 +22,11 @@
 							<li><a id="c2" href="<c:url value="/search/friend?query=${query }&page=1&range=none" />" class="seled">Person</a></li>
 						</c:if> <c:if test="${type!='friend'}">
 							<li><a id="c2" href="<c:url value="/search/friend?query=${query }&page=1&range=none" />">Person</a></li>
-						</c:if>
-						<li><a id="c4" href="#" onclick="categchg('c5')">Tag</a></li> <input type="hidden" id="catg" value="c2"></td>
+						</c:if> <c:if test="${type=='tag' }">
+							<li><a id="c2" href="<c:url value="tag }&page=1&range=none" />" class="seled">Tag</a></li>
+						</c:if> <c:if test="${type!='tag'}">
+							<li><a id="c2" href="<c:url value="/search/tag?query=${query }&page=1&range=none" />">Tag</a></li>
+						</c:if></td>
 				</tr>
 				<tr>
 					<td>
