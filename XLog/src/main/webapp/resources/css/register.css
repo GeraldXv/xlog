@@ -141,6 +141,7 @@ img {border:none;}
 .register table tr td label{
 	position:relative;
 	float:right;
+	font-size:20px;
 }
 
 .register table tr td b {
@@ -153,7 +154,7 @@ img {border:none;}
 .register table tr td input {
 	width:218px;
 	border:1px #000066 solid;
-	height:20px;
+	height:26px;
 }
 
 .register table tr td button {
@@ -164,6 +165,8 @@ img {border:none;}
 	border:1px solid #000;
 	width:112px;
 	height:34px;
+	position:relative;
+	top:100px;
 }
 
 .register table tr td button:hover {

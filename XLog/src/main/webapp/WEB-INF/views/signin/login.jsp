@@ -98,7 +98,7 @@
 									src="<c:url value="/resources/image/X.png" />" /></td>
 							</tr>
 							<tr>
-								<td><label>Re-enter Password:</label></td>
+								<td><label>Validate:</label></td>
 								<td><input id="psw2" type="password" onkeyup="vpsw2()" /></td>
 								<td><img id="pswp2T" src="<c:url value="/resources/image/T.png" />" /><img id="pswp2X"
 									src="<c:url value="/resources/image/X.png" />" /></td>
