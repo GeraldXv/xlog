@@ -110,6 +110,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .SRcontent li.categ {
 	width:120px;
 	top:20px;
+	min-height:420px;
 	margin-right:40px;
 	margin-top:5px;
 }
@@ -290,7 +291,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 	height:30px !important;
 	margin-left:auto;
 	margin-right:auto;
-	sbottom:10px;
+	bottom:-35px;
 	text-align:center;
 }
 

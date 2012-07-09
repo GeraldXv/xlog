@@ -45,11 +45,36 @@
 			<div class="category">
 				<ul>
 					<input type="hidden" id="currentcategory" name="c1">
-					<li><a href="<c:url value="/" />" class="all1"></a></li>
-					<li><a href="<c:url value="/status/facebook" />" class="fb0"></a></li>
-					<li><a href="<c:url value="/status/google" />" class="g0"></a></li>
+					<c:if test="${empty providerId}">
+						<li><a href="<c:url value="/" />" class="all1"></a></li>
+					</c:if>
+					<c:if test="${not empty providerId}">
+						<li><a href="<c:url value="/" />" class="all0"></a></li>
+					</c:if>
+					<c:if test="${ providerId == 'facebook' }">
+						<li><a href="<c:url value="/status/facebook" />" class="fb1"></a></li>
+					</c:if>
+					<c:if test="${ providerId != 'facebook' }">
+						<li><a href="<c:url value="/status/facebook" />" class="fb0"></a></li>
+					</c:if>
+					<c:if test="${ providerId != 'google' }">					
+						<li><a href="<c:url value="/status/google" />" class="g0"></a></li>
+					</c:if>
+					<c:if test="${ providerId == 'google' }">					
+						<li><a href="<c:url value="/status/google" />" class="g1"></a></li>
+					</c:if>
+					<c:if test="${ providerId != 'twitter' }">				
 					<li><a href="<c:url value="/status/twitter" />" class="t0"></a></li>
-					<li><a href="<c:url value="/status/gmail" />" class="gmail0"></a></li>
+					</c:if>
+					<c:if test="${ providerId == 'twitter' }">				
+					<li><a href="<c:url value="/status/twitter" />" class="t1"></a></li>
+					</c:if>
+					<c:if test="${ providerId != 'gmail' }">				
+						<li><a href="<c:url value="/status/gmail" />" class="gmail0"></a></li>
+					</c:if>
+					<c:if test="${ providerId == 'gmail' }">				
+						<li><a href="<c:url value="/status/gmail" />" class="gmail1"></a></li>
+					</c:if>
 				</ul>
 			</div> <!--end of category-->
 			<div class="tagcloud">
