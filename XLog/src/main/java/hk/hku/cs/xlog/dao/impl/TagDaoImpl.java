@@ -52,12 +52,14 @@ public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
 	public Pagination<Status> getStatusByTag(String tagName, int currentPage, String userName) {
 		Tag tag = (Tag) getHibernateTemplate().get(Tag.class, tagName);
 		List<Status> tem = new ArrayList<Status>();
-		Set<Status> slist = tag.getStatus();
-		if (slist.size() != 0)
-			for (Status s : slist) {
-				if (s.getRefUser().equals(userName))
-					tem.add(s);
-			}
+		if (tag != null) {
+			Set<Status> slist = tag.getStatus();
+			if (slist.size() != 0)
+				for (Status s : slist) {
+					if (s.getRefUser().equals(userName))
+						tem.add(s);
+				}
+		}
 		return new Pagination<Status>(tem, currentPage);
 	}
 

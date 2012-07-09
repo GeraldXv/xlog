@@ -2,20 +2,16 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-	<definition name="search" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/search/search.jsp" />
+	<definition name="searchStauts" extends="searchlayout">
+		<put-attribute name="content" value="/WEB-INF/views/search/xstatus.jsp" />
 	</definition>
-	<definition name="searchStauts" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/search/status.jsp" />
+	<definition name="searchMessage" extends="searchlayout">
+		<put-attribute name="content" value="/WEB-INF/views/search/xmessage.jsp" />
 	</definition>
-	<definition name="searchMessage" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/search/message.jsp" />
+	<definition name="searchFriend" extends="searchlayout">
+		<put-attribute name="content" value="/WEB-INF/views/search/xfriend.jsp" />
 	</definition>
-	<definition name="searchFriend" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/search/friend.jsp" />
+	<definition name="searchTag" extends="searchlayout">
+		<put-attribute name="content" value="/WEB-INF/views/search/xtag.jsp" />
 	</definition>
-	<definition name="searchTag" extends="layout">
-		<put-attribute name="content" value="/WEB-INF/views/search/tag.jsp" />
-	</definition>
-
 </tiles-definitions>

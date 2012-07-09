@@ -4,4 +4,7 @@
 <tiles-definitions>
 	<definition name="layout" templateExpression="/WEB-INF/layouts/layout.jsp">
 	</definition>
+
+	<definition name="searchlayout" templateExpression="/WEB-INF/layouts/searchlayout.jsp">
+	</definition>
 </tiles-definitions>
