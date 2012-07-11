@@ -182,7 +182,7 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
 .SRcontent li.reslt tr.person td label {
 	color:#000000;
 	display:block;
-	height:35px;
+	height:20px;
 	width:450px;
 	overflow:hidden;
 	
@@ -396,3 +396,12 @@ ul, li {margin:0; border:0; padding:0; list-style:none;}
  	 color:#660033;
  }
 
+.srcontent ul li table tr td a.tag {
+	display:inline-block;
+	padding:2px;
+	cursor:pointer;
+	font-family:arial;
+	font-size:13px;
+	border:1px solid blue;
+	text-decoration:none;
+}
