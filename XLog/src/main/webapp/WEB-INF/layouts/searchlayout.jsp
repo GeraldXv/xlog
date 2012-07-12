@@ -22,23 +22,23 @@
 
 </head>
 <body>
-	<div id="content">
-		<div id=header>
-			<tiles:insertTemplate template="header.jsp" />
-		</div>
-		<div class="SRcontent">
-			<ul>
-				<tiles:insertTemplate template="filter.jsp" />
-				<tiles:insertAttribute name="content" />
-			</ul>
-			<ul>
-				<tiles:insertTemplate template="page.jsp" />
-			</ul>
-		</div>
-		<tiles:insertTemplate template="advance.jsp" />
+
+
+	<tiles:insertTemplate template="header.jsp" />
+
+	<div class="SRcontent">
+		<ul>
+			<tiles:insertTemplate template="filter.jsp" />
+			<tiles:insertAttribute name="content" />
+		</ul>
+		<ul>
+			<tiles:insertTemplate template="page.jsp" />
+		</ul>
 	</div>
-	<div id="foot">
-		<tiles:insertTemplate template="foot.jsp" />
-	</div>
+	<tiles:insertTemplate template="advance.jsp" />
+
+
+	<tiles:insertTemplate template="foot.jsp" />
+
 </body>
 </html>

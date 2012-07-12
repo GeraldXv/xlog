@@ -21,9 +21,9 @@
 				</c:if> <c:if test="${type!='friend'}">
 					<li><a id="c2" href="<c:url value="/search/friend?query=${query }&page=1&range=none" />">Person</a></li>
 				</c:if> <c:if test="${type=='tag' }">
-					<li><a id="c2" href="<c:url value="tag }&page=1&range=none" />" class="seled">Tag</a></li>
+					<li><a id="c1" href="<c:url value="/search/tag?query=${query }&page=1&range=none" />" class="seled">Tag</a></li>
 				</c:if> <c:if test="${type!='tag'}">
-					<li><a id="c2" href="<c:url value="/search/tag?query=${query }&page=1&range=none" />">Tag</a></li>
+					<li><a id="c1" href="<c:url value="/search/tag?query=${query }&page=1&range=none" />">Tag</a></li>
 				</c:if></td>
 		</tr>
 		<tr>
