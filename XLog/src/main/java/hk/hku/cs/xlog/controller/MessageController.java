@@ -78,8 +78,10 @@ public class MessageController {
 
 	@RequestMapping(value = "/{fromUser}", method = RequestMethod.GET)
 	public String services(Principal currentUser, Model model, @PathVariable String fromUser) {
-		List<Message> mList = messageDaoImpl.getMessagesByTime(currentUser.getName(), gmailAccountDaoImpl.getByUserName(currentUser.getName()).getAccount(),
-				twitter.isAuthorized() ? twitter.userOperations().getUserProfile().getId() + "" : null);
+		List<Message> mList = messageDaoImpl
+				.getMessagesByTime(currentUser.getName(),
+						gmailAccountDaoImpl.getByUserName(currentUser.getName()) != null ? gmailAccountDaoImpl.getByUserName(currentUser.getName())
+								.getAccount() : null, twitter.isAuthorized() ? twitter.userOperations().getUserProfile().getId() + "" : null);
 		List<Message> newList = new ArrayList<Message>();
 		for (int i = 0; i < mList.size(); i++) {
 			boolean flag = false;

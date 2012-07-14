@@ -2,6 +2,7 @@ package hk.hku.cs.xlog.dao.impl;
 
 import hk.hku.cs.xlog.dao.FriendDao;
 import hk.hku.cs.xlog.entity.Friend;
+import hk.hku.cs.xlog.util.Pagination;
 
 import java.util.List;
 
@@ -43,12 +44,15 @@ public class FriendDaoImpl extends HibernateDaoSupport implements FriendDao {
 
 	@Override
 	public void saveOrUpdateAll(List<Friend> friends) {
-		// for (Friend friend : friends) {
-		// // System.out.println(friend.getIdAtService());
-		// getHibernateTemplate().saveOrUpdate(friend);
-		// }
 		for (Friend f : friends)
 			getHibernateTemplate().merge(f);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Pagination<Friend> getFriends(String userName, String providerId, int currentPage) {
+		return new Pagination<Friend>((List<Friend>) getHibernateTemplate().find("from Friend where refName=? and serviceProvider=?",
+				new Object[] { userName, providerId }), currentPage);
 	}
 
 }

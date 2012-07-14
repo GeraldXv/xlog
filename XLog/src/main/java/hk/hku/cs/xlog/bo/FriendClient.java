@@ -2,6 +2,8 @@ package hk.hku.cs.xlog.bo;
 
 import hk.hku.cs.xlog.adapter.FriendAdapter;
 import hk.hku.cs.xlog.dao.impl.FriendDaoImpl;
+import hk.hku.cs.xlog.entity.Friend;
+import hk.hku.cs.xlog.util.Pagination;
 
 import java.util.List;
 
@@ -31,6 +33,11 @@ public class FriendClient {
 
 	public void saveOrUpdateGplusFriends(String userName, List<Person> gFriends) {
 		friendDaoImpl.saveOrUpdateAll(friendAdapter.googleProfileListAdapter(userName, gFriends));
+
+	}
+
+	public Pagination<Friend> getFriends(String userName, int page, String providerId) {
+		return friendDaoImpl.getFriends(userName, providerId, page);
 
 	}
 }

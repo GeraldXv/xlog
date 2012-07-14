@@ -1,6 +1,7 @@
 package hk.hku.cs.xlog.dao;
 
 import hk.hku.cs.xlog.entity.Friend;
+import hk.hku.cs.xlog.util.Pagination;
 
 import java.util.List;
 
@@ -19,5 +20,7 @@ public interface FriendDao {
 	void delete(Integer id);
 
 	List<Friend> getFriends(String refName);
+	
+	Pagination<Friend> getFriends(String userName,String providerId, int currentPage);
 
 }
