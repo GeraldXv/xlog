@@ -11,7 +11,7 @@
 			<td width="15px"><a href="#" onclick="popunr()"> <img src="<c:url value="/resources/image/down.png" />" />
 			</a></td>
 			<td width="40px"><img id="unrpic" src="<c:url value="/resources/image/bubble.png" />" /><b id="unrno">${messageNotification.allMessage}</b>
-				</td>
+			</td>
 			<td width="80px"></td>
 			<td width="430px"><c:url var="searchUrl" value="/search/" /> <sf:form action="${searchUrl}" method="post"
 					modelAttribute="searchForm">
@@ -24,8 +24,8 @@
 
 
 			<td width="50px"></td>
-			<td width="100px"><a id="friend" href="./friend.html"> Friends </a> <a id="message" href="<c:url value="/message/" />"> Message
-			</a></td>
+			<td width="100px"><a id="friend" href="<c:url value="/friend/" />"> Friends </a> <a id="message" href="<c:url value="/message/" />">
+					Message </a></td>
 			<td width="60px"><a href="#"> <c:if test="${not empty profileImage }">
 						<img id="portrait" src="<c:url value="${profileImage}" />" />
 					</c:if> <c:if test="${ empty profileImage }">
