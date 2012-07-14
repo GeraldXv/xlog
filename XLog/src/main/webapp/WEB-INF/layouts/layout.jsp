@@ -27,14 +27,14 @@
 
 </head>
 <body>
-	<div id=header>
-		<tiles:insertTemplate template="header.jsp" />
-	</div>
-	<div id="content">
-		<tiles:insertAttribute name="content" />
-	</div>
-	<div id="foot">
-		<tiles:insertTemplate template="foot.jsp" />
-	</div>
+
+	<tiles:insertTemplate template="header.jsp" />
+
+
+	<tiles:insertAttribute name="content" />
+
+
+	<tiles:insertTemplate template="foot.jsp" />
+
 </body>
 </html>

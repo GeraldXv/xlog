@@ -2,7 +2,6 @@ package hk.hku.cs.xlog.controller.form;
 
 /**
  * @author Gerald.xv at gmail.com
- * @version 创建时间：2012-6-19 下午9:17:23 
  */
 public class TagContainner {
 	String tag1;

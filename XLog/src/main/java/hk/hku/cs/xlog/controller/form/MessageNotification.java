@@ -2,7 +2,6 @@ package hk.hku.cs.xlog.controller.form;
 
 /**
  * @author Gerald.xv at gmail.com
- * @version 创建时间：2012-6-18 下午2:51:47 
  */
 public class MessageNotification {
 	int allMessage;
