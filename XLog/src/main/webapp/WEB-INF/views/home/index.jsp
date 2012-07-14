@@ -121,7 +121,7 @@
 											<img src="<c:url value="${status.picture}" />" onclick="chgsize(this)" />
 										</c:if></td>
 									<c:if test="${status.stared==true }">
-										<td width="25px"><a class="marked" onclick="chgmark(this)"></a></td>
+										<td width="25px"><a class="marked" onclick="chgmark(this,'${status.statusId}')"></a></td>
 									</c:if>
 									<c:if test="${status.stared==false }">
 										<td width="25px"><a class="mark" onclick="chgmark(this,'${status.statusId}')"></a></td>
