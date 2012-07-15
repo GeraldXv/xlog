@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.social.facebook.api.Post;
+import org.springframework.social.google.api.plus.activity.Activity;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,19 @@ public class StatusAdapter {
 
 	}
 
+	public Status plusStatusAdapter(Activity activity) {
+		status = new Status();
+		status.setIdAtService("" + activity.getId());
+		status.setServiceProvider("gPlus");
+		status.setFromUser(activity.getActor().getDisplayName());
+		status.setCreatedTime(activity.getPublished());
+		status.setContent(activity.getContent());
+		status.setUserImage(activity.getActor().getImageUrl());
+
+		return status;
+
+	}
+
 	public List<Status> facebookStatusListAdapter(String userName, List<Post> fPostList) {
 		statusList = new ArrayList<Status>();
 		for (Post fp : fPostList) {
@@ -82,6 +96,18 @@ public class StatusAdapter {
 
 	}
 
-	// TODO GoogleAdapter
+	public List<Status> plusStatusListAdapter(String userName, List<Activity> activityList) {
+		statusList = new ArrayList<Status>();
+		for (Activity ft : activityList) {
+			Status t = plusStatusAdapter(ft);
+			t.setRefUser(userName);
+			t.setStatusId(t.getIdAtService() + userName);
+			statusList.add(t);
+
+		}
+
+		return statusList;
+
+	}
 
 }

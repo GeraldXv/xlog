@@ -95,7 +95,7 @@
 
 <!-- window of delete confirm -->
 <div id="delcon" class="delcon" onmouseup="up()" onmousemove="movepos(ev)" onmousedown="down()">
-	<form>
+	<form method="POST" action="<c:url value="/source/del/gmail" />">
 		<input type="hidden">
 		<ul>
 			<li>Are you sure you want to delete this source from your X-Log?</li>

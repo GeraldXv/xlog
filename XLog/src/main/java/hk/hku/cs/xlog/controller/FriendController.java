@@ -5,13 +5,9 @@ import hk.hku.cs.xlog.bo.NotificationClient;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 import hk.hku.cs.xlog.entity.Friend;
-import hk.hku.cs.xlog.solr.PaginationSupport;
 import hk.hku.cs.xlog.util.Pagination;
-
 import java.security.Principal;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +47,8 @@ public class FriendController {
 		model.addAttribute("totalNum", friends.getTotalNum());
 		model.addAttribute("totalPage", friends.getTotalPage());
 		model.addAttribute("currentPage", friends.getCurrentPage());
+		model.addAttribute("searchForm", new SearchForm());
+		model.addAttribute("providerId",providerId);
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "friend";
 

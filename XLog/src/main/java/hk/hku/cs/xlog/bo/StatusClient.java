@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.social.facebook.api.Post;
+import org.springframework.social.google.api.plus.activity.Activity;
 import org.springframework.social.twitter.api.Tweet;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class StatusClient {
 
 	public void saveOrUpdateFacebookStatus(String userName, List<Post> posts) {
 		statusDaoImpl.saveOrUpdateAll(statusAdapter.facebookStatusListAdapter(userName, posts));
+	}
+
+	public void saveOrUpdatePlusStatus(String userName, List<Activity> activities) {
+		statusDaoImpl.saveOrUpdateAll(statusAdapter.plusStatusListAdapter(userName, activities));
 	}
 
 	public List<Status> getTopStatus(String userName) {

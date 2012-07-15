@@ -21,9 +21,7 @@ import hk.hku.cs.xlog.gmail.GmailClientX;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.Post;
@@ -59,14 +57,12 @@ public class IndexController {
 	private NotificationClientImpl notificationClientImpl;
 	private StatusItemClientImpl statusItemClientImpl;
 	private AccountClient accountClientImpl;
-
 	private long updateGap = 3600000;
 
 	@Inject
 	public IndexController(MessageDao messageDaoImpl, StatusDao statusDaoImpl, UserDao userDaoImpl, TagDao tagDaoImpl, GmailAccountDao gmailAccountDaoImpl,
 			FriendClient friendClient, StatusClient statusClient, MessageClient messageClient, Twitter twitter, Facebook facebook, GmailClientX gmailClientX,
 			NotificationClientImpl notificationClientImpl, StatusItemClientImpl statusItemClientImpl, AccountClient accountClientImpl) {
-		super();
 		this.messageDaoImpl = messageDaoImpl;
 		this.statusDaoImpl = statusDaoImpl;
 		this.userDaoImpl = userDaoImpl;
@@ -77,6 +73,7 @@ public class IndexController {
 		this.messageClient = messageClient;
 		this.twitter = twitter;
 		this.facebook = facebook;
+
 		this.gmailClientX = gmailClientX;
 		this.notificationClientImpl = notificationClientImpl;
 		this.statusItemClientImpl = statusItemClientImpl;
@@ -190,7 +187,9 @@ public class IndexController {
 			statusClient.saveOrUpdateFacebookStatus(userName, posts);
 		}
 
-		// TODO google
+		// if (google.isAuthorized()) {
+		// // TODO google since google does not support timeline
+		// }
 
 		if (gmailAccountDaoImpl.getByUserName(userName) != null) {
 			GmailAccount gaccount = gmailAccountDaoImpl.getByUserName(userName);
