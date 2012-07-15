@@ -39,7 +39,7 @@ public class FriendDaoImpl extends HibernateDaoSupport implements FriendDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Friend> getFriends(String refName) {
-		return (List<Friend>) getHibernateTemplate().find("from Friend where refName=?", refName);
+		return (List<Friend>) getHibernateTemplate().find("from Friend where refUser=?", refName);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class FriendDaoImpl extends HibernateDaoSupport implements FriendDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Pagination<Friend> getFriends(String userName, String providerId, int currentPage) {
-		return new Pagination<Friend>((List<Friend>) getHibernateTemplate().find("from Friend where refName=? and serviceProvider=?",
+		return new Pagination<Friend>((List<Friend>) getHibernateTemplate().find("from Friend where refUser=? and serviceProvider=?",
 				new Object[] { userName, providerId }), currentPage);
 	}
 

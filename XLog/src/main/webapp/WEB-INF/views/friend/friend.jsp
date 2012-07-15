@@ -10,21 +10,41 @@
 <div class="service">
 	<ul>
 		<li>
-        <a id="sel" href="<c:url value="/facebook?page=1" />" >Facebook</a>
-        <a href="<c:url value="/twitter?page=1" />" >Twitter</a>
-        <a href="<c:url value="/gmail?page=1" />" >Gmail</a>
-        <a href="<c:url value="/google?page=1" />" >Google+</a>
+					<c:if test="${ providerId == 'facebook' || empty providerId }">
+						<a id="sel" href="<c:url value="/friend/facebook?page=1" />" >Facebook</a>
+					</c:if>
+					<c:if test="${ providerId != 'facebook' }">
+						<a href="<c:url value="/friend/facebook?page=1" />" >Facebook</a>
+					</c:if>
+					<c:if test="${ providerId != 'twitter' }">					
+						<a href="<c:url value="/friend/twitter?page=1" />" >Twitter</a>
+					</c:if>
+					<c:if test="${ providerId == 'twitter' }">					
+						<a id="sel"  href="<c:url value="/friend/twitter?page=1" />" >Twitter</a>
+					</c:if>
+					<c:if test="${ providerId != 'gmail' }">				
+        				<a href="<c:url value="/friend/gmail?page=1" />" >Gmail</a>
+					</c:if>
+					<c:if test="${ providerId == 'gmail' }">				
+        				<a id="sel" href="<c:url value="/friend/gmail?page=1" />" >Gmail</a>
+					</c:if>
+					<c:if test="${ providerId != 'google' }">				
+        				<a href="<c:url value="/friend/google?page=1" />" >Google+</a>
+					</c:if>
+					<c:if test="${ providerId == 'google' }">				
+        				<a id="sel" href="<c:url value="/friend/google?page=1" />" >Google+</a>
+					</c:if>		
         </li>
 		<li class="splitline">
 		</li>
 	</ul>
     <ul class="flist">
     	<li>
-        	<input type="text" /><button><img src="image/Search.png" width="25" height="25" /></button>
+        	<input type="text" /><button><img src="<c:url value="/resources/image/search.png" />" width="25" height="25" /></button>
         </li>
         <c:forEach var="friend" items="${friends }">
         	<li>
-        		<a><img src="<c:url value="${friend.imageUrl }" />" /></a><a>${friend.name }</a><c:if test="${friend.gender == 'female' }"><img src="image/female.png" /></c:if><c:if test="${friend.gender == 'male' }"><img src="image/male.png" /></c:if>
+        		<a><img src="<c:url value="${friend.imageUrl }" />" /></a><a>${friend.screenName }</a><c:if test="${friend.gender == 'female' }"><img src="<c:url value="/resources/image/female.png" />" /></c:if><c:if test="${friend.gender == 'male' }"><img src="<c:url value="/resources/image/male.png" />" /></c:if>
         	</li>
         </c:forEach>
     </ul>

@@ -51,6 +51,8 @@ public class FriendController {
 		model.addAttribute("totalNum", friends.getTotalNum());
 		model.addAttribute("totalPage", friends.getTotalPage());
 		model.addAttribute("currentPage", friends.getCurrentPage());
+		model.addAttribute("searchForm", new SearchForm());
+		model.addAttribute("providerId",providerId);
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		return "friend";
 
