@@ -2,6 +2,7 @@ package hk.hku.cs.xlog.controller;
 
 import hk.hku.cs.xlog.bo.CheckSourceClient;
 import hk.hku.cs.xlog.bo.impl.NotificationClientImpl;
+import hk.hku.cs.xlog.controller.form.GmailForm;
 import hk.hku.cs.xlog.controller.form.SearchForm;
 import hk.hku.cs.xlog.dao.UserDao;
 
@@ -48,7 +49,20 @@ public class SourceController {
 		model.addAttribute("profileImage", userDaoImpl.getByUserName(currentUser.getName()).getProfileImage());
 		model.addAttribute("messageNotification", notificationClientImpl.getNotification(currentUser.getName()));
 		model.addAttribute("searchForm", new SearchForm());
+		model.addAttribute("gmailForm", new GmailForm());
 		return "source";
+	}
+
+	@RequestMapping(value = "/del/gmail", method = RequestMethod.POST)
+	public String del(Principal currentUser, Model model) {
+		checkSourceClient.delGmailAccount(currentUser.getName());
+		return "redirect:/source/";
+	}
+
+	@RequestMapping(value = "/add/gmail", method = RequestMethod.POST)
+	public String add(Principal currentUser, Model model, GmailForm gmailForm) {
+		checkSourceClient.addGmailAccount(currentUser.getName(), gmailForm.getAccount(), gmailForm.getPassword());
+		return "redirect:/source/";
 	}
 
 	private ConnectionRepository getConnectionRepository() {

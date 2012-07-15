@@ -1,7 +1,6 @@
 package hk.hku.cs.xlog.dao.impl;
 
 import hk.hku.cs.xlog.dao.GmailAccountDao;
-import hk.hku.cs.xlog.entity.GmailAccount;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +16,11 @@ public class GmailAccountDaoImplTest {
 
 	@Test
 	public void test() {
-		GmailAccount ga = new GmailAccount();
-		ga.setRefUser("GeraldXv");
-		ga.setAccount("gerald.xv@gmail.com");
-		ga.setPassword("pkpbxjg0");
-		GmailAccountDaoImpl.save(ga);
+		// GmailAccount ga = new GmailAccount("");
+		// ga.setRefUser("GeraldXv");
+		// ga.setAccount("gerald.xv@gmail.com");
+		// ga.setPassword("pkpbxjg0");
+		// GmailAccountDaoImpl.save(ga);
 	}
 
 }

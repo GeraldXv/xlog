@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ page session="false"%>
 
 <div class="Settings">
@@ -74,13 +75,14 @@
 
 <div id="autbg" class="lyly"></div>
 <div id="autwin" class="autwin">
-	<form>
+	<c:url var="addGmail" value="/source/add/gmail" />
+	<sf:form action="${addGmail}" method="post" modelAttribute="gmailForm">
 		<ul>
 			<li style="height: 1px"></li>
-			<li>To authorize your account, please enter your information.</li>
+			<li>To authorize your account, please enter your Gmail Account.</li>
 			<li class="spl"></li>
-			<li><label><b>User Name:</b></label><input type="text" /></li>
-			<li><label><b>Password:</b></label><input type="password" /></li>
+			<li><label><b>User Name:</b></label> <sf:input type="text" path="account" /></li>
+			<li><label><b>Password:</b></label> <sf:input type="password" path="password" /></li>
 			<li>
 				<button type="submit">
 					<b>Confirm</b>
@@ -90,7 +92,7 @@
 				</button>
 			</li>
 		</ul>
-	</form>
+	</sf:form>
 </div>
 
 <!-- window of delete confirm -->

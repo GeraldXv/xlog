@@ -5,6 +5,15 @@ public class GmailAccount {
 	private String account;
 	private String password;
 
+	public GmailAccount() {
+	}
+
+	public GmailAccount(String refUser, String account, String password) {
+		this.refUser = refUser;
+		this.account = account;
+		this.password = password;
+	}
+
 	public String getRefUser() {
 		return refUser;
 	}
