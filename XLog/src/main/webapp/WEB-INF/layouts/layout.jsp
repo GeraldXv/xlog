@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/source.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/settingp.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/searchresult.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/friend.css" />" />
 
 <script type="text/javascript" src="<c:url value="/resources/js/searchC.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/js/My97DatePicker/WdatePicker.js" />"></script>
